@@ -1,0 +1,149 @@
+<ul class="breadcrumb">
+  <li>
+    <a href="Javascript:void(0)" [routerLink]="['/Employee']">Employee&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+  </li>
+  <li>
+    <i class="fa {{icon}}"></i>Attendance List
+  </li>
+  <b>{{pgname}} - {{finyear}}</b>
+</ul>
+<form class="form-horizontal" [formGroup]="AttForm">
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;"> Attendance List </h4>
+      <!-- (click)="toggleSelected()" -->
+      <button mat-icon-button  style="float: right;" >
+
+        <mat-icon
+          *ngIf="(fevoritelist?.length == 1 )" 
+        
+          aria-label="Example icon-button with a heart icon"  (click)="removefevorite()"  style="color: red;"   matTooltip="Remove From Favourite" >
+          favorite
+        </mat-icon>
+      
+        <mat-icon
+          *ngIf="(fevoritelist?.length == 0 )"
+          aria-label="Example icon-button with a heart icon" (click)="addfevorite()"   matTooltip="Add To Favourite" >
+          favorite_border
+        </mat-icon>
+      
+      </button>
+    </div>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label>Department: </label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <select id="depname" type="text" class="form-control" [(ngModel)]="searchdep" formControlName="depid"
+          [ngModel]="des?.depid">
+          <option [ngValue]="select">Select</option>
+          <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>
+            {{Departmentlist.column1}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label> Month:</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <select class="form-control" formControlName="month" [(ngModel)]="searchmonth">
+          <option [ngValue]="select">Select</option>
+          <option value="1">JANUARY</option>
+          <option value="2">FEBRUARY</option>
+          <option value="3">MARCH</option>
+          <option value="4">APRIL </option>
+          <option value="5">MAY</option>
+          <option value="6">JUNE</option>
+          <option value="7">JULY</option>
+          <option value="8">AUGUST</option>
+          <option value="9">SEPTEMBER</option>
+          <option value="10">OCTOBER</option>
+          <option value="11">NOVEMBER</option>
+          <option value="12">DECEMBER</option>
+        </select>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label>Year:</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <select class="form-control" formControlName="year" name="emptype" [(ngModel)]="searchyear">
+          <option [ngValue]="select">Select</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+        </select>
+      </div>
+
+    </div>
+
+
+ 
+
+    <br>
+    <div class="row">
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+        <div class="row">
+          <button type="button" class="btn btn-warning"
+            (click)="filterrecord(searchdep,searchmonth, searchyear)">Search</button>
+
+        </div>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+        <div class="row">
+          <button type="button" class="btn btn-warning" [routerLink]="['/UploadAttendance']">Upload Attendance</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="margin:5px">
+    <div class="row">
+      <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+        <b>Total Record: {{empcount}}</b>
+      <b> <span *ngIf ="!empcount || empcount.length==0"></span></b> 
+      </div>
+      
+      <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+        <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="warning">
+            <td><b>Sr No</b></td>
+            <td><b>Department Name</b></td>
+            <td><b>Month</b></td>
+            <td><b>Year</b></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr #myVar *ngFor="let employeelist of saveexcel | paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+            <td>{{i+1}}</td>
+            <td>
+             
+            <b>
+            <a (click)="redirect(employeelist.depid,employeelist.month,employeelist.year)"   style="cursor: pointer;color: #007bff; " >{{employeelist.depname}}</a></b>
+            </td>
+            <td>
+              <a> {{employeelist.month1}}</a>
+            </td>
+
+            <td>
+              {{employeelist.year}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

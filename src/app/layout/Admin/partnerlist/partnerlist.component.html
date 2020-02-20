@@ -1,0 +1,74 @@
+<app-page-header [heading]="'Partner List'"></app-page-header>
+<form class="form-horizontal" #searchForm="ngForm" >
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h3 style="float: left;">Partner List </h3>
+    </div>
+  </div>
+  <!-- <div class="row"> -->
+      
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+          <div class="row" >
+           <button type="button" class="btn btn-warning" [routerLink]="['/AddPartner']">Add Partner</button>
+
+        </div>
+      </div>
+    <!-- </div> -->
+    
+    <div style="margin:5px">
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+        
+          <span *ngIf ="!count || count.length==0; else elseBlock">No Record Found!</span>
+          <ng-template #elseBlock><b>Total Records: {{count}}</b></ng-template>
+
+        </div>
+        <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+          <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="warning">
+              <td>
+                <b>Sr NO.</b>
+              </td>
+              <td>
+                <b>Partner Name</b>
+              </td>
+              <td>
+                <b>Office</b>
+              </td>
+             
+                  <td>
+                      <b>State</b>
+                    </td>
+              <td>
+                <b>City</b>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  #myVar *ngFor="let Partner of Partner| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;" >
+              <td>{{i+1}}</td>
+              
+              <td>
+                <a [routerLink] = "['/PartnerDetail',Partner.partnerid]" >{{Partner.partnername}}</a>
+              </td>
+              <td>
+                {{Partner.company}}
+                </td>
+              
+                <td>
+                    {{Partner.state}}
+                  </td>
+                  <td>
+                      {{Partner.city}}
+                    </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>

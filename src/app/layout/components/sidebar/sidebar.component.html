@@ -1,0 +1,47 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+    <div class="list-group">
+       
+        <a  style="background-color: white !important;" (click)="submenu(Menus.menuid,Menus.menuurl)" [ngClass]="{'active': selectedItem == Menus}" (click)="listClick($event, Menus)"  *ngFor="let Menus of Menus" style="cursor: pointer;">
+            <i class="{{Menus.menuicon}}"></i>&nbsp;
+            <span style="margin-left: 15px;">{{ Menus.menuname }}</span>
+        </a>
+        <div class="header-fields">
+
+
+            <div class="nested-menu">
+                    <a href="javascript:void(0)" class="nav-link" (click)="home()"  style="color: black !important" id="addata">
+                            <i class="fa fa-home "></i><span >&nbsp;&nbsp;Home </span>
+                        </a>
+                        <a  href="javascript:void(0)" class="nav-link" (click)="redirect()"  style="color: black !important;" >
+                                <i class="fa fa-bell "></i><span >&nbsp; Notifications</span>
+                                &nbsp;
+                                 <span class="badge badge-info">{{notifycount}}</span>
+                             <span *ngIf ="!notifycount || notifycount.length==0"></span>
+                            </a>
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <i class="fa fa-user"></i> <span >&nbsp; {{ UserName }} </span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)" (click)="ClickProfile()">
+                                <i class="fa fa-fw fa-user"></i> <span> {{ 'Profile' | translate }}</span>
+                            </a>
+                        </li>
+                       
+                       
+                        <li>
+                            <a (click)="onLoggedout()">
+                                <i class="fa fa-fw fa-power-off"></i>    <span>{{ 'Log Out' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+        <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' | translate }}</span>
+    </div>
+</nav>

@@ -1,0 +1,172 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+    <b style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+</div>
+
+
+
+
+<form [formGroup]="centerForm" (ngSubmit)="Addcenter(centerForm.value)">
+  <div class="button-row">
+    <h4>GST Details</h4>
+    <span>
+      <button type="button" class="btn btn-warning" (click)="Back()">Back</button>
+    </span>&nbsp;&nbsp;&nbsp;
+    <span>
+      <button type="submit" class="btn btn-warning">Submit</button>
+    </span>
+
+    <span>
+      <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+    </span>
+    <hr>
+
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          GST Details
+
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div class="card card-default mb-3" style="padding: 20px;">
+
+
+        <!-- start -->
+        <div class="row" id="collapseExample">
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('gstapplicable').touched ||
+    centerForm.get('gstapplicable').dirty) &&
+    centerForm.get('gstapplicable').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>GST Applicable:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="gstapplicable" type="text" class="form-control"
+                  [(ngModel)]="model.gstapplicable" formControlName="gstapplicable" [(ngModel)]="selectedValue">
+                  <option [ngValue]="select">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('gstapplicable').touched ||
+    centerForm.get('gstapplicable').dirty) &&
+    centerForm.get('gstapplicable').errors)">
+                  <small *ngIf="centerForm.get('gstapplicable').errors.required">
+                    GST Applicable Name is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('academicyear').touched ||
+      centerForm.get('academicyear').dirty) &&
+      centerForm.get('academicyear').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Academic Year:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="academicyear" type="text" class="form-control"
+                  [(ngModel)]="model.academicyear" formControlName="academicyear">
+                  <option [ngValue]="select">Select</option>
+                  <option value="2018-2019">2018-2019</option>
+                  <option value="2019-2020">2019-2020</option>
+                  <option value="2020-2021">2020-2021</option>
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('academicyear').touched ||
+      centerForm.get('academicyear').dirty) &&
+      centerForm.get('academicyear').errors)">
+                  <small *ngIf="centerForm.get('academicyear').errors.required">
+                    Academic Year is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" *ngIf="selectedValue == 'Yes'">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('panno').touched ||
+      centerForm.get('panno').dirty) &&
+      centerForm.get('panno').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>PAN NO:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input type="text" formControlName="panno" class="form-control" [(ngModel)]="model.panno">
+
+                <span class="text-danger" *ngIf="((centerForm.get('panno').touched ||
+      centerForm.get('panno').dirty) &&
+      centerForm.get('panno').errors)">
+                  <small *ngIf="centerForm.get('panno').errors.required">
+                    PAN NO is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" *ngIf="selectedValue == 'Yes'">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('gstno').touched ||
+        centerForm.get('gstno').dirty) &&
+        centerForm.get('gstno').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>GST NO:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input type="text" formControlName="gstno" class="form-control" [(ngModel)]="model.gstno">
+
+                <span class="text-danger" *ngIf="((centerForm.get('gstno').touched ||
+        centerForm.get('gstno').dirty) &&
+        centerForm.get('gstno').errors)">
+                  <small *ngIf="centerForm.get('gstno').errors.required">
+                    GST NO is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" *ngIf="selectedValue == 'No'">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('gstfile').touched ||
+      centerForm.get('gstfile').dirty) &&
+      centerForm.get('gstfile').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>GST File:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+
+                <input type="file" formControlName="gstfile" class="btn btn-warning" [(ngModel)]="model.gstfile"
+                  (change)="handleFileInput($event.target.files)">
+
+                <div class="text-danger" *ngIf="((centerForm.get('gstfile').touched ||
+      centerForm.get('gstfile').dirty) &&
+      centerForm.get('gstfile').errors)">
+                  <small *ngIf="centerForm.get('gstfile').errors.required">
+                    GST File is required
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <br>
+  </mat-accordion>
+</form>

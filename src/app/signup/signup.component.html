@@ -1,0 +1,296 @@
+
+<form [formGroup]="orgForm"    (ngSubmit)="AddOrganisation(orgForm.value)">
+
+    <div class="container" style="padding-top: 30px;">
+    <div class="button-row">
+        <h4 ><b>Register Form</b> </h4>
+        <span>
+          <button type="button" class="btn btn-warning"  [routerLink]="['/login']" >Cancel</button>
+        </span> &nbsp;&nbsp;&nbsp;
+            
+        <span>
+          <button type="submit" class="btn btn-warning"   [disabled]="!orgForm .valid" >Submit</button>
+        </span>
+        <hr>
+
+        
+    </div>
+    
+    <div class="card card-default mb-3" style="padding: 20px;">
+        <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('ogname').touched ||
+            orgForm.get('ogname').dirty) &&
+            orgForm.get('ogname').errors)}">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                     <label>Name of the Organisation:</label>
+                 </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                   <input id="ogname" type="text" class="form-control" formControlName="ogname" [ngModel] = "Organisation?.registerdate"
+                   [(ngModel)]="model.ogname">
+                   <span class="text-danger"
+                      *ngIf="((orgForm.get('ogname').touched ||
+                      orgForm.get('ogname').dirty) &&
+                      orgForm.get('ogname').errors)">
+                      <small *ngIf="orgForm.get('ogname').errors.required">
+                          Organisation Name is required
+                  </small>
+                    </span>
+                </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((orgForm.get('ogcontactperson').touched ||
+            orgForm.get('ogcontactperson').dirty) &&
+            orgForm.get('ogcontactperson').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Contact Person:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="ogcontactperson" type="text" class="form-control" formControlName="ogcontactperson" [ngModel] = "Organisation?.ogcontactperson"
+                  [(ngModel)]="model.ogcontactperson">
+                  <span class="text-danger"
+                  *ngIf="((orgForm.get('ogcontactperson').touched ||
+                  orgForm.get('ogcontactperson').dirty) &&
+                  orgForm.get('ogcontactperson').errors)">
+                  <small *ngIf="orgForm.get('ogcontactperson').errors.required">
+                      Contact Name is required
+              </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('ogcontact').touched ||
+            orgForm.get('ogcontact').dirty) &&
+            orgForm.get('ogcontact').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Contact Number:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="ogcontact" type="text" class="form-control" formControlName="ogcontact" [ngModel] = "Organisation?.ogcontact"
+                  [(ngModel)]="model.ogcontact">
+                  <span class="text-danger"
+                  *ngIf="((orgForm.get('ogcontact').touched ||
+                  orgForm.get('ogcontact').dirty) &&
+                  orgForm.get('ogcontact').errors)">
+                  <small *ngIf="orgForm.get('ogcontact').errors.required">
+                      Contact  is required
+              </small>
+              <small *ngIf="orgForm.get('ogcontact').errors.minlength ||
+              orgForm.get('ogcontact').errors.maxlength">
+                         Mobile should be 10digit    </small>
+                                <br>
+                                  <small *ngIf="orgForm.get('ogcontact').errors.pattern">
+            Mobile should be Number </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((orgForm.get('ogemail').touched ||
+            orgForm.get('ogemail').dirty) &&
+            orgForm.get('ogemail').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Organisation Email:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="ogemail" type="text" class="form-control" formControlName="ogemail" [ngModel] = "Organisation?.ogemail"
+                  [(ngModel)]="model.ogemail">
+                  <span class="text-danger"
+                  *ngIf="((orgForm.get('ogemail').touched ||
+                  orgForm.get('ogemail').dirty) &&
+                  orgForm.get('ogemail').errors)">
+                  <small *ngIf="orgForm.get('ogemail').errors.required">
+                      Email  is required
+              </small>
+              <small *ngIf="orgForm.get('ogemail').errors.required">
+                Email is required
+            </small>
+                                        <small *ngIf="orgForm.get('ogemail').errors.pattern">
+                Email should be pattern    </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group"   [ngClass]="{'has-error': ((orgForm.get('ogusername').touched ||
+            orgForm.get('ogusername').dirty) &&
+            orgForm.get('ogusername').errors)}">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Username:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="ogusername" type="text" class="form-control" formControlName="ogusername" [ngModel] = "Organisation?.ogusername"
+                  [(ngModel)]="model.ogusername">
+                  <span class="text-danger"
+                  *ngIf="((orgForm.get('ogusername').touched ||
+                  orgForm.get('ogusername').dirty) &&
+                  orgForm.get('ogusername').errors)">
+                  <small *ngIf="orgForm.get('ogusername').errors.required">
+                      Username  is required
+              </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('ogpassword').touched ||
+            orgForm.get('ogpassword').dirty) &&
+            orgForm.get('ogpassword').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Password:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="ogpassword" type="password" class="form-control" formControlName="ogpassword" [ngModel] = "Organisation?.ogpassword"
+                  [(ngModel)]="model.ogpassword" >
+                  <span class="text-danger"
+                  *ngIf="((orgForm.get('ogpassword').touched ||
+                  orgForm.get('ogpassword').dirty) &&
+                  orgForm.get('ogpassword').errors)">
+                  <small *ngIf="orgForm.get('ogpassword').errors.required">
+                      Password  is required
+              </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row "  >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Register Date:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 form-group">
+                  <input id="registerdate" type="date" class="form-control" formControlName="registerdate" [ngModel] = "Organisation?.registerdate"
+                  [(ngModel)]="model.registerdate">
+                   
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group"  >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Address:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="address" type="textarea" class="form-control" formControlName="address" [ngModel] = "Organisation?.address"
+                  [(ngModel)]="model.address">
+                   
+                  </div>
+            </div>
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('state').touched ||
+            orgForm.get('state').dirty) &&
+            orgForm.get('state').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> state:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select id="state" type="text" class="form-control" formControlName="state" [ngModel] = "Organisation?.state"
+                  [(ngModel)]="model.state"  (change)="onSelectState($event.target.value)">
+                      <option  [ngValue]="null">Select</option>
+                      <option *ngFor="let state of state" value={{state.stname}} > {{state.stname}}</option>
+                   </select>
+                   <span class="text-danger"
+                  *ngIf="((orgForm.get('state').touched ||
+                  orgForm.get('state').dirty) &&
+                  orgForm.get('state').errors)">
+                  <small *ngIf="orgForm.get('state').errors.required">
+                      State  is required
+              </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('district').touched ||orgForm.get('district').dirty) &&
+            orgForm.get('district').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> District:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select id="district" type="text" class="form-control" formControlName="district" 
+                  [ngModel] = "Organisation?.district"
+                  [(ngModel)]="model.district" (change)="onSelectDistrict($event.target.value)">
+                  <option  [ngValue]="null">Select</option>
+                  <option *ngFor="let distirct of distirct" value={{distirct.dtname}} >{{distirct.dtname }}</option>
+                   </select>
+                   <span class="text-danger"
+                  *ngIf="((orgForm.get('district').touched ||
+                  orgForm.get('district').dirty) &&
+                  orgForm.get('district').errors)">
+                  <small *ngIf="orgForm.get('district').errors.required">
+                      District  is required
+              </small>
+                </span>
+                  </div>
+            </div>
+            <div class="row form-group"  [ngClass]="{'has-error': ((orgForm.get('city').touched ||
+            orgForm.get('city').dirty) &&
+            orgForm.get('city').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> City:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select id="city" type="text" class="form-control" formControlName="city"
+                   [ngModel] = "Organisation?.city"
+                  [(ngModel)]="model.city">
+                      <option  [ngValue]="null">Select</option>
+                      <option *ngFor="let city of city"value={{city.ctname}}>{{city.ctname}}</option>
+                   </select>
+                   <span class="text-danger"
+                   *ngIf="((orgForm.get('city').touched ||
+                   orgForm.get('city').dirty) &&
+                   orgForm.get('city').errors)">
+                   <small *ngIf="orgForm.get('city').errors.required">
+                      City  is required
+               </small>
+                 </span>
+                  </div>
+            </div>
+            <div class="row form-group"   [ngClass]="{'has-error': ((orgForm.get('pincode').touched ||
+            orgForm.get('pincode').dirty) &&
+            orgForm.get('pincode').errors)}" >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Pincode:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <input id="pincode" type="text" class="form-control" formControlName="pincode" [ngModel] = "Organisation?.pincode"
+                    [(ngModel)]="model.pincode">
+                    <span class="text-danger"
+                   *ngIf="((orgForm.get('pincode').touched ||
+                   orgForm.get('pincode').dirty) &&
+                   orgForm.get('pincode').errors)">
+                   <small *ngIf="orgForm.get('pincode').errors.required">
+                      Pincode  is required
+               </small>
+               <small *ngIf="orgForm.get('pincode').errors.minlength ||
+               orgForm.get('pincode').errors.maxlength">
+                          Mobile should be 6 digit    </small>
+                                 <br>
+                                   <small *ngIf="orgForm.get('pincode').errors.pattern">
+             Mobile should be Number </small>
+                 </span>
+                  </div>
+            </div>
+            <!-- <div class="row form-group"  >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Logo:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <input id="logo" type="file" class="form-control" formControlName="logo" [ngModel] = "Organisation?.logo"
+                    [(ngModel)]="model.logo">
+                  </div>
+            </div> -->
+            <div class="row form-group"  >
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> theme:</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <input id="theme" type="text" class="form-control" formControlName="theme" [ngModel] = "Organisation?.theme"
+                    [(ngModel)]="model.theme">
+                  </div>
+            </div>
+            <div class="row form-group"  >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Status:</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select id="status" type="text" class="form-control" formControlName="status" [ngModel] = "Organisation?.status"
+                [(ngModel)]="model.status">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]=0>Active</option>
+                <option [ngValue]=1>Inactive</option>
+                 </select>
+                </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </form>

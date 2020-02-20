@@ -1,0 +1,175 @@
+
+<div class="row form-group">
+    <div class="col-md-12 col-xs-12">
+    <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+    </div>
+</div> 
+    
+
+<form [formGroup]="AgreementForm" (ngSubmit)="AddAgreement(AgreementForm.value)">
+   
+ 
+      <div class="button-row">
+        <h4> Center Agreement Details</h4>
+        <span>
+          <button type="button" class="btn btn-warning"  (click)="Back()">Back</button>
+          </span>&nbsp;&nbsp;&nbsp;
+      
+        
+  
+        <span>
+          <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+          </span> 
+        
+        <hr>
+      </div>
+<div class="card card-default mb-3" style="padding: 20px;"> 
+<div class="row">
+
+<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+<div class="row form-group" [ngClass]="{'has-error': ((AgreementForm.get('sndt').touched ||
+AgreementForm.get('sndt').dirty) &&
+AgreementForm.get('sndt').errors)}">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<label>Start Date:</label>
+<span style="color: red"> *</span>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<input id="sndt" type="date" class="form-control" formControlName="sndt"
+    [(ngModel)]="model.sndt">
+    <span class="text-danger" *ngIf="((AgreementForm.get('sndt').touched ||
+    AgreementForm.get('sndt').dirty) &&
+    AgreementForm.get('sndt').errors)">
+    <small *ngIf="AgreementForm.get('sndt').errors.required">
+        Start Date is required
+    </small>
+    </span>
+</div>
+</div>
+
+</div>
+<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12"> 
+    <div class="row form-group" [ngClass]="{'has-error': ((AgreementForm.get('endt').touched ||
+    AgreementForm.get('endt').dirty) &&
+    AgreementForm.get('endt').errors)}" >
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>End Date:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="endt" type="date" class="form-control" formControlName="endt"
+    [(ngModel)]="model.endt">
+    <span class="text-danger" *ngIf="((AgreementForm.get('endt').touched ||
+    AgreementForm.get('endt').dirty) &&
+    AgreementForm.get('endt').errors)">
+    <small *ngIf="AgreementForm.get('endt').errors.required">
+        End Date is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    </div>
+    <!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"> -->
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="row form-group" [ngClass]="{'has-error': ((AgreementForm.get('file').touched ||
+    AgreementForm.get('file').dirty) &&
+    AgreementForm.get('file').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>File:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    
+    <input type="file" formControlName="file" class="btn btn-warning"  [(ngModel)]="model.pdfpath" (change)="handleFileInput($event.target.files)">
+
+    <div class="text-danger" *ngIf="((AgreementForm.get('file').touched ||
+    AgreementForm.get('file').dirty) &&
+    AgreementForm.get('file').errors)">
+    <small *ngIf="AgreementForm.get('file').errors.required">
+        File is required
+    </small>
+</div>
+    </div>
+    </div>
+    </div>
+ 
+</div>
+<div class="row"  >
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="form-group"  >
+<button type="submit" class="btn btn-warning" [disabled]="!AgreementForm.valid" >Submit</button>
+    </div>
+</div>
+</div>
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr class="warning">
+<td><b>SR NO.</b></td>
+<td>
+<b>View Agreement</b>
+</td>
+<td>
+<b>Start Date</b>
+</td>
+<td>
+<b>End Date</b>
+</td>
+<td>
+<b>Status</b>
+</td>
+<td>
+<b>Remove</b>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr #myVar *ngFor="let CenterAgreement of CenterAgreement let i = index;" >
+<td>{{i+1}}</td>
+<td>
+
+<b>
+    <a  href="http://localhost:24214/Image/{{CenterAgreement.pdfpath}}"  style="cursor: pointer; text-decoration: underline; ">
+        {{CenterAgreement.pdfpath}}
+    </a>
+</b>
+</td>
+<td>
+{{CenterAgreement.stdate| date: 'dd-MM-yyyy' }}
+</td>
+<td>
+{{CenterAgreement.endate| date: 'dd-MM-yyyy' }}
+</td>
+<td>
+<div *ngIf="CenterAgreement?.status==0">Active</div>
+<div *ngIf="CenterAgreement?.status==1">Inactive</div>
+</td>
+<td>
+
+<b>
+<a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+Delete
+</a></b>
+
+<ng-template #content let-modal>
+<div class="modal-header">
+<h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+  Are you sure want to Delete ?</h5>
+<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-info" (click)="Delete1(CenterAgreement.agid)" (click)="modal.close('Cross click')">Yes</button>
+<button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+</div>
+
+</ng-template>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</form>

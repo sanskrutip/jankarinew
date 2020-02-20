@@ -1,0 +1,76 @@
+<!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"  (click)="submenu(red)" >
+  <b > {{empcount}}</b>
+    <b> <span *ngIf ="!empcount || empcount.length==0" ></span></b>  
+  </div> -->
+
+<!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"  (click)="submenu1(red)" >
+      <b > {{empcount1}}</b>
+        <b> <span *ngIf ="!empcount1 || empcount1.length==0" ></span></b>  
+      </div> -->
+<!-- <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="container" (click)="submenu(red)" style="align-items: left;">
+          <div class="content"><b>{{empcount}}</b>
+            <b> <span *ngIf="!empcount || empcount.length==0"></span></b>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="container" (click)="submenu1(red)" style="align-items: left;">
+      
+          <div class="content"><b>{{empcount1}}</b>
+            <b> <span *ngIf="!empcount1 || empcount1.length==0"></span></b>
+          </div>
+      
+        </div>
+      </div> -->
+
+
+
+<div class="card card-default col-md-6 col-lg-6 col-sm-12 col-xs-12 form-group" (click)="submenu(red)"
+  style="padding: 20px; cursor: pointer;" id="dvdata">
+  <!-- <div class="icon"><i class="fa fa-times" aria-hidden="true"></i></div> -->
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div style="float: left;">
+        <i class="fa fa-bell-o  fa-5x" aria-hidden="true" style="color: rgb(240, 20, 56);"></i>&nbsp;&nbsp;
+      </div>
+      <div style="float: left; padding-top: 3px;">
+        <b>{{empcount}}</b>
+        <b> <span *ngIf="!empcount || empcount.length==0"></span></b>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="card card-default col-md-6 col-lg-6 col-sm-12 col-xs-12 form-group" (click)="submenu1(red)"
+  style="padding: 20px; cursor: pointer;" id="dvdata1">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div style="float: left;">
+        <i class="fa fa-bell-o  fa-5x" aria-hidden="true" style="color: rgb(14, 73, 236);"></i>&nbsp;&nbsp;
+      </div>
+      <div style="float: left; padding-top: 3px;">
+        <b>{{empcount1}}</b>
+        <b> <span *ngIf="!empcount1 || empcount1.length==0"></span></b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card card-default col-md-6 col-lg-6 col-sm-12 col-xs-12 form-group" (click)="Escalate()"
+  style="padding: 20px; cursor: pointer;" id="dvdata2">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div style="float: left;">
+        <i class="fa fa-bell-o  fa-5x" aria-hidden="true" style="color: rgb(14, 73, 236);"></i>&nbsp;&nbsp;
+      </div>
+      <div style="float: left; padding-top: 3px;">
+        <b>{{EscalateLeave}}</b>
+        <b> <span *ngIf="!EscalateLeave || EscalateLeave.length==0"></span></b>
+      </div>
+    </div>
+  </div>
+</div>

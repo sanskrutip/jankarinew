@@ -1,0 +1,418 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+
+<form [formGroup]="ComputerHardwareForm" (ngSubmit)="AddComputerHardware(ComputerHardwareForm.value)">
+
+ 
+  <div class="button-row">
+    <h4>Computer Hardware </h4>
+    <span>
+      <button type="button" class="btn btn-warning"  (click)="Back()">Back</button>
+      </span>&nbsp;&nbsp;&nbsp;
+    <span>
+    <button type="submit" class="btn btn-warning" [disabled]="!ComputerHardwareForm.valid">Submit</button>
+    </span>
+    <hr>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+      <mat-panel-title>
+      Personal Information
+      </mat-panel-title>
+      
+      </mat-expansion-panel-header>
+     
+      <div class="card card-default mb-3" style="padding: 20px;"  >
+      
+      
+      <!-- start -->
+      <div class="row" id="collapseExample">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('compuser').touched ||
+      ComputerHardwareForm.get('compuser').dirty) &&
+      ComputerHardwareForm.get('compuser').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>Computer User:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="compuser" type="text" class="form-control" formControlName="compuser" [(ngModel)]="model.compuser">
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('compuser').touched ||
+      ComputerHardwareForm.get('compuser').dirty) &&
+      ComputerHardwareForm.get('compuser').errors)">
+      <small *ngIf="ComputerHardwareForm.get('compuser').errors.required">
+        Computer User is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('brand').touched ||
+      ComputerHardwareForm.get('brand').dirty) &&
+      ComputerHardwareForm.get('brand').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>Brand:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="brand" type="text" class="form-control" formControlName="brand" [(ngModel)]="model.brand">
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('brand').touched ||
+      ComputerHardwareForm.get('brand').dirty) &&
+      ComputerHardwareForm.get('brand').errors)">
+      <small *ngIf="ComputerHardwareForm.get('brand').errors.required">
+        Brand is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('cpu').touched ||
+      ComputerHardwareForm.get('cpu').dirty) &&
+      ComputerHardwareForm.get('cpu').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>CPU:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="cpu" type="text" class="form-control" formControlName="cpu" [(ngModel)]="model.cpu">
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('cpu').touched ||
+      ComputerHardwareForm.get('cpu').dirty) &&
+      ComputerHardwareForm.get('cpu').errors)">
+      <small *ngIf="ComputerHardwareForm.get('cpu').errors.required">
+        CPU is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('hdd').touched ||
+      ComputerHardwareForm.get('hdd').dirty) &&
+      ComputerHardwareForm.get('hdd').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>HDD:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="hdd" type="text" class="form-control" formControlName="hdd" [(ngModel)]="model.hdd">
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('hdd').touched ||
+      ComputerHardwareForm.get('hdd').dirty) &&
+      ComputerHardwareForm.get('hdd').errors)">
+      <small *ngIf="ComputerHardwareForm.get('hdd').errors.required">
+        HDD is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('fdd').touched ||
+      ComputerHardwareForm.get('fdd').dirty) &&
+      ComputerHardwareForm.get('fdd').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>FDD	:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="fdd" type="text" class="form-control" formControlName="fdd" [(ngModel)]="model.fdd" >
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('fdd').touched ||
+      ComputerHardwareForm.get('fdd').dirty) &&
+      ComputerHardwareForm.get('fdd').errors)">
+      <small *ngIf="ComputerHardwareForm.get('fdd').errors.required">
+        FDD	 is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('ram').touched ||
+      ComputerHardwareForm.get('ram').dirty) &&
+      ComputerHardwareForm.get('ram').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>RAM:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="ram" type="text" class="form-control" formControlName="ram" [(ngModel)]="model.ram" >
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('ram').touched ||
+      ComputerHardwareForm.get('ram').dirty) &&
+      ComputerHardwareForm.get('ram').errors)">
+      <small *ngIf="ComputerHardwareForm.get('ram').errors.required">
+        RAM is required
+      </small>
+      </span>
+      </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('cdrom').touched ||
+      ComputerHardwareForm.get('cdrom').dirty) &&
+      ComputerHardwareForm.get('cdrom').errors)}">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label>CD ROM	:</label>
+      <span style="color: red"> *</span>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <input id="cdrom" type="text" class="form-control" formControlName="cdrom" [(ngModel)]="model.cdrom">
+      <span class="text-danger" *ngIf="((ComputerHardwareForm.get('cdrom').touched ||
+      ComputerHardwareForm.get('cdrom').dirty) &&
+      ComputerHardwareForm.get('cdrom').errors)">
+      <small *ngIf="ComputerHardwareForm.get('cdrom').errors.required">
+        CD ROM is required
+      </small>
+      </span>
+      </div>
+      </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('lancard').touched ||
+        ComputerHardwareForm.get('lancard').dirty) &&
+        ComputerHardwareForm.get('lancard').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Lancard:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="lancard" type="text" class="form-control" formControlName="lancard" [(ngModel)]="model.lancard">
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('lancard').touched ||
+        ComputerHardwareForm.get('lancard').dirty) &&
+        ComputerHardwareForm.get('lancard').errors)">
+        <small *ngIf="ComputerHardwareForm.get('lancard').errors.required">
+          Lancard is required
+        </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('soundcard').touched ||
+        ComputerHardwareForm.get('soundcard').dirty) &&
+        ComputerHardwareForm.get('soundcard').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Soundcard:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="soundcard" type="text" class="form-control" formControlName="soundcard" [(ngModel)]="model.soundcard">
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('soundcard').touched ||
+        ComputerHardwareForm.get('soundcard').dirty) &&
+        ComputerHardwareForm.get('soundcard').errors)">
+        <small *ngIf="ComputerHardwareForm.get('soundcard').errors.required">
+          Soundcard is required
+        </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('keyboard').touched ||
+        ComputerHardwareForm.get('keyboard').dirty) &&
+        ComputerHardwareForm.get('keyboard').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Keyboard:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="keyboard" type="text" class="form-control" formControlName="keyboard" [(ngModel)]="model.keyboard" >
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('keyboard').touched ||
+        ComputerHardwareForm.get('keyboard').dirty) &&
+        ComputerHardwareForm.get('keyboard').errors)">
+        <small *ngIf="ComputerHardwareForm.get('keyboard').errors.required">
+          Keyboard is required
+        </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('mouse').touched ||
+        ComputerHardwareForm.get('mouse').dirty) &&
+        ComputerHardwareForm.get('mouse').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Mouse:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="mouse" type="text" class="form-control" formControlName="mouse" [(ngModel)]="model.mouse">
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('mouse').touched ||
+        ComputerHardwareForm.get('mouse').dirty) &&
+        ComputerHardwareForm.get('mouse').errors)">
+        <small *ngIf="ComputerHardwareForm.get('mouse').errors.required">
+          Mouse is required
+        </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('monitor').touched ||
+        ComputerHardwareForm.get('monitor').dirty) &&
+        ComputerHardwareForm.get('monitor').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Monitor:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="monitor" type="text" class="form-control" formControlName="monitor" [(ngModel)]="model.monitor" >
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('monitor').touched ||
+        ComputerHardwareForm.get('monitor').dirty) &&
+        ComputerHardwareForm.get('monitor').errors)">
+        <small *ngIf="ComputerHardwareForm.get('monitor').errors.required">
+          Monitor	 is required
+        </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((ComputerHardwareForm.get('headphone').touched ||
+        ComputerHardwareForm.get('headphone').dirty) &&
+        ComputerHardwareForm.get('headphone').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label>Headphone:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input id="headphone" type="text" class="form-control" formControlName="headphone" [(ngModel)]="model.headphone">
+        <span class="text-danger" *ngIf="((ComputerHardwareForm.get('headphone').touched ||
+        ComputerHardwareForm.get('headphone').dirty) &&
+        ComputerHardwareForm.get('headphone').errors)">
+        <small *ngIf="ComputerHardwareForm.get('headphone').errors.required">
+          Headphone is required
+        </small>
+        </span>
+        </div>
+        </div>
+     
+      </div>
+      </div>
+      
+      
+      
+      
+      </div>
+      </mat-expansion-panel>
+      </mat-accordion>
+
+<hr>
+<br>
+<div class="button-row">
+ 
+<span>
+  <a style="color: blue; cursor: pointer;" (click)="ExportReport()"><b>Download Excel</b></a>
+  </span>
+  </div>
+  <br>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="warning">
+              <td><b> Sr NO.</b></td>
+              <td>
+                <b>Computer User</b>
+              </td>
+              <td>
+                <b>Brand</b>
+              </td>
+              <td>
+                <b>CPU</b>
+              </td>
+              <td>
+                <b>HDD</b>
+              </td>
+              <td>
+                <b>FDD</b>
+              </td>
+              <td>
+                <b>RAM</b>
+              </td>
+              <td>
+                <b>CD ROM </b>
+              </td>
+              <td>
+                <b>Lancard</b>
+              </td>
+              <td>
+                <b>Soundcard</b>
+              </td>
+              <td>
+                <b>Keyboard</b>
+              </td>
+              <td>
+                <b>Mouse</b>
+              </td>
+              <td>
+                <b>Monitor</b>
+              </td>
+              <td>
+                <b>Headphone</b>
+              </td>
+              <td>
+                <b>Remove</b>
+              </td>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr #myVar *ngFor="let ComputerList of ComputerList let i = index;">
+              <td>{{i+1}}</td>
+              <td>
+                {{ComputerList.compuser}}
+              </td>
+              <td>
+                {{ComputerList.brand}}
+              </td>
+              <td>
+                {{ComputerList.cpu}}
+              </td>
+              <td>
+                {{ComputerList.hdd}}
+              </td>
+              <td>
+                {{ComputerList.fdd}}
+              </td>
+              <td>
+                {{ComputerList.ram}}
+              </td>
+              <td>
+                {{ComputerList.cdrom}}
+              </td>
+              <td>
+                {{ComputerList.lancard}}
+              </td>
+              <td>
+                {{ComputerList.soundcard}}
+              </td>
+              <td>
+                {{ComputerList.keyboard}}
+              </td>
+              <td>
+                {{ComputerList.mouse}}
+              </td>
+              <td>
+                {{ComputerList.monitor}}
+              </td>
+              <td>
+                {{ComputerList.headphone}}
+              </td>
+  <td>
+<b>
+  <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+  Delete
+  </a></b>
+  
+  <ng-template #content let-modal>
+  <div class="modal-header">
+  <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+    Are you sure want to Delete ?</h5>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-info" (click)="Delete1(ComputerList.hardwareid)" (click)="modal.close('Cross click')">Yes</button>
+  <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+  </div>
+  
+  </ng-template>
+</td>
+            </tr>
+          </tbody>
+          <tr style="text-align: center;">
+            <td colspan="15" *ngIf="!ComputerList || ComputerList.length==0">
+              <b>No Data Found</b></td>
+          <tr>
+  
+        </table>
+  
+      </div>
+</form>

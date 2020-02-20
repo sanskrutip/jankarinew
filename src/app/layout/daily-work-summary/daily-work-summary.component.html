@@ -1,0 +1,98 @@
+<div class="row form-group">
+  <div class="col-md-12">
+    <h4 style="float: left;">Daily Work Summary </h4>
+  </div>
+</div>
+<div class="button-row">
+  <span>
+        <button type="button" class="btn btn-warning" (click)="Back()">Back</button> 
+       </span> 
+  <hr>
+</div>
+<div class="card card-default mb-3" style="padding: 20px;" *ngFor="let DailyWork of DailyWork">
+  <div class="row form-group"   >
+
+ 
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <b> Employee Name:</b>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+      {{DailyWork.fullname}}
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <b> Total Task:</b>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+      {{DailyWork.tottasks}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <b>Total Time:</b>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+      {{DailyWork.totaltime}}
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+      <b>Date:</b>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+    {{this.date}}
+  </div>
+   
+
+</div>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr class="warning">
+        <td>
+          <b>Sr NO.</b>
+        </td>
+    
+        <td>
+          <b>Start Time</b>
+        </td>
+        <td>
+          <b>End Time</b>
+        </td>
+        
+        <td>
+          <b>Description</b>
+        </td>
+        <td>
+          <b>Status</b>
+        </td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr #myVar
+        *ngFor="let Worksummary of Worksummary| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+        <td>{{i+1}}</td>
+     
+        <td>
+          {{Worksummary.starttime}}
+        </td>
+        <td>
+          {{Worksummary.endtime}}
+        </td>
+        <td>
+          {{Worksummary.description}}
+        </td>
+         <td>
+          <div *ngIf="Worksummary?.status==0">Completed</div>
+          <div *ngIf="Worksummary?.status==1">In Progress</div>
+        
+        </td>
+        
+      </tr>
+    </tbody>
+    <tr style="text-align: center;">
+      <td colspan="14" *ngIf="!DailyWorkcount || DailyWorkcount.length==0">
+        <b>No Data Found</b></td>
+    <tr>
+  </table>
+</div>

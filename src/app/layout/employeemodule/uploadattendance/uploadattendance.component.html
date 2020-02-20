@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/EmployeeAttendanceList']"> Attendance List</a>
+</li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Upload Attendance</li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12">
+      <h4>Upload Monthly Attendance</h4>
+  </div>
+</div>
+
+
+
+<form #saveexcel="ngForm" (ngSubmit)="save(saveexcel.value)">
+  <div class="card card-default mb-3" style="padding: 20px;">
+    <div class="row" style="padding: 1%;">
+      <label>
+        <i class="temp-upload-icon" for="excel-upload"></i>
+        <input type="file"   #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv" />
+      </label>
+    </div>
+    <br>
+    <div class="row" style="padding: 1%;">
+      <button type="button" class="btn btn-warning" (click)="save(saveexcel.value)" >Update</button>
+    </div>
+  </div>
+  </form>

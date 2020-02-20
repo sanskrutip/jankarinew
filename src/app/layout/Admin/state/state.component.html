@@ -1,0 +1,94 @@
+<app-page-header [heading]="'State'" ></app-page-header>
+
+
+<form  [formGroup]="StateForm"  (ngSubmit)="AddState(StateForm.value)">
+
+  <div >
+      <h3>State</h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+      <div class="row form-group"  >
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>State:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((StateForm.get('stname').touched ||
+             StateForm.get('stname').dirty) && StateForm.get('stname').errors)}">
+             <input  id="stname" type="text" class="form-control" formControlName="stname" [ngModel]="state?.stname" [(ngModel)]="model.stname">
+          
+            <span class="text-danger" *ngIf="((StateForm.get('stname').touched || StateForm.get('stname').dirty) && StateForm.get('stname').errors)">
+              <small *ngIf="StateForm.get('stname').errors.required">
+                  State is required
+              </small>
+            </span>
+              </div>
+     
+    </div>
+          <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+        
+          <button type="submit" class="btn btn-warning"  [disabled]="!StateForm .valid">Add</button>
+                </div>
+        </div>
+      </div></div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total  Records: {{stcount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                  <td><b>Sr NO.</b></td>
+                  
+                  <td>
+                    <b>State</b>
+                  </td>
+                 
+                  <td>
+                    <b>Remove</b>
+                  </td>
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let state of state| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  
+                  <td>
+                    {{state.stname}} 
+                  </td>
+                 
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="modal-basic-title">
+                          Are you sure want to Delete ?</h6>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(state.stname)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    </ng-template>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>   

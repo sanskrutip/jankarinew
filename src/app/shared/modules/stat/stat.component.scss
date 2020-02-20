@@ -1,0 +1,64 @@
+@import '~@angular/material/theming';
+
+.icon-lg {
+    font-size: 40px;
+}
+.mat-card-avatar{
+        height: 100%;
+        width: 100%;    
+        text-align: center;
+    }
+
+.mat-card {
+    color: #fff;
+    .mat-card-header {
+        width: 100%;
+        text-align: center;
+    }
+    .mat-card-title {
+        font-size: 40px !important;
+    }
+    .mat-card-subtitle {
+        color: #fff;
+    }
+
+    .mat-card-actions {
+        a {
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+        }
+    }
+}
+
+.mat-card.pink {
+    background: linear-gradient(60deg, rgb(22, 218, 185), rgb(22, 218, 185));
+    }
+    
+    .mat-card.orange {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    }
+    
+    .mat-card.green {
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+    }
+    
+    .mat-card.skyblue {
+    background: linear-gradient(60deg, #26c6da, #069aad);
+    }
+    
+    .mat-card.purple {
+    background: linear-gradient(60deg, #9C27B0, #6A1B9A);
+    }
+    .mat-card.red {
+        background: linear-gradient(60deg, #e74b4b, #fc0202);
+        }
+         .mat-card.Peach {
+        background: linear-gradient(60deg,#EA7773, rgb(231, 107, 103));
+        }
+        .mat-card.gray {
+            background: linear-gradient(60deg,#99AAAB, rgba(99, 110, 110, 0.87));
+            }
+            .mat-card.yellow {
+                background: linear-gradient(60deg,rgb(236, 208, 93), #FAD02E);
+                }

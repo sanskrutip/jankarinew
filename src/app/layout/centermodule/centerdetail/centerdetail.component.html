@@ -1,0 +1,786 @@
+<ul class="breadcrumb">
+  <li>
+    <a href="Javascript:void(0)" [routerLink]="['/Master']">Center&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+  </li>
+  <li>
+    <a href="Javascript:void(0)" [routerLink]="['/Centerlist']">Center List&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+  </li>
+  <li>
+    <i class="fa {{icon}}"></i>Center Details
+  </li>
+  <b>{{pgname}} - {{finyear}}</b>
+</ul>
+
+    <mat-tab-group>
+      <mat-tab label="Center Information">
+        <div class="container pt-4">
+             <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 firstrow">
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Program Name:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.pgname }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Center Name:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.centname }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Premises Owner:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.premisesowner }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Principal Name:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.principalname }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Principal Contact No :</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.principalcontact }}
+            </div>
+          </div>
+         </div>
+
+
+
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 secondrow">
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Principal Email:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.principalemail }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Center Start Date:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.centstdt| date: 'dd-MM-yyyy' }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Center End Date:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ Centerinfo?.createdate| date: 'dd-MM-yyyy' }}
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Status:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <div *ngIf="Centerinfo?.status==0">Active</div>
+              <div *ngIf="Centerinfo?.status==1">Inactive</div>
+              <div *ngIf="Centerinfo?.status==2">Hold</div>
+              <div *ngIf="Centerinfo?.status==3">Inactive</div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+
+
+
+      <!-- Contact Information -->
+
+  </mat-tab>
+      <mat-tab label="Contact Information"> 
+        <div class="container pt-4">
+                  <div class="row">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 firstrow">
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Center Contact No:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.contactno }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Center Email ID:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.centeremail }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>State:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.state }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>District:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.district }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>City:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.city }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Address:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.address }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Pincode No:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.pinno }}
+              </div>
+            </div>
+           </div>
+
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 secondrow">
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Team Leader:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.teamleadername }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Program Coordinator:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.pcname }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Operation Head:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.ohname }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Program/Research Associate:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.progassociatename }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Hardware TL:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.hwtlname }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Hardware Engineer:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.hwengname }}
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Center Bill Apllicable:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ Centerinfo?.centbillapplicable }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </mat-tab>
+
+
+
+      <!-- Other Information -->
+
+      <mat-tab label="Other Information">
+        <div class="container pt-4">
+          <div class="row"  *ngFor="let Otherinfo of Otherinfo">
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+              <div class="row form-group">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <label><b>Is IT Leader Posters Available?:</b></label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                  {{ Otherinfo?.leaderposteravail }}
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <label><b>Is Animated Posters Available ?:</b></label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  {{ Otherinfo?.animatedposteravail }} </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <label><b>Is Library Books Available ?:</b></label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  {{ Otherinfo?.librarybooksavail }} </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <label><b>Is Partner Board Available ?:</b></label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  {{ Otherinfo?.partnerboardavail }} </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <label><b>Is Lab Materials Provided ?:</b></label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  {{ Otherinfo?.labmaterialprovied }} </div>
+              </div>
+            </div>
+      
+          </div>
+      
+        </div>
+      </mat-tab>
+         
+        <!-- Center Type Details -->
+        <mat-tab label="Center Type Details">
+           <div class="container pt-4">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="warning">
+                    <td><b> Sr NO.</b></td>
+                    <td>
+                      <b> Center Type </b>
+                    </td>
+                    <td>
+                      <b>Start Date </b>
+                    </td>
+                    <td>
+                      <b>End Date </b>
+                    </td>
+                    <td>
+                      <b>Status</b>
+                    </td>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr #myVar *ngFor="let CenterType of CenterType let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>
+                      {{CenterType.centertype1}}
+                    </td>
+                    <td>
+                      {{CenterType.stdt| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      {{CenterType.endt| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      <div *ngIf="CenterType?.status==0">Active</div>
+                      <div *ngIf="CenterType?.status==1">Inactive</div>
+                    </td>
+                  
+                  </tr>
+        
+                </tbody>
+                <tr style="text-align: center;">
+                  <td colspan="5" *ngIf="!CenterType || CenterType.length==0">
+                    <b>No Data Found</b></td>
+                <tr>
+              </table>
+            </div>
+
+           </div>
+        </mat-tab>
+
+
+        <!-- Infra Details -->
+
+        <mat-tab label="Infra Details"> 
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="warning">
+                  <td><b> Sr NO.</b></td>
+                  <td>
+                    <b> Infra </b>
+                  </td>
+                  <td>
+                    <b>Working </b>
+                  </td>
+                  <td>
+                    <b>Not Working </b>
+                  </td>
+                  <td>
+                    <b>Total</b>
+                  </td>
+      
+      
+                </tr>
+              </thead>
+              <tbody>
+                <tr #myVar *ngFor="let CenterInfa of CenterInfa let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{CenterInfa.infra }}
+                  </td>
+                  <td>
+                    {{CenterInfa.working}}
+                  </td>
+                  <td>
+                    {{CenterInfa.notworking}}
+                  </td>
+                  <td>
+                    {{CenterInfa.total}}
+                  </td>
+      
+      
+                </tr>
+              </tbody>
+              <tr style="text-align: center;">
+                <td colspan="5" *ngIf="!CenterInfa || CenterInfa.length==0">
+                  <b>No Data Found</b></td>
+              <tr>
+            </table>
+          </div>
+
+        </mat-tab>
+
+
+
+        <!-- Partner Details -->
+
+        <mat-tab label="Partner Details"> 
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="warning">
+                    <td><b> Sr NO.</b></td>
+                    <td>
+                      <b>Partner Name</b>
+                    </td>
+                    <td>
+                      <b>Start Date </b>
+                    </td>
+                    <td>
+                      <b>End Date </b>
+                    </td>
+                    <td>
+                      <b>Status </b>
+                    </td>
+        
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr #myVar *ngFor="let CenterPartner of CenterPartner let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>
+                      {{CenterPartner.partnername}}
+                    </td>
+                    <td>
+                      {{CenterPartner.stdt| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      {{CenterPartner.endt| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      <div *ngIf="CenterPartner?.status==0">Active</div>
+                      <div *ngIf="CenterPartner?.status==1">Inactive</div>
+                    </td>
+        
+                  </tr>
+                </tbody>
+                <tr style="text-align: center;">
+                  <td colspan="5" *ngIf="!CenterPartner || CenterPartner.length==0">
+                    <b>No Data Found</b></td>
+                <tr>
+              </table>
+            </div>
+        </mat-tab>
+       
+        <!-- Sancharak Details -->
+          <mat-tab label="Sancharak Details"> 
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="warning">
+                    <td><b> Sr NO.</b></td>
+                    <td>
+                      <b>Sancharak Name
+                      </b>
+                    </td>
+        
+        
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr #myVar *ngFor="let CenterSancharak of CenterSancharak let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>
+                      {{CenterSancharak.fullname}}
+                    </td>
+        
+        
+                  </tr>
+                </tbody>
+                <tr style="text-align: center;">
+                  <td colspan="2" *ngIf="!CenterSancharak || CenterSancharak.length==0">
+                    <b>No Data Found</b></td>
+                <tr>
+              </table>
+            </div>
+             
+           </mat-tab>
+
+
+           <!-- Agreement Details -->
+
+        <mat-tab label="Agreement Details">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="warning">
+                    <td><b> Sr NO.</b></td>
+                    <td>
+                      <b>View Agreement </b>
+                    </td>
+                    <td>
+                      <b>Start Date </b>
+                    </td>
+                    <td>
+                      <b>End Date </b>
+                    </td>
+                    <td>
+                      <b>Status</b>
+                    </td>
+        
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr #myVar *ngFor="let CenterAgreement of CenterAgreement let i = index;">
+                    <td>{{i+1}}</td>
+                    <td>
+                      
+        <b>
+          <a  href="http://localhost:24214/Image/{{CenterAgreement.pdfpath}}"  style="cursor: pointer; text-decoration: underline; ">
+              {{CenterAgreement.pdfpath}}
+          </a></b>
+                    </td>
+                    <td>
+                      {{CenterAgreement.stdate| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      {{CenterAgreement.endate| date: 'dd-MM-yyyy'}}
+                    </td>
+                    <td>
+                      <div *ngIf="CenterAgreement?.status==0">Active</div>
+                      <div *ngIf="CenterAgreement?.status==1">Inactive</div>
+                    </td>
+        
+                  </tr>
+                </tbody>
+                <tr style="text-align: center;">
+                  <td colspan="5" *ngIf="!CenterAgreement || CenterAgreement.length==0">
+                    <b>No Data Found</b></td>
+                <tr>
+              </table>
+            </div>
+         </mat-tab>
+
+         <!-- GST Details -->
+      <mat-tab label="GST Details "> 
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="warning">
+                  <td><b> Sr NO.</b></td>
+                  <td>
+                    <b>GST Applicable</b>
+                  </td>
+                  <td>
+                    <b>GST Number</b>
+                  </td>
+                  <td>
+                    <b>PAN Number </b>
+                  </td>
+                  <td>
+                    <b>Academic Year </b>
+                  </td>
+                  <td>
+                    <b>Status</b>
+                  </td>
+      
+                </tr>
+              </thead>
+              <tbody>
+                <tr #myVar *ngFor="let CenterGST of CenterGST let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{CenterGST.gstapplicable}}
+                  </td>
+                  <td>
+                    {{CenterGST.gstno}}
+                  </td>
+                  <td>
+                    {{CenterGST.panno}}
+                  </td>
+                  <td>
+                    {{CenterGST.academicyear}}
+                  </td>
+                  <td>
+                    <div *ngIf="CenterGST?.status==0">Active</div>
+                    <div *ngIf="CenterGST?.status==1">Inactive</div>
+                  </td>
+      
+                </tr>
+              </tbody>
+              <tr style="text-align: center;">
+                <td colspan="6" *ngIf="!CenterGST || CenterGST.length==0">
+                  <b>No Data Found</b></td>
+              <tr>
+            </table>
+            </div>
+      </mat-tab>
+      
+
+      <!-- Computer Hardware -->
+       <mat-tab label="Computer Hardware">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="warning">
+                  <td><b> Sr NO.</b></td>
+                  <td>
+                    <b>Computer User</b>
+                  </td>
+                  <td>
+                    <b>Brand</b>
+                  </td>
+                  <td>
+                    <b>CPU</b>
+                  </td>
+                  <td>
+                    <b>HDD</b>
+                  </td>
+                  <td>
+                    <b>FDD</b>
+                  </td>
+                  <td>
+                    <b>RAM</b>
+                  </td>
+                  <td>
+                    <b>CD ROM </b>
+                  </td>
+                  <td>
+                    <b>Lancard</b>
+                  </td>
+                  <td>
+                    <b>Soundcard</b>
+                  </td>
+                  <td>
+                    <b>Keyboard</b>
+                  </td>
+                  <td>
+                    <b>Mouse</b>
+                  </td>
+                  <td>
+                    <b>Monitor</b>
+                  </td>
+                  <td>
+                    <b>Headphone</b>
+                  </td>
+      
+      
+                </tr>
+              </thead>
+              <tbody>
+                <tr #myVar *ngFor="let ComputerList of ComputerList let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{ComputerList.compuser}}
+                  </td>
+                  <td>
+                    {{ComputerList.brand}}
+                  </td>
+                  <td>
+                    {{ComputerList.cpu}}
+                  </td>
+                  <td>
+                    {{ComputerList.hdd}}
+                  </td>
+                  <td>
+                    {{ComputerList.fdd}}
+                  </td>
+                  <td>
+                    {{ComputerList.ram}}
+                  </td>
+                  <td>
+                    {{ComputerList.cdrom}}
+                  </td>
+                  <td>
+                    {{ComputerList.lancard}}
+                  </td>
+                  <td>
+                    {{ComputerList.soundcard}}
+                  </td>
+                  <td>
+                    {{ComputerList.keyboard}}
+                  </td>
+                  <td>
+                    {{ComputerList.mouse}}
+                  </td>
+                  <td>
+                    {{ComputerList.monitor}}
+                  </td>
+                  <td>
+                    {{ComputerList.headphone}}
+                  </td>
+      
+                </tr>
+              </tbody>
+              <tr style="text-align: center;">
+                <td colspan="14" *ngIf="!ComputerList || ComputerList.length==0">
+                  <b>No Data Found</b></td>
+              <tr>
+      
+            </table>
+      
+          </div>
+          </mat-tab>
+
+          <!-- Billing Rate -->
+ <mat-tab label="Billing Rate "> 
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="warning">
+            <td><b> Sr NO.</b></td>
+            <td>
+              <b>Center Rate ID </b>
+            </td>
+            <td>
+              <b>Standard</b>
+            </td>
+            <td>
+              <b>Month</b>
+            </td>
+            <td>
+              <b>Year</b>
+            </td>
+            <td>
+              <b>Rate</b>
+            </td>
+            <td>
+              <b>CGST @ 9% </b>
+            </td>
+            <td>
+              <b>SGST @ 9% </b>
+            </td>
+            <td>
+              <b>Invoice Type </b>
+            </td>
+            <td>
+              <b>Bill Applicable </b>
+            </td>
+            <td>
+              <b>Total Bill Amount
+              </b>
+            </td>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr #myVar *ngFor="let GetCenterRate of GetCenterRate let i = index;">
+            <td>{{i+1}}</td>
+            <td>
+              {{GetCenterRate.centid}}
+            </td>
+            <td>
+              {{GetCenterRate.standard}}
+            </td>
+            <td>
+              {{GetCenterRate.month}}
+            </td>
+            <td>
+              {{GetCenterRate.year}}
+            </td>
+            <td>
+              {{GetCenterRate.rate}}
+            </td>
+            <td>
+              {{GetCenterRate.cgst}}
+            </td>
+            <td>
+              {{GetCenterRate.sgst}}
+            </td>
+            <td>
+              {{GetCenterRate.invoicetype}}
+            </td>
+            <td>
+              {{GetCenterRate.billapplicable}}
+            </td>
+            <td>
+              {{GetCenterRate.amount}}
+            </td>
+          </tr>
+        </tbody>
+        <tr style="text-align: center;">
+          <td colspan="11" *ngIf="!GetCenterRate || GetCenterRate.length==0">
+            <b>No Data Found</b></td>
+        <tr>
+      </table>
+
+    </div>
+
+ </mat-tab>
+  </mat-tab-group>
+
+
+
+    
+ 

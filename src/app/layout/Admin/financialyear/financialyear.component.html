@@ -1,0 +1,154 @@
+<app-page-header [heading]="'Financial Year'" ></app-page-header>
+<form   [formGroup]="YearForm"  (ngSubmit)="Addfyear(YearForm.value)">
+
+  <div >
+      <h3>Financial Year</h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+      <div class="row form-group"  >
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <label>Year:</label>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((YearForm.get('yearname').touched ||
+                        YearForm.get('yearname').dirty) &&
+                        YearForm.get('yearname').errors)}">
+                        <input  id="yearname" type="text" class="form-control" formControlName="yearname" [ngModel]="year?.yearname" [(ngModel)]="model.yearname">
+          
+                    <span class="text-danger"
+              *ngIf="((YearForm.get('yearname').touched ||
+              YearForm.get('yearname').dirty) &&
+              YearForm.get('yearname').errors)">
+              <small *ngIf="YearForm.get('yearname').errors.required">
+                Year is required
+          </small>
+            </span>
+                  </div>
+     
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label>Start Date:</label>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((YearForm.get('startdate').touched ||
+              YearForm.get('startdate').dirty) &&
+              YearForm.get('startdate').errors)}">
+               
+              <input  id="startdate" type="date" class="form-control" formControlName="startdate" [ngModel]="year?.startdate" [(ngModel)]="model.startdate">
+           
+                <span class="text-danger"
+              *ngIf="((YearForm.get('startdate').touched ||
+              YearForm.get('startdate').dirty) &&
+              YearForm.get('startdate').errors)">
+              <small *ngIf="YearForm.get('startdate').errors.required">
+                  Start Date is required
+          </small>
+            </span>
+              </div>
+
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                  <label>End Date:</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((YearForm.get('enddate').touched ||
+                YearForm.get('enddate').dirty) &&
+                YearForm.get('enddate').errors)}">
+                 
+                <input  id="enddate" type="date" class="form-control" formControlName="enddate" [ngModel]="year?.enddate" [(ngModel)]="model.enddate">
+                
+                  <span class="text-danger"
+                *ngIf="((YearForm.get('enddate').touched ||
+                YearForm.get('enddate').dirty) &&
+                YearForm.get('enddate').errors)">
+                <small *ngIf="YearForm.get('enddate').errors.required">
+                    End Date is required
+            </small>
+              </span>
+                </div>
+        </div>            
+     
+        <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+         
+          <button type="submit" class="btn btn-warning"  [disabled]="!YearForm .valid" >Add</button>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total Record: {{fycount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table ">
+          <table class="table">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr NO.</b></td>
+               
+                <td>
+                  <b>Year Name</b>
+                </td>
+                <td>
+                  <b>Start Date</b>
+                </td>
+                <td>
+                  <b>End Date</b>
+                </td>
+                <td>
+                    <b>Remove</b>
+                </td>
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let year of year| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  
+                  <td>
+                   {{year.yearname}} 
+                  </td>
+                  <td>
+                     {{year.startdate  | date: 'dd/MM/yyyy'}} 
+                  </td>
+                  <td>
+                       {{year.enddate  | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td><b>
+                      <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                          Delete
+                      </a></b>
+
+                      <ng-template #content let-modal>
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                            Are you sure want to Delete ?</h5>
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                   
+                   
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-info" (click)="Delete(year.yearid)" (click)="modal.close('Cross click')">Yes</button>
+                          <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                        </div>
+                      
+                      </ng-template>
+                  </td>
+
+                
+              
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>
+  
+
+
+  

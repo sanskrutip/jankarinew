@@ -1,0 +1,211 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+         <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="Javascript:void(0)" [routerLink]="['/PartnerList']"> PartnerList</a>
+  </li>
+    <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Add Partner</li>
+  </ol>
+
+<form [formGroup]="PartnerForm"    (ngSubmit)="AddPartner(PartnerForm.value)">
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <h4 style="float: left;">Partner  Form </h4>
+    </div>
+    </div>
+    </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 form-group">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <button type="button" class="btn btn-warning" [routerLink]="['/PartnerList']" style="margin-right: 10px;">Back</button>
+        <button type="submit" class="btn btn-warning" [disabled]="!PartnerForm .valid"  >Submit</button>
+            </div>
+    </div>
+  </div>
+  <div class="container">
+  
+  <div  class="card card-default mb-3" style="padding: 20px;">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="row form-group" [ngClass]="{'has-error': ((PartnerForm.get('partnername').touched ||
+          PartnerForm.get('partnername').dirty) &&
+          PartnerForm.get('partnername').errors)}" >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                   <label>Partner name:</label>
+                   <span style="color: red"> *</span>
+               </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                 <input id="partnername" type="text" class="form-control" formControlName="partnername" [ngModel] = "Partner?.partnername"
+                 [(ngModel)]="model.partnername">
+                 <span class="text-danger"
+                  *ngIf="((PartnerForm.get('partnername').touched ||
+                  PartnerForm.get('partnername').dirty) &&
+                  PartnerForm.get('partnername').errors)">
+                  <small *ngIf="PartnerForm.get('partnername').errors.required">
+                      Partner name is required
+              </small>
+                </span>
+              </div>
+          </div>
+          <div class="row form-group"  [ngClass]="{'has-error': ((PartnerForm.get('company').touched ||
+          PartnerForm.get('company').dirty) &&
+          PartnerForm.get('company').errors)}">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Company:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input id="company" type="text" class="form-control" formControlName="company" [ngModel] = "Partner?.company"
+                [(ngModel)]="model.company">
+              <span class="text-danger"
+              *ngIf="((PartnerForm.get('company').touched ||
+              PartnerForm.get('company').dirty) &&
+              PartnerForm.get('company').errors)">
+              <small *ngIf="PartnerForm.get('company').errors.required">
+                  company is required
+          </small>
+            </span>
+            </div>
+          </div>
+          <div class="row form-group" [ngClass]="{'has-error': ((PartnerForm.get('contactpersonname').touched ||
+          PartnerForm.get('contactpersonname').dirty) &&
+          PartnerForm.get('contactpersonname').errors)}"  >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> Contact Person:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="contactpersonname" type="textarea" class="form-control" formControlName="contactpersonname" [ngModel] = "Partner?.contactpersonname"
+              [(ngModel)]="model.contactpersonname">
+              <span class="text-danger"
+              *ngIf="((PartnerForm.get('contactpersonname').touched ||
+              PartnerForm.get('contactpersonname').dirty) &&
+              PartnerForm.get('contactpersonname').errors)">
+              <small *ngIf="PartnerForm.get('contactpersonname').errors.required">
+                  contact person name is required
+          </small>
+            </span>
+              </div>
+        </div>
+        <div class="row "  [ngClass]="{'has-error': ((PartnerForm.get('state').touched ||
+        PartnerForm.get('state').dirty) &&
+        PartnerForm.get('state').errors)}" >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> State:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 form-group">
+              <select id="state" type="text" class="form-control" formControlName="state" [ngModel] = "Partner?.state"
+              [(ngModel)]="model.state"  (change)="onSelectState($event.target.value)">
+                  <option  [ngValue]="null">Select</option>
+                  <option *ngFor="let state of state" value={{state.stname}} > {{state.stname}}</option>
+               </select>
+               <span class="text-danger"
+              *ngIf="((PartnerForm.get('state').touched ||
+              PartnerForm.get('state').dirty) &&
+              PartnerForm.get('state').errors)">
+              <small *ngIf="PartnerForm.get('state').errors.required">
+                State is required
+          </small>
+            </span>
+              </div>
+        </div>
+          
+       
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="row form-group"  [ngClass]="{'has-error': ((PartnerForm.get('district').touched ||
+          PartnerForm.get('district').dirty) &&
+          PartnerForm.get('district').errors)}"  >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> District:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select id="district" type="text" class="form-control" formControlName="district" 
+                [ngModel] = "Partner?.district"
+                [(ngModel)]="model.district" (change)="onSelectDistrict($event.target.value)">
+                <option  [ngValue]="null">Select</option>
+                <option *ngFor="let distirct of  Distirct" value={{distirct.dtname}} >{{distirct.dtname }}</option>
+                 </select>
+                 <span class="text-danger"
+                *ngIf="((PartnerForm.get('district').touched ||
+                PartnerForm.get('district').dirty) &&
+                PartnerForm.get('district').errors)">
+                <small *ngIf="PartnerForm.get('district').errors.required">
+                    District is required
+            </small>
+              </span>
+                </div>
+          </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((PartnerForm.get('city').touched ||
+        PartnerForm.get('city').dirty) &&
+        PartnerForm.get('city').errors)}"  >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> City:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="city" type="text" class="form-control" formControlName="city"
+               [ngModel] = "Partner?.city"
+              [(ngModel)]="model.city">
+                  <option  [ngValue]="null">Select</option>
+                  <option *ngFor="let city of city"value={{city.ctname}}>{{city.ctname}}</option>
+               </select>
+               <span class="text-danger"
+               *ngIf="((PartnerForm.get('city').touched ||
+               PartnerForm.get('city').dirty) &&
+               PartnerForm.get('city').errors)">
+               <small *ngIf="PartnerForm.get('city').errors.required">
+                City is required
+           </small>
+             </span>
+              </div>
+        </div>
+         
+          <div class="row form-group"  >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Address:</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="address" type="textarea" class="form-control" formControlName="address" [ngModel] = "Partner?.address"
+                  [(ngModel)]="model.address">
+                </div>
+          </div>
+          
+          <div class="row " [ngClass]="{'has-error': ((PartnerForm.get('phoneno').touched ||
+          PartnerForm.get('phoneno').dirty) &&
+          PartnerForm.get('phoneno').errors)}" >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Contact No:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 form-group">
+                  <input id="phoneno" type="text" class="form-control" formControlName="phoneno" [ngModel] = "Partner?.phoneno"
+                  [(ngModel)]="model.phoneno" maxlength="10">
+                  <span class="text-danger"
+                  *ngIf="((PartnerForm.get('phoneno').touched ||
+                  PartnerForm.get('phoneno').dirty) &&
+                  PartnerForm.get('phoneno').errors)">
+                  <small *ngIf="PartnerForm.get('phoneno').errors.required">
+                      phone no  is required
+              </small>
+              <small *ngIf="PartnerForm.get('phoneno').errors.minlength ||
+              PartnerForm.get('phoneno').errors.maxlength">
+                         Mobile should be 10digit    </small>
+                                <br>
+                                  <small *ngIf="PartnerForm.get('phoneno').errors.pattern">
+            Mobile should be Number </small>
+                </span>
+                </div>
+          </div>
+          
+      </div>
+      </div>
+  </div>
+  </div>
+
+  </form>

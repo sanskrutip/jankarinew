@@ -1,0 +1,402 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Employee Monthly Attendance Report
+
+  </li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="empattrpt" (ngSubmit)="filterrecord(empattrpt.value)" >
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">Employee Monthly Attendance  Report</h4>
+    </div>
+  </div>
+    <div class="card card-default mb-3" style="padding: 20px !important;">
+      <div class="row">
+       
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+          <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Name</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input class="form-control" type="text" [(ngModel)]="searchname" name="name" [ngModelOptions]="{standalone: true}">
+                  </div>
+          </div>            
+          </div>
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Office State</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select class="form-control"   name="state"  (change)="onSelectState($event.target.value)" 
+            [(ngModel)]="searchstate" [ngModelOptions]="{standalone: true}">
+                <option  [ngValue]="select">Select</option>
+                <option *ngFor="let state of state" value={{state.column1}}>{{state.column1}}</option>
+              </select>
+            </div>
+              </div>
+          </div>
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Office City</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select class="form-control"  name="city"
+              [(ngModel)]="searchcity" [ngModelOptions]="{standalone: true}">
+                <option  [ngValue]="select">Select</option>
+                <option *ngFor="let city of city"value={{city.column1}}>{{city.column1}}</option>
+              </select>
+            </div>
+              </div>
+          </div>
+
+
+      </div><br>
+      <div class="row">
+       
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Org</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select class="form-control" name="org" [(ngModel)]="searchorg" [ngModelOptions]="{standalone: true}"
+               >
+                <option [ngValue]="select">Select</option>
+                <option *ngFor="let OrgnizationList of OrgnizationList" value={{OrgnizationList.column2}} >{{OrgnizationList.column1}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Program</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select class="form-control" name="Program" [(ngModel)]="searchprogram" 
+                (change)="onSelectProgram($event.target.value)" [ngModelOptions]="{standalone: true}">
+                <option [ngValue]="select">Select</option>
+                <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Department</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select class="form-control" name="department" 
+                [(ngModel)]="searchdepartment"  (change)="onSelectDepartment($event.target.value)" [ngModelOptions]="{standalone: true}" >
+                <option [ngValue]="select">Select</option>
+                <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>
+                  {{Departmentlist.column1}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+      </div><br>
+
+      <div class="row">
+       
+        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+          <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Designation</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control"  name="designation"
+          [(ngModel)]="searchdesignation" [ngModelOptions]="{standalone: true}">
+            <option  [ngValue]="select">Select</option>
+            <option *ngFor="let Designationlist of Designationlist"value={{Designationlist.column2}}>{{Designationlist.column1}}</option>
+          </select>
+        </div>
+          </div>
+      </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((empattrpt.get('month').touched ||
+            empattrpt.get('month').dirty) &&
+            empattrpt.get('month').errors)}" >
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Month</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Month"  
+                [(ngModel)]="searchmonth" formControlName="month" >
+                <option [ngValue]="select">Select</option>
+                <option value="JANUARY">JANUARY</option>
+                <option value="FEBRUARY">FEBRUARY</option>
+                <option value="MARCH">MARCH</option>
+                <option value="APRIL">APRIL </option>
+                <option value="MAY">MAY</option>
+                <option value="JUNE">JUNE</option>
+                <option value="JULY">JULY</option>
+                <option value="AUGUST">AUGUST</option>
+                <option value="SEPTEMBER">SEPTEMBER</option>
+                <option value="OCTOBER">OCTOBER</option>
+                <option value="NOVEMBER">NOVEMBER</option>
+                <option value="DECEMBER">DECEMBER</option>
+                  </select>
+                  <span class="text-danger"
+          *ngIf="((empattrpt.get('month').touched ||
+          empattrpt.get('month').dirty) &&
+          empattrpt.get('month').errors)">
+          <small *ngIf="empattrpt.get('month').errors.required">
+            From Month is required
+      </small>
+        </span>
+              </div>
+              </div>
+            </div>
+
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 "  [ngClass]="{'has-error': ((empattrpt.get('year').touched ||
+          empattrpt.get('year').dirty) &&
+          empattrpt.get('year').errors)}">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>	 Year</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Month"  
+                [(ngModel)]="searchyear" formControlName="year"  >
+                <option [ngValue]="select">Select</option>
+                <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+                  </select>
+                  <span class="text-danger"
+                  *ngIf="((empattrpt.get('year').touched ||
+                  empattrpt.get('year').dirty) &&
+                  empattrpt.get('year').errors)">
+                  <small *ngIf="empattrpt.get('year').errors.required">
+                    From Year is required
+              </small>
+                </span>
+              </div>
+              </div>
+          </div>
+
+
+
+          </div><br> 
+
+          <div class="row">
+         
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label> Status</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control" name="status" [(ngModel)]="searchstatus" [ngModelOptions]="{standalone: true}">
+                    <option [ngValue]="select">Select</option>
+                    <option [ngValue]="0">Active</option>
+                    <option [ngValue]="1">Inactive</option>
+      
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Partner </label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control" name="partner" [(ngModel)]="searchpartner" [ngModelOptions]="{standalone: true}">
+                    <option [ngValue]="select">Select</option>
+                    <option *ngFor="let Partnerlist of Partnerlist" value={{Partnerlist.column2}}>{{Partnerlist.column1}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+         
+          </div><br>
+       
+
+          <br>
+      <div class="row">
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                  <button type="button" class="btn btn-warning" (click)="filterrecord(searchname,searchstate,searchcity,searchorg,searchprogram,searchdepartment,searchdesignation,searchmonth,searchyear,searchstatus,searchpartner)" [disabled]="!empattrpt.valid"  (click)="showMyContainer=!showMyContainer">Find</button>
+
+          </div>
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                  <button type="button" class="btn btn-warning" (click)="ExportReport(searchname,searchstate,searchcity,searchorg,searchprogram,searchdepartment,searchdesignation,searchmonth,searchyear,searchstatus,searchpartner)">Export</button>
+
+        </div>
+    </div>
+    
+    </div>
+
+
+
+  </form>
+ <div *ngIf="showMyContainer">
+  <div class="row">
+      <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+        <b>Total Records: {{attmonthlyrptcount}}</b>
+      <b> <span *ngIf ="!attmonthlyrptcount || attmonthlyrptcount.length==0">0</span></b> 
+      </div>
+      <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+        <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  <div class="table-responsive">
+    <table class="table table-bordered" >
+      <thead>
+        <tr class="warning">
+          <td style="min-width: 50px;">
+            <b>Sr No</b>
+          </td>
+          <td>
+            <b> State</b>
+          </td>
+          <td style="min-width: 100px;">
+            <b> City</b>
+          </td>
+        
+          <td style="min-width: 100px;">
+            <b>Employee ID</b>
+          </td>
+          <td style="min-width: 150px;">
+            <b>Employee Status		</b>
+          </td>
+          <td style="min-width: 150px;">
+            <b>Employee Name	</b>
+          </td>
+         <td>
+            <b> Program</b>
+          </td>
+          <td style="min-width: 200px;" >
+            <b> Department</b>
+          </td>
+        
+          <td >
+            <b>Designation	</b>
+          </td>
+          <td style="min-width: 120px;" >
+            <b>Partner Name		</b>
+          </td>
+          <td >
+            <b>Gender</b>
+          </td>
+           <td style="min-width: 150px;" >
+            <b>Contact No.</b>
+          </td>
+          <td style="min-width: 150px;" >
+            <b>Reports To	</b>
+          </td>
+         <td style="min-width: 150px;" >
+            <b> Working Month	</b>
+          </td>
+          <td style="min-width: 150px;" >
+            <b>Working Year	</b>
+          </td>
+        
+          <td style="min-width: 150px;" >
+            <b>Working Days	</b>
+          </td>
+          <td style="min-width: 150px;"  >
+            <b>Total Sundays</b>
+          </td>
+          <td style="min-width: 150px;" >
+            <b>Total Absent Days	</b>
+          </td>
+          <td style="min-width: 150px;"  >
+            <b>Total Present Days</b>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let attmonthlyrpt of attmonthlyrpt| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+          <td>
+            {{attmonthlyrpt.state }}
+          </td>
+          <td>
+            {{attmonthlyrpt.city }}
+          </td>
+          <td>
+            {{attmonthlyrpt.empid  }}
+          </td>
+          <td>
+            {{attmonthlyrpt.status   }}
+          </td>
+          <td>
+            {{attmonthlyrpt.employeename }}
+          </td>
+            <td>
+            {{attmonthlyrpt.pgname }}
+          </td>
+          <td>
+            {{attmonthlyrpt.depname }}
+          </td>
+          <td>
+            {{attmonthlyrpt.desname  }}
+          </td>
+          <td>
+            {{attmonthlyrpt.partnername   }}
+          </td>
+          <td>
+            {{attmonthlyrpt.gender }}
+          </td>
+            <td>
+            {{attmonthlyrpt.mobile }}
+          </td>
+          <td>
+            {{attmonthlyrpt.reportsto }}
+          </td>
+          <td>
+            {{attmonthlyrpt.salmonth  }}
+          </td>
+          <td>
+            {{attmonthlyrpt.salyear   }}
+          </td>
+          <td>
+            {{attmonthlyrpt.TotalDays }}
+          </td>
+            <td>
+            {{attmonthlyrpt.NoOfSundays }}
+          </td>
+          <td>
+            {{attmonthlyrpt.Absentdays }}
+          </td>
+          <td>
+            {{attmonthlyrpt.Presentdays  }}
+          </td>
+         
+  
+        </tr>
+
+        <tr style="text-align: center;">
+            <td colspan="19" *ngIf ="!attmonthlyrptcount || attmonthlyrptcount.length==0">
+         <b>Requested data not found!</b></td>
+          <tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

@@ -1,0 +1,319 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i> Employee Report
+  </li>
+</ol>
+
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div>
+<div class="row form-group">
+  <div class="col-md-12">
+    <h4 style="float: left;">Employee Report </h4>
+  </div>
+</div>
+<div class="card card-default mb-3" style="padding: 20px !important;">
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Name</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <input class="form-control" type="text" [(ngModel)]="searchname" name="name">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Office State</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="state" (change)="onSelectState($event.target.value)"
+            [(ngModel)]="searchstate">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let state of state" value={{state.column1}}>{{state.column1}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Office City</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="city" [(ngModel)]="searchcity">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let city of city" value={{city.column1}}>{{city.column1}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Program </label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="ProgramList" [(ngModel)]="searchprogram">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="row">
+
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Designation</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="Designationlist" [(ngModel)]="searchdesignation">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let Designationlist of Designationlist" value={{Designationlist.column2}}>
+              {{Designationlist.column1}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="row">
+
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Emp Type</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="Designationlist" [(ngModel)]="searchemptype">
+            <option [ngValue]="select">Select</option>
+            <option value="Contractor">Contractor</option>
+            <option value="NA">NA</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="row">
+
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Pif Associate</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="Designationlist" [(ngModel)]="searchpif">
+            <option [ngValue]="select">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+      <div class="row">
+        <button type="button" class="btn btn-warning"
+          (click)="filterrecord(searchname,searchstate,searchcity,searchprogram,searchdesignation,searchemptype,searchpif)">Search</button>
+
+      </div>
+    </div>
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+      <div class="row">
+        <button type="button" class="btn btn-warning"
+          (click)="ExportReport(searchname,searchstate,searchcity,searchprogram,searchdesignation,searchemptype,searchpif)">Export</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+      <b>Total Employee: {{empcount}}</b>
+    <b> <span *ngIf ="!empcount || empcount.length==0">0</span></b> 
+    </div>
+    <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+<div class="table-responsive">
+  <table class="table table-bordered" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr class="warning">
+        <td style="min-width: 70px;">
+          <b>Sr No</b>
+        </td>
+        <td>
+          <b>Office State</b>
+        </td>
+        <td style="min-width: 100px;">
+          <b>Office City</b>
+        </td>
+      
+        <td style="min-width: 110px;">
+          <b>Employee ID</b>
+        </td>
+        <td style="min-width: 150px;">
+          <b>Employee Name</b>
+        </td>
+        <td>
+          <b>Gender</b>
+        </td>
+        <td style="min-width: 120px;">
+          <b>Date of Birth</b>
+        </td>
+        <td style="min-width: 130px;">
+          <b>Date of Joining</b>
+        </td>
+        <td>
+          <b>PAN Number</b>
+        </td>
+        <td style="min-width: 140px;">
+          <b>Aadhar Number</b>
+        </td>
+     
+        <td style="min-width: 250px;">
+          <b>Program</b>
+        </td>
+        <td style="min-width: 250px;">
+          <b>Department</b>
+        </td>
+        <td style="min-width: 170px;">
+          <b>Designation</b>
+        </td>
+        <td style="min-width: 100px;">
+          <b>Partner</b>
+        </td>
+        <td style="min-width: 120px;">
+          <b>Pay Type</b>
+        </td>
+        <td style="min-width: 120px;">
+          <b>Beneficiary Id</b>
+        </td>
+        <!-- <td>
+          <b>ESIC</b>
+        </td> -->
+        <td style="min-width: 110px;">
+          <b>Emp Type</b>
+        </td>
+
+        <td>
+          <b>Mobile</b>
+        </td>
+        <td >
+          <b> Email ID</b>
+        </td>
+        <td style="min-width: 130px;">
+          <b>Reports To</b>
+        </td>
+        <td style="min-width: 130px;">
+          <b>Approve By</b>
+        </td>
+        <td style="min-width: 130px;">
+          <b>Pif Associate</b>
+        </td>
+        <!-- <td>
+          <b>Qulification</b>
+        </td> -->
+        <td style="min-width: 130px;">
+          <b>Marital Status</b>
+        </td>
+        <td>
+          <b>Bloodgroup</b>
+        </td>
+        <td>
+          <b>Age</b>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr #myVar
+        *ngFor="let employeelist of employeelist| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+        <td>{{i+1}}</td>
+        <td>
+          {{employeelist.state }}
+        </td>
+        <td>
+          {{employeelist.city }}
+        </td>
+        <td>
+          {{employeelist.empid  }}
+        </td>
+        <td>
+          {{employeelist.empname   }}
+        </td>
+        <td>
+          {{employeelist.gender }}
+        </td>
+        <td>
+          {{employeelist.dob| date: 'dd/MM/yyyy'}}
+        </td>
+        <td>
+          {{employeelist.doj| date: 'dd/MM/yyyy' }}
+        </td>
+        <td>
+          {{employeelist.pancard}}
+        </td>
+        <td>
+          {{employeelist.aadharnumber }}
+        </td>
+        <td>
+          {{employeelist.pgname }}
+        </td>
+        <td>
+          {{employeelist.depname  }}
+        </td>
+        <td>
+          {{employeelist.desname  }}
+        </td>
+        <td>
+            {{employeelist.partnername  }}
+          </td>
+        <td>
+          {{employeelist.paytype }}
+        </td>
+        <td>
+          {{employeelist.beneficiaryid  }}
+        </td>
+        <td>
+          {{employeelist.emptype }}
+        </td>
+        <td>
+          {{employeelist.mobile }}
+        </td>
+       
+        <td>
+          {{employeelist.email  }}
+        </td>
+        <td>
+          {{employeelist.reporttoname  }}
+        </td>
+        <td>
+          {{employeelist.salapprovalname  }}
+        </td>
+        <td>
+          {{employeelist.pifassociate  }}
+        </td>
+        <td>
+          {{employeelist.maritalstatus }}
+        </td>
+        <td>
+          {{employeelist.bloodgroup  }}
+        </td>
+        <td>
+          {{employeelist.age  }}
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

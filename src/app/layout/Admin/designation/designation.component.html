@@ -1,0 +1,138 @@
+<app-page-header [heading]="'Designation'"></app-page-header>
+
+
+<form  [formGroup]="DesignationForm"  (ngSubmit)="AddDesignation(DesignationForm.value)">
+
+  <div >
+      <h3>Designation </h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+      <div class="row form-group"  >
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label>Department:</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((DesignationForm.get('depid').touched ||
+                        DesignationForm.get('depid').dirty) &&
+                        DesignationForm.get('depid').errors)}">
+                        <select id="depname" type="text" class="form-control"  formControlName="depid" [ngModel]="des?.depid" [(ngModel)]="model.depid" >
+                          <option  [ngValue]="null">Select</option>
+                            <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.depid}}>{{Departmentlist.depname}}</option>
+                        </select>
+                    <span class="text-danger"
+              *ngIf="((DesignationForm.get('depid').touched ||
+              DesignationForm.get('depid').dirty) &&
+              DesignationForm.get('depid').errors)">
+              <small *ngIf="DesignationForm.get('depid').errors.required">
+                Department is required
+          </small>
+            </span>
+                  </div>
+     
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>Designation:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((DesignationForm.get('desname').touched ||
+              DesignationForm.get('desname').dirty) &&
+              DesignationForm.get('desname').errors)}">
+               
+                <input  id="desname" type="text" class="form-control" formControlName="desname" [ngModel]="des?.desname" [(ngModel)]="model.desname">
+          
+                
+                <span class="text-danger"
+              *ngIf="((DesignationForm.get('desname').touched ||
+              DesignationForm.get('desname').dirty) &&
+              DesignationForm.get('desname').errors)">
+              <small *ngIf="DesignationForm.get('desname').errors.required">
+                  Designation is required
+          </small>
+            </span>
+              </div>
+        </div>            
+ 
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
+                <!-- <div class="form-group"  > -->
+         
+          <button type="submit" class="btn btn-warning"  [disabled]="!DesignationForm .valid">Add</button>
+                <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total Record: {{dgcount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr No.</b></td>
+                <td>
+                  <b> Designation Id</b>
+                </td>
+                <td>
+                  <b>Designation</b>
+                </td>
+                <td>
+                  <b>Department</b>
+                </td>
+                <td>
+                  <b>Remove</b>
+                </td>
+               
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let Designationlist of Designationlist| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  <td>
+                  {{Designationlist.desid}}
+                  </td>
+                  <td>
+                      {{Designationlist.desname}} 
+                  </td>
+                  <td>
+                    {{Designationlist.depname}}
+                  </td>
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="modal-basic-title">
+                          Are you sure want to Delete ?</h6>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(Designationlist.desid)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                  </td>
+                
+              
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>
+  
+
+
+  

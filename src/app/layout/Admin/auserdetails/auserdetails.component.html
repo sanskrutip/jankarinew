@@ -1,0 +1,93 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/UserList']">User List</a>
+  </li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>User Detail</li>
+</ol>
+<div style="padding: 2%;">
+  <h4>User Details</h4>
+</div>
+
+<div class="card card-default mb-3" style="padding:20px;">
+
+  <div class="row" *ngFor="let Userlist of Userlist">
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+      <label><b>Employee Name:</b></label>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-12 col-x s-12">
+
+      {{Userlist.fullname}}
+    </div>
+
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+      <label> <b>User ID:</b></label>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+      {{Userlist.userid}}
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+      <label> <b>User name:</b></label>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
+      {{Userlist.username}}
+    </div>
+
+  </div>
+
+</div>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+
+    </div>
+    <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="warning">
+          <td><b>Sr NO.</b></td>
+          <td>
+            <b>Organazation</b>
+          </td>
+          <td>
+            <b>Program Name</b>
+          </td>
+          <td>
+            <b>Department</b>
+          </td>
+          <td>
+            <b>Status</b>
+          </td>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let Userprolist of Userprolist| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; ">
+
+          <td>{{i+1}}</td>
+          <td>
+            {{Userprolist.ogname}}
+          </td>
+          <td>
+            <a>
+              {{Userprolist.pgname}}
+            </a>
+
+          </td>
+          <td>
+            {{Userprolist.depname}}
+          </td>
+          <td>
+            {{Userprolist.status}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

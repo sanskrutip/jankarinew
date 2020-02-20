@@ -1,0 +1,128 @@
+<app-page-header [heading]="'City'" ></app-page-header>
+
+<form  [formGroup]="CityForm"  (ngSubmit)="AddCity(CityForm.value)">
+
+  <div >
+      <h3>City </h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+      <div class="row form-group"  >
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label>Distirct:</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((CityForm.get('dtname').touched ||
+                        CityForm.get('dtname').dirty) &&
+                        CityForm.get('dtname').errors)}">
+                        <select id="dtname" type="text" class="form-control"  formControlName="dtname" [ngModel]="city?.dtname" [(ngModel)]="model.dtname" >
+                            <option  [ngValue]="select">Select</option>
+                                        <option *ngFor="let Distirct of Distirct" value={{Distirct.dtname}}>{{Distirct.dtname}}</option>
+                          </select>
+                    <span class="text-danger"
+              *ngIf="((CityForm.get('dtname').touched ||
+              CityForm.get('dtname').dirty) &&
+              CityForm.get('dtname').errors)">
+              <small *ngIf="CityForm.get('dtname').errors.required">
+                District is required
+          </small>
+            </span>
+                  </div>
+     
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>City:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((CityForm.get('ctname').touched ||
+              CityForm.get('ctname').dirty) &&
+              CityForm.get('ctname').errors)}">
+               <input  id="ctname" type="text" class="form-control" formControlName="ctname" [ngModel]="city?.ctname" [(ngModel)]="model.ctname">
+               <span class="text-danger"
+              *ngIf="((CityForm.get('ctname').touched ||
+              CityForm.get('ctname').dirty) &&
+              CityForm.get('ctname').errors)">
+              <small *ngIf="CityForm.get('ctname').errors.required">
+                  City is required
+          </small>
+            </span>
+              </div>
+        </div>            
+     
+        <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+         
+          <button type="submit" class="btn btn-warning"  [disabled]="!CityForm .valid">Add</button>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total City: {{citycount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr NO.</b></td>
+                
+                <td>
+                  <b>City</b>
+                </td>
+                <td>
+                  <b>District</b>
+                </td>
+                <td>
+                  <b>Remove</b>
+                </td>
+               
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let city of city | paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  
+                  <td>
+                     {{city.ctname}}   
+                  </td>
+                  <td>
+                    {{city.dtname}}  
+                  </td>
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                          Are you sure want to Delete ?</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(city.ctname)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                  </td>
+           
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>
+  
+
+
+  

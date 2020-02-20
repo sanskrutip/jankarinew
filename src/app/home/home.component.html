@@ -1,0 +1,245 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #F3DB09;height:56px;">
+  <img src="/assets/images/piflogo.png" alt="Logo" class="img-responsive" style="height: 50px;">
+  &nbsp;&nbsp;
+
+  <h5>
+    <b>Jankari Portal</b>
+  </h5>
+
+  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+    <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+  </button>
+  <div class="collapse navbar-collapse">
+
+    <ul class="navbar-nav ml-auto" style="color: black !important">
+
+
+      <li class="nav-item dropdown" ngbDropdown>
+        <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle style="color: black !important; ">
+          <i class="fa fa-user fa-lg"></i> &nbsp;<b>{{ FullName }}</b>
+        </a>
+        <div class="dropdown-menu-right" ngbDropdownMenu>
+
+          <a class="dropdown-item" style="cursor:pointer;" (click)="onLoggedout()" style="font-size: 0.8rem!important;">
+            <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+          </a>
+
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="list-group">
+
+
+    <div class="header-fields">
+
+
+      <div class="nested-menu">
+
+
+        <a class="list-group-item" (click)="addExpandClass('profile')">
+          <i class="fa fa-user"></i> <span>&nbsp; {{ UserName }} </span>
+        </a>
+        <li class="nested" [class.expand]="showMenu === 'profile'">
+          <ul class="submenu">
+
+            <li>
+              <a (click)="onLoggedout()">
+                <i class="fa fa-fw fa-power-off"></i> <span>{{ 'Log Out' | translate }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+    <span>{{ 'Collapse Sidebar' | translate }}</span>
+  </div>
+</nav>
+<br>
+<div class="container" style="padding-top: 50px !important; margin-top: 2%; max-width: 1270px;">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="card card-default mb-3" style="padding: 20px; ">
+        <h6><b>Todays Birthday</b></h6>
+
+
+        <div class="card" id="dvdata1">
+          <ngb-carousel *ngIf="birthday">
+            <ng-template ngbSlide *ngFor="let birthday of birthday">
+              <div class="card"
+                style="background-image: url(/assets/images/bk1.jpg);background-repeat: no-repeat;background-size: 100% 100%; ">
+                <div class="row">
+
+                  <div class="column">
+
+                    <img src="{{ birthday.empphoto }}" class="image_circle">
+
+                  </div>
+                  <div class="column1">
+                    <div class="card-body" style="padding: 0 20px;">
+                      <h5 class="card-title">{{ birthday.empname }}</h5>
+                      <p class="card-text" [innerText]="birthday.deptname" style="margin-bottom: 5.5px"></p>
+                      <p class="card-text" [innerText]="birthday.desname" style="margin-bottom: 5.5px"></p>
+                      <p class="card-text" [innerText]="birthday.city" style="margin-bottom: 5.5px"></p>
+                      <a class="text-primary"  (click)=" open(content)"
+                        style="cursor: pointer; font-size: 13px;">
+                        <b>Send Greetings</b></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h6 class="modal-title" id="modal-basic-title">
+                  Wish your friends a Happy Birthday !</h6>
+      
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+      
+              <div class="modal-body"  style="background-image: url(/assets/images/birthdaywish.png); ">
+               
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" >
+                <div class=" row">
+                  <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+                  <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                  <input class="form-control" type="text" [(ngModel)]="wish" name="name">
+
+                  </div>
+                  <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+
+                </div>
+              </div>
+              </div>
+      
+              <div class="modal-footer" *ngFor="let birthday of birthday">
+                <button type="button" class="btn btn-warning"  (click)="Greeting(birthday.empid)"
+                  (click)="modal.close('Cross click')">Send</button>
+                <button type="button" class="btn btn-warning" (click)="modal.dismiss('Cross click')">Cancel</button>
+              </div>
+      
+            </ng-template>
+          </ngb-carousel>
+        </div>
+
+        <div class="card" id="dvdata2"  style="background-image: url(/assets/images/bk1.jpg); ">
+          <div class="card-body">
+            <h5 class="card-title" style="text-align: center;">No birthday found</h5>
+          </div>
+        </div>
+
+
+        <br>
+
+        <h6><b>All Program Summary</b></h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>
+                  <b>Program(s) </b>
+                </td>
+                <td>
+                  <b>Center(s)</b>
+                </td>
+                <td>
+                  <b>School(s)</b>
+                </td>
+                <td>
+                  <b>Enrolment(s)</b>
+                </td>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr *ngFor="let summary of summary">
+
+                <td>
+                  {{summary.pgname}}
+                </td>
+
+                <td>
+                  {{summary.centers}}
+                </td>
+                <td>
+                  {{summary.schools}}
+                </td>
+                <td>
+                  {{summary.enrolments}}
+                </td>
+
+
+              </tr>
+              <td><b>Total</b>
+              </td>
+              <td><b>{{centcount}}</b></td>
+              <td><b>{{schoolcount}}</b></td>
+              <td><b>{{enrollcount}}</b></td>
+              <tr>
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="col-sm-6">
+
+
+      <div class="card card-default mb-3" style="padding: 20px;">
+
+        <div class="row">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+<div style="font-size: 17px;padding-top: 10px;"><b>Welcome To The Jankari Portal</b></div>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+  <mat-form-field appearance="outline"
+  style="font-family: Open Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;">
+  <mat-select (mouseover)="tooltipStatus=true" placeholder="Select Program"
+    style="font-weight:bold ; color: black!important;font-size: 14px;">
+    <mat-option disabled>Select Program</mat-option>
+    <mat-option *ngFor="let program of program" [matTooltipDisabled]="!tooltipStatus" #tooltip="matTooltip"
+      [value]="program.pgname" matTooltip="{{program.pgname}}" (click)="dashboard(program.pgid,program.pgname)">
+      {{ program.pgname}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+</div>
+<hr>
+        <br>
+
+      <div class="desktop-res">
+
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FPrathamInfoTechFoundation%2F&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+          width="500" height="400" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+          allowTransparency="true" allow="encrypted-media"></iframe>
+
+      </div>
+      <div class="mobile-res">
+
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FPrathamInfoTechFoundation%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+          width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+          allowTransparency="true" allow="encrypted-media"></iframe>
+
+      </div>
+    </div>
+    </div>
+  </div>

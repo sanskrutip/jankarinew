@@ -1,0 +1,128 @@
+<app-page-header [heading]="'Holiday'" ></app-page-header>
+
+<form  [formGroup]="HolidayForm"  (ngSubmit)="AddHoliday(HolidayForm.value)">
+
+  <div >
+      <h3>Holiday </h3>
+  </div>
+ 
+  <div class="card card-default mb-3" style="padding: 20px !important;">
+    
+      <div class="row form-group"  >
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label>Date:</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((HolidayForm.get('holiday').touched ||
+                        HolidayForm.get('holiday').dirty) &&
+                        HolidayForm.get('holiday').errors)}">
+
+                        <input  id="holiday" type="date" class="form-control" formControlName="holiday" [ngModel]="holiday?.holiday" [(ngModel)]="model.holiday">
+
+                    <span class="text-danger"
+              *ngIf="((HolidayForm.get('holiday').touched ||
+              HolidayForm.get('holiday').dirty) &&
+              HolidayForm.get('holiday').errors)">
+              <small *ngIf="HolidayForm.get('holiday').errors.required">
+                Date is required
+          </small>
+            </span>
+                  </div>
+     
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>Description:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((HolidayForm.get('reason').touched ||
+              HolidayForm.get('reason').dirty) &&
+              HolidayForm.get('reason').errors)}">
+               
+              <input  id="reason" type="text" class="form-control" formControlName="reason" [ngModel]="holiday?.reason" [(ngModel)]="model.reason">
+          
+                <span class="text-danger"
+              *ngIf="((HolidayForm.get('reason').touched ||
+              HolidayForm.get('reason').dirty) &&
+              HolidayForm.get('reason').errors)">
+              <small *ngIf="HolidayForm.get('reason').errors.required">
+                  Description is required
+          </small>
+            </span>
+              </div>
+        </div>            
+     
+        <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+         
+          <button type="submit" class="btn btn-warning"  [disabled]="!HolidayForm .valid">Add</button>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total Holiday: {{holicount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table table-bordered">
+          <table class="table">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr NO.</b></td>
+                <td>
+                  <b>Date</b>
+                </td>
+                <td>
+                  <b>Description</b>
+                </td>
+               
+                <td>
+                  <b>Remove</b>
+                </td>
+               
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let holiday of Holiday | paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  <td>
+                     {{holiday.holiday  | date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                   {{holiday.reason}}
+                  </td>
+                  
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h6 class="modal-title" id="modal-basic-title">
+                          Are you sure want to Delete ?</h6>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(holiday.holid)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>
+  
+
+
+  

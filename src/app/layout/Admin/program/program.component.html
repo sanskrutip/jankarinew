@@ -1,0 +1,124 @@
+
+<app-page-header [heading]="'Program'"></app-page-header>
+
+<form [formGroup]="ProgramForm"  (ngSubmit)="AddProgram(ProgramForm.value)">
+
+  <div >
+      <h3>Program </h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+      <div class="row form-group"  >
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label>Organization :</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((ProgramForm.get('ogid').touched ||
+                        ProgramForm.get('ogid').dirty) &&
+                        ProgramForm.get('ogid').errors)}">
+                    <select id="ogname" type="text" class="form-control"  formControlName="ogid" [ngModel]="program?.ogid" [(ngModel)]="model.ogid" >
+                      <option  [ngValue]="null">Select</option>
+
+                                  <option *ngFor="let og of OrgnizationList" value={{og.ogid}}>{{og.ogname}}</option>
+                    </select>
+                    <span class="text-danger"
+              *ngIf="((ProgramForm.get('ogid').touched ||
+              ProgramForm.get('ogid').dirty) &&
+              ProgramForm.get('ogid').errors)">
+              <small *ngIf="ProgramForm.get('ogid').errors.required">
+                  Orgnisation is required
+          </small>
+            </span>
+                  </div>    
+     
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>Program:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((ProgramForm.get('pgname').touched ||
+              ProgramForm.get('pgname').dirty) &&
+              ProgramForm.get('pgname').errors)}">
+                <input  id="pgname" type="text" class="form-control" formControlName="pgname" [ngModel]="program?.pgname" [(ngModel)]="model.pgname">
+                <span class="text-danger"
+              *ngIf="((ProgramForm.get('pgname').touched ||
+              ProgramForm.get('pgname').dirty) &&
+              ProgramForm.get('pgname').errors)">
+              <small *ngIf="ProgramForm.get('pgname').errors.required">
+                  Program is required
+          </small>
+            </span>
+              </div>
+        </div>            
+     
+        <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+          <button type="submit" class="btn btn-warning" [disabled]="!ProgramForm .valid" >Add</button>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total Program: {{pgcount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr NO.</b></td>
+                <td>
+                  <b> Orgnisation</b>
+                </td>
+                <td>
+                  <b>Program</b>
+                </td>
+                <td>
+                  <b>Remove</b>
+                </td>
+              </tr>
+            </thead>
+              <tbody>
+              <tr  #myVar *ngFor="let ProgramList of ProgramList| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                <td>{{i+1}}</td>
+                <td>
+                 {{ProgramList. ogname}}
+                 </td>
+                <td>
+                        {{ProgramList.pgname}}
+                      </td>
+                   
+                <td>
+                  
+
+                  <b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                          Are you sure want to Delete ?</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(ProgramList.pgid)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>

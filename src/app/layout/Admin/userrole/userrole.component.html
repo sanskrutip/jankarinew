@@ -1,0 +1,152 @@
+<app-page-header [heading]="'User Role'" ></app-page-header>
+
+
+  
+<form  [formGroup]="UserroleForm"  (ngSubmit)="AddUserrole(UserroleForm.value)">
+  <div >
+      <h3>User Role</h3>
+  </div>
+  <div class="card card-default mb-3" style="padding: 20px;">
+      <div class="row  form-group"  >
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <label>Program:</label>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((UserroleForm.get('pgid').touched ||
+                        UserroleForm.get('pgid').dirty) &&
+                        UserroleForm.get('pgid').errors)}">
+                
+                        <select id="pgname" type="text" class="form-control"  formControlName="pgid" [ngModel]="role?.pgid" [(ngModel)]="model.pgid" >
+                          <option  [ngValue]="null">Select</option>
+
+                          <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.pgid}}>{{ProgramList.pgname}}</option>
+                        </select>
+                    <span class="text-danger"
+              *ngIf="((UserroleForm.get('pgid').touched ||
+              UserroleForm.get('pgid').dirty) &&
+              UserroleForm.get('pgid').errors)">
+              <small *ngIf="UserroleForm.get('pgid').errors.required">
+                  Program is required
+          </small>
+            </span>
+                  </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label>Role Name:</label>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((UserroleForm.get('rolename').touched ||
+              UserroleForm.get('rolename').dirty) &&
+              UserroleForm.get('rolename').errors)}">
+              <input  id="rolename" type="text" class="form-control" formControlName="rolename" [ngModel]="role?.rolename" [(ngModel)]="model.rolename">
+                <span class="text-danger"
+              *ngIf="((UserroleForm.get('rolename').touched ||
+              UserroleForm.get('rolename').dirty) &&
+              UserroleForm.get('rolename').errors)">
+              <small *ngIf="UserroleForm.get('rolename').errors.required">
+                  Role Name is required
+          </small>
+            </span>
+              </div>
+
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                  <label>Description:</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((UserroleForm.get('description').touched ||
+                UserroleForm.get('description').dirty) &&
+                UserroleForm.get('description').errors)}">
+                 
+                <input  id="description" type="text" class="form-control" formControlName="description" [ngModel]="role?.description" [(ngModel)]="model.description">
+        
+                  <span class="text-danger"
+                *ngIf="((UserroleForm.get('description').touched ||
+                UserroleForm.get('description').dirty) &&
+                UserroleForm.get('description').errors)">
+                <small *ngIf="UserroleForm.get('description').errors.required">
+                    Description is required
+            </small>
+              </span>
+                </div>
+        </div>            
+     
+        <div class="row"  >
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="form-group"  >
+         
+          <button type="submit" class="btn btn-warning"  [disabled]="!UserroleForm .valid">Add</button>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total Record: {{rolecount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr NO.</b></td>
+              
+                <td>
+                  <b>Role Name</b>
+                </td>
+                <!-- <td>
+                  <b>Description</b>
+                </td> -->
+                <td>
+                  <b>Program Name</b>
+                </td>
+                <td>
+                    <b>Remove</b>
+                </td>
+
+                
+              </tr>
+            </thead>
+              <tbody>
+             
+                <tr  #myVar *ngFor="let UserRole of UserRole| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  
+                  <td>
+                      <b>
+                          <a [routerLink] = "['/RoleDetails',UserRole.roleid]" >{{UserRole.rolename}}</a></b>
+                
+                  </td>
+                  <!-- <td>
+                  {{UserRole.description}}
+                  </td> -->
+                  <td>
+                     {{UserRole.pgname}} 
+                    </td>
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                          Are you sure want to Delete ?</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info"   (click)="Delete(UserRole.roleid)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"    (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>

@@ -1,0 +1,129 @@
+<form [formGroup]="DailyworkForm" (ngSubmit)="AddDailywork(DailyworkForm.value)">
+  <div class="row form-group">
+    <div class="col-md-12">
+      <h4 style="float: left;">Add New Task</h4>
+    </div>
+  </div>
+  <div class="card card-default mb-3" style="padding: 20px !important;">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <div class="row form-group" [ngClass]="{'has-error': ((DailyworkForm.get('rptdate').touched ||
+          DailyworkForm.get('rptdate').dirty) &&
+          DailyworkForm.get('rptdate').errors)}">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>Report Date:</label>
+            <span style="color: red"> *</span>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="date" type="date" class="form-control" formControlName="rptdate"  [(ngModel)]="date1" [(ngModel)]="model.reportdate">
+            <span class="text-danger" *ngIf="((DailyworkForm.get('rptdate').touched ||
+            DailyworkForm.get('rptdate').dirty) &&
+            DailyworkForm.get('rptdate').errors)">
+              <small *ngIf="DailyworkForm.get('rptdate').errors.required">
+                Report Date is required
+              </small>
+            </span>
+          </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((DailyworkForm.get('sttime').touched ||
+          DailyworkForm.get('sttime').dirty) &&
+          DailyworkForm.get('sttime').errors)}">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>Start Time:</label>
+            <span style="color: red"> *</span>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="date" type="time" class="form-control" formControlName="sttime" [(ngModel)]="model.starttime ">
+            <!-- <ngb-timepicker [(ngModel)]="model.sttime" [meridian]="meridian" formControlName="sttime" ></ngb-timepicker> -->
+
+            <span class="text-danger" *ngIf="((DailyworkForm.get('sttime').touched ||
+            DailyworkForm.get('sttime').dirty) &&
+            DailyworkForm.get('sttime').errors)">
+              <small *ngIf="DailyworkForm.get('sttime').errors.required">
+                Start Time is required
+              </small>
+            </span>
+          </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((DailyworkForm.get('entime').touched ||
+          DailyworkForm.get('entime').dirty) &&
+          DailyworkForm.get('entime').errors)}">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>End Time:</label>
+            <span style="color: red"> *</span>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="date" type="time" class="form-control" format="" formControlName="entime" [(ngModel)]="model.endtime ">
+            <!-- <ngb-timepicker [(ngModel)]="model.entime" [meridian]="meridian" formControlName="entime" ></ngb-timepicker> -->
+
+            <span class="text-danger" *ngIf="((DailyworkForm.get('entime').touched ||
+            DailyworkForm.get('entime').dirty) &&
+            DailyworkForm.get('entime').errors)">
+              <small *ngIf="DailyworkForm.get('entime').errors.required">
+                End Time is required
+              </small>
+            </span>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <div class="row form-group" [ngClass]="{'has-error': ((DailyworkForm.get('description').touched ||
+            DailyworkForm.get('description').dirty) &&
+            DailyworkForm.get('description').errors)}">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>Description:</label>
+            <span style="color: red"> *</span>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <textarea id="description" type="text" class="form-control" formControlName="description" [(ngModel)]="model.description"></textarea>
+            <span class="text-danger" *ngIf="((DailyworkForm.get('description').touched ||
+            DailyworkForm.get('description').dirty) &&
+            DailyworkForm.get('description').errors)">
+              <small *ngIf="DailyworkForm.get('description').errors.required">
+                Description is required
+              </small>
+            </span>
+          </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((DailyworkForm.get('status').touched ||
+              DailyworkForm.get('status').dirty) &&
+              DailyworkForm.get('status').errors)}">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>Status:</label>
+            <span style="color: red"> *</span>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <select id="status" type="text" class="form-control" formControlName="status" [ngModel]="employee?.status"  [(ngModel)]="model.status" >
+              <option [ngValue]="null">Select</option>
+              <option  [ngValue]=0>Completed</option>
+              <option  [ngValue]=1>In Progress</option>
+
+            </select>
+            <span class="text-danger" *ngIf="((DailyworkForm.get('status').touched ||
+                DailyworkForm.get('status').dirty) &&
+                DailyworkForm.get('status').errors)">
+              <small *ngIf="DailyworkForm.get('status').errors.required">
+                Status is required
+              </small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+        <button type="button" class="btn btn-warning" [disabled]="!DailyworkForm.valid" (click)="AddDailywork()">Submit</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</form>

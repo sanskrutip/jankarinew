@@ -1,0 +1,147 @@
+
+<!-- <form  [formGroup]="DeptwiseEmpAttForm"  > -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+         <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="Javascript:void(0)" [routerLink]="['/EmployeeAttendanceList']">Attendance List</a>
+  </li>
+    <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Departmentwise Attendance List</li>
+  </ol>
+  <div class="row form-group">
+    <div class="col-md-12 col-xs-12">
+    <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+    </div>
+    </div> 
+    <div style="padding: 2%;">
+        <h4> Employee Attendance List</h4>
+    </div>
+  
+    <div class="card card-default mb-3" style="padding:20px;">
+      
+        <div class="row"  >
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                      <label><b>Department Name:</b></label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+                      {{depname}}
+                    </div>    
+       
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <label> <b>Month/Year:</b></label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  {{monthname}}/{{year}}
+                </div>
+          
+      </div> 
+      
+    </div>
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+               
+              </div>
+              <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="warning">
+                    <td><b>Sr NO.</b></td>
+                    <td>
+                        <b>Employee ID</b>
+                      </td>
+                    <td>
+                      <b>Employee Name</b>
+                    </td>
+                    <td>
+                      <b> Working Days</b>
+                    </td>
+                    <td>
+                      <b>Present Days </b>
+                    </td>
+                    <td>
+                      <b>Absent Days</b>
+                    </td>
+                    <td>
+                      <b>Working Hours  </b>
+                    </td>
+                    <td>
+                      <b>OverTime</b>
+                    </td>
+                    <td>
+                      <b>Update</b>
+                    </td>
+                </tr>
+              </thead>
+                <tbody>
+                <tr  #myVar *ngFor="let EmpList of EmpList| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                  
+                    <td>{{i+1}}</td>
+                    <td>
+                      {{EmpList.empid}}
+                    </td>
+                    <td>
+                      <a [routerLink] = "['/EmployeeWiseAttList',EmpList.empcode,EmpList.month,EmpList.year,EmpList.depid]">
+                        {{EmpList.empname}}
+                      </a>
+                        
+                    </td>
+                    <td>
+                       {{EmpList.totworking}}
+                    </td>
+                    <td>
+                      {{EmpList.presentdays}}
+                    </td>
+                    <td>
+                         {{EmpList.totabsent}}
+                    </td>
+                    <td>
+                       {{EmpList.totalwh}}
+                    </td>
+                    <td>
+                      {{EmpList.totalot}}
+                   </td>
+                    <td><b>
+                      <a [routerLink] = "['/UpdateEmployeeWiseAttList',EmpList.empcode,EmpList.month,EmpList.year,EmpList.depid]">Update</a>
+                    </b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    <br>
+    <!-- </form>    -->
+    <!-- <div style="text-align:center">
+     
+      <h5 class="text-secondary">
+        Employee Working Hours Summary
+      </h5>
+      <br>
+      <div class="row ml-5" >
+        <div *ngIf="dept" style="align-items: center;width:900px;height:500px;">
+          <canvas id="canvas">{{ dept }}</canvas>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col col-sm-12">
+        <div class="card mb-6">
+            <div class="card-header">
+              <h5 class="text-secondary">
+                Employee Working Hours Summary
+              </h5>
+            </div>
+            <div class="card-body" *ngIf="dept" >
+               
+                <canvas id="canvas">{{ dept }}</canvas>
+            </div>
+            
+        </div>
+    </div>
+    </div>

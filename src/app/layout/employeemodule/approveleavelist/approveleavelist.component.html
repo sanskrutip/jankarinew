@@ -1,0 +1,95 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Notifications']"> Notifications</a>
+  </li>
+  
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>ApproveLeaveList</li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form class="form-horizontal" #searchForm="ngForm" >
+  
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">ApproveLeave List</h4>
+      <!-- (click)="toggleSelected()" -->
+      
+    </div>
+  </div>
+   <hr>
+    <div style="margin:5px">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+          <b>Total Record: {{count}}</b>
+            <b> <span *ngIf ="!count || count.length==0"></span></b>
+        </div>
+        <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+          <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered" matSort (matSortChange)="sortData($event)">
+          <thead>
+            <tr class="warning">
+              <td>
+                <b>Sr NO.</b>
+              </td>
+              
+              <td>
+                <b>Employee Name</b>
+              </td>
+              <td>
+                  <b>Leave Type</b>
+                </td>
+                <td>
+                    <b>Start From </b>
+                  </td>
+                  <td>
+                      <b>End Date</b>
+                    </td>
+              <td>
+                <b>Description</b>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  #myVar *ngFor="let Employeeleave of Employeeleave| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;" >
+              <td>{{i+1}}</td>
+              
+                        <td><b>
+                          <a [routerLink] = "['/ApproveLeave',Employeeleave.empleaveid]" >{{Employeeleave.employeename}}</a></b>
+                        </td>
+              
+              <td> 
+               {{Employeeleave.leavetype}}
+              
+              </td> 
+              <td>
+                  {{Employeeleave.leavefrom| date: 'dd-MM-yyyy'}}
+                </td>
+                <td>
+                    {{Employeeleave.leaveto| date: 'dd-MM-yyyy'}}
+                  </td>
+                  <td>
+                      {{Employeeleave.leavedescription}}
+                    </td>
+                    
+            </tr>
+            
+          </tbody>
+          
+              <tr style="text-align: center;">
+                  <td colspan="6" *ngIf ="!count || count.length==0">
+               <b>No Leave Found</b></td>
+                <tr>
+        
+        </table>
+      </div>
+    </div>
+  </form>
+
+
+  

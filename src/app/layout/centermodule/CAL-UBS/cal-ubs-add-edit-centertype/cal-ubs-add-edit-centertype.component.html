@@ -1,0 +1,168 @@
+
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="centerForm" (ngSubmit)="Addcenter(centerForm.value)">
+  <div class="button-row">
+    <h4>Center Type Information</h4>
+    <span>
+      <button type="button" class="btn btn-warning"  (click)="Back()">Back</button>
+      </span>&nbsp;&nbsp;&nbsp;
+    <span>
+      <button type="submit" class="btn btn-warning" [disabled]="!centerForm.valid">Submit</button>
+    </span>
+   
+    <span>
+      <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+      </span>
+  
+    
+    <hr>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+     <br>
+
+      <div class="card card-default mb-3" style="padding: 20px;">
+
+
+        <!-- start -->
+        <div class="row" id="collapseExample">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('centertype1').touched ||
+    centerForm.get('centertype1').dirty) &&
+    centerForm.get('centertype1').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Center Type:</label>  
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" name="centid" [(ngModel)]="searchprogram" formControlName="centertype1"
+                  [ngModel]="centedetail?.centertype1" [(ngModel)]="model.centertype1">
+                  <option [ngValue]="select">Select</option>
+                  <option *ngFor="let CenterType of CenterType" value={{CenterType.column2}}>{{CenterType.column1}}
+                  </option>
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('centertype1').touched ||
+    centerForm.get('centertype1').dirty) &&
+    centerForm.get('centertype1').errors)">
+                  <small *ngIf="centerForm.get('centertype1').errors.required">
+                    Program Name is required
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('endt').touched ||
+    centerForm.get('endt').dirty) &&
+    centerForm.get('endt').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Center End Date:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input id="endt" type="date" class="form-control" formControlName="endt"
+                  [ngModel]="centedetail?.endt " [(ngModel)]="model.endt">
+                <span class="text-danger" *ngIf="((centerForm.get('endt').touched ||
+    centerForm.get('endt').dirty) &&
+    centerForm.get('endt').errors)">
+                  <small *ngIf="centerForm.get('endt').errors.required">
+                    centenddt is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Center Start Date:</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input id="stdt" type="date" class="form-control" formControlName="stdt"
+                  [ngModel]="centedetail?.stdt " [(ngModel)]="model.stdt">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="warning">
+              <td><b> Sr NO.</b></td>
+              <td>
+                <b> Center Type </b>
+              </td>
+              <td>
+                <b>Start Date </b>
+              </td>
+              <td>
+                <b>End Date </b>
+              </td>
+              <td>
+                <b>Status</b>
+              </td>
+              <td>
+                <b>Operation</b>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr #myVar *ngFor="let CenterTypeList of CenterTypeList let i = index;">
+              <td>{{i+1}}</td>
+              <td>
+                {{CenterTypeList.centertype1}}
+              </td>
+              <td>
+                {{CenterTypeList.stdt| date: 'dd-MM-yyyy'}}
+              </td>
+              <td>
+                {{CenterTypeList.endt| date: 'dd-MM-yyyy'}}
+              </td>
+              <td>
+                <div *ngIf="CenterTypeList?.status==0">Active</div>
+                <div *ngIf="CenterTypeList?.status==1">Inactive</div>
+              </td>
+              <td><b>
+                <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                    Delete
+                </a></b>
+
+                <ng-template #content let-modal>
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                      Are you sure want to Delete ?</h5>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+             
+             
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-info" (click)="Delete(CenterTypeList.ctid)" (click)="modal.close('Cross click')">Yes</button>
+                    <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                  </div>
+                
+                </ng-template>
+            </td>
+  
+            </tr>
+  
+          </tbody>
+          <tr style="text-align: center;">
+            <td colspan="5" *ngIf="!CenterType || CenterType.length==0">
+              <b>No Data Found</b></td>
+          <tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+    <br>
+  </mat-accordion>
+</form>

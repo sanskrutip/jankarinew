@@ -1,0 +1,209 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+  
+
+<form [formGroup]="centerForm" (ngSubmit)="Addcenter(centerForm.value)">
+    <div class="button-row">
+      <h4>  Infra Details</h4>
+      <span>
+        <button type="button" class="btn btn-warning"  (click)="Back()">Back</button>
+        </span>&nbsp;&nbsp;&nbsp;
+      <span>
+        <button type="submit" class="btn btn-warning" [disabled]="!centerForm.valid">Submit</button>
+      </span>
+      
+
+      <span>
+        <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+        </span>
+      
+      <hr>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Center Infra Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="card card-default mb-3" style="padding: 20px;">
+            <!-- start -->
+          <div class="row" id="collapseExample">
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+              <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('infra').touched ||
+      centerForm.get('infra').dirty) &&
+      centerForm.get('infra').errors)}">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Infra</label>
+                  <span style="color: red"> *</span>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control" name="infra" [(ngModel)]="searchprogram" formControlName="infra"
+                    [ngModel]="employee?.infra" [(ngModel)]="model.infra">
+                    <option [ngValue]="select">Select</option>
+                    <option *ngFor="let infralist of infralist" value={{infralist.column2}}>{{infralist.column1}}
+                    </option>
+                  </select>
+                  <span class="text-danger" *ngIf="((centerForm.get('infra').touched ||
+      centerForm.get('infra').dirty) &&
+      centerForm.get('infra').errors)">
+                    <small *ngIf="centerForm.get('infra').errors.required">
+                      Infra is required
+                    </small>
+                  </span>
+                </div>
+              </div>
+              <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('notworking').touched ||
+              centerForm.get('notworking').dirty) &&
+              centerForm.get('notworking').errors)}">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                          <label>Not Working:</label>
+                          <span style="color: red"> *</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                          <input id="notworking" type="text" class="form-control" formControlName="notworking"
+                            [ngModel]="employee?.notworking " [(ngModel)]="model.notworking">
+                          <span class="text-danger" *ngIf="((centerForm.get('notworking').touched ||
+              centerForm.get('notworking').dirty) &&
+              centerForm.get('notworking').errors)">
+                            <small *ngIf="centerForm.get('notworking').errors.required">
+                            Not  Working is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+  
+            </div>
+  
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+              <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('working').touched ||
+              centerForm.get('working').dirty) &&
+              centerForm.get('working').errors)}">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                          <label>Working:</label>
+                          <span style="color: red"> *</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                          <input id="working" type="text" class="form-control" formControlName="working"
+                            [ngModel]="employee?.working " [(ngModel)]="model.working">
+                          <span class="text-danger" *ngIf="((centerForm.get('working').touched ||
+              centerForm.get('working').dirty) &&
+              centerForm.get('working').errors)">
+                            <small *ngIf="centerForm.get('working').errors.required">
+                              Working is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('total').touched ||
+              centerForm.get('total').dirty) &&
+              centerForm.get('total').errors)}">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                          <label>Total:</label>
+                          <span style="color: red"> *</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                          <input id="total" type="text" class="form-control" formControlName="total"
+                            [ngModel]="employee?.total " [(ngModel)]="model.total">
+                          <span class="text-danger" *ngIf="((centerForm.get('total').touched ||
+              centerForm.get('total').dirty) &&
+              centerForm.get('total').errors)">
+                            <small *ngIf="centerForm.get('total').errors.required">
+                              Working is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+  
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                <p ><b>Total Infra: {{Infracount}}</b></p>
+              </div>
+              <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr class="warning">
+                  <td><b>Sr NO.</b></td>
+                  
+                  <td>
+                    <b>Infra</b>
+                  </td>
+                  <td>
+                    <b>Working</b>
+                  </td>
+                  <td>
+                    <b>Not Working</b>
+                  </td>
+                  <td>
+                    <b>Total</b>
+                  </td>
+                  <td>
+                    <b>Operation</b>
+                  </td>
+                 
+                </tr>
+              </thead>
+                <tbody>
+                <tr  #myVar *ngFor="let Infra of Infra | paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                  
+                    <td>{{i+1}}</td>
+
+                    <td>
+                      {{Infra.infra}}   
+                   </td>
+                    
+                    <td>
+                       {{Infra.working}}   
+                    </td>
+                    <td>
+                      {{Infra.notworking}}  
+                    </td>
+                    <td>
+                      {{Infra.total}}  
+                    </td>
+                   
+                    <td><b>
+                      <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                          Delete
+                      </a></b>
+  
+                      <ng-template #content let-modal>
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                            Are you sure want to Delete ?</h5>
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                   
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-info" (click)="Delete(Infra.infraid)" (click)="modal.close('Cross click')">Yes</button>
+                          <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                        </div>
+                      
+                      </ng-template>
+                    </td>
+             
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+      </mat-expansion-panel>
+      <br>
+    </mat-accordion>
+  </form>

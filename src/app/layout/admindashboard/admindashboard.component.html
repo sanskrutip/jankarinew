@@ -1,0 +1,47 @@
+
+<!-- 
+<a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+    Delete
+</a>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">
+      Are you sure want to Delete ?</h6>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="Delete(Designationlist.desid)" (click)="modal.close('Cross click')">Yes</button>
+    <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+  </div>
+
+</ng-template> -->
+
+<div class="container">
+	<div class="sliders">
+		<ng-container *ngFor="let img of img_list; let i = index">
+			<div class="slider" *ngIf="current == i" @fade>
+				<img class="img" [src]="img">
+			</div>
+		</ng-container>
+   
+	</div>
+  
+</div>
+
+
+
+
+<div id="notification" *ngIf="showMyContainer" >
+        <span  class="fa fa-fw fa-close" style="float: right; cursor: pointer;" (click)="showMyContainer=!showMyContainer"></span>
+  <div>
+        <p><strong>You have some Notifications! <span class="badge badge-info">6</span></strong></p>  
+        <hr>
+        <a href="">View All</a>
+  </div>
+	
+</div>

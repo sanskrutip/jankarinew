@@ -1,0 +1,370 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/EmployeeList']"> Employee List</a>
+  </li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Center
+  </li>
+</ol>
+
+
+<mat-tab-group>
+  <mat-tab label="Personal Information">
+
+    <br>
+    <div class="card card-default mb-3" style="padding: 20px;">
+      <button class="btn btn-warning">Add</button>
+    </div>
+    <div class="card card-default mb-3" style="padding: 20px;">
+
+
+      <!-- start -->
+      <div class="row" id="collapseExample">
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Program Name:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="prefix" type="text" class="form-control">
+                <option [ngValue]="null">Select</option>
+                <option value="MR">MR</option>
+                <option value="MS">MS</option>
+                <option value="MRS">MRS</option>
+                <option value="MISS">MISS</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Name:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Premises Owner:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Name:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Contact No:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Start Date:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="date" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center End Date:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="date" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Status:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+
+
+
+  </mat-tab>
+
+  <!-- second tab started -->
+  <mat-tab label="Contact Information">
+
+    <div class="card card-default mb-3" style="padding: 20px;">
+      <button class="btn btn-warning">Add</button>
+    </div>
+    <div class="card card-default mb-3" style="padding: 20px;">
+
+
+      <!-- start -->
+      <div class="row" id="collapseExample">
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Contact No:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Email ID:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Program Name:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="prefix" type="text" class="form-control">
+                <option [ngValue]="null">Select</option>
+                <option value="MR">MR</option>
+                <option value="MS">MS</option>
+                <option value="MRS">MRS</option>
+                <option value="MISS">MISS</option>
+              </select>
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Name:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Premises Owner:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Name:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Contact No:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+
+
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center Start Date:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="date" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Center End Date:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="date" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Status:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Principal Email:</label>
+
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="firstname" type="text" class="form-control">
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </mat-tab>
+
+  <!-- second tab ended -->
+  <mat-tab label="Center Type"> Content 3 </mat-tab>
+  <mat-tab label="GST  Details"> Content 4 </mat-tab>
+</mat-tab-group>

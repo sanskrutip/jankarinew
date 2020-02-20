@@ -1,0 +1,230 @@
+
+<div class="container" style="padding-top: 5px !important; margin-top: 2%; max-width: 1270px;">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="card card-default mb-3" style="padding: 20px; ">
+        <h6><b>Program:</b>&nbsp;&nbsp;{{pgname}}</h6>
+        
+      
+      </div>
+      <br>
+      <div class="card card-default mb-3" >
+        <div class="card-header"><b>Notifications</b></div>
+        
+      
+      </div>
+      <br>
+      <div class="card card-default mb-3" >
+        <div class="card-header">
+          <div class="row">
+            <div>
+              <mat-icon aria-label="Example icon-button with a heart icon"   style="color: red;" > favorite 
+              </mat-icon>
+            </div>
+<div style="padding: 3px 5px;">
+  <b>My Favorites</b>
+</div>
+          </div>                   
+         </div>
+    
+
+      <mat-card class="example-card" style="height: 50px; background-color: antiquewhite;" *ngFor="let fevoritelist of fevoritelist">
+        <mat-card-header>
+         
+          <mat-card-subtitle> 
+            <a  [routerLink] = "['/EmployeeList',fevoritelist.whr,fevoritelist.favname,fevoritelist.url]" style="cursor: pointer; color:blue;">
+              <!-- {{fevoritelist.url}} -->
+              <!-- (click)="RedirectFav(fevoritelist.url,fevoritelist.whr,fevoritelist.favname)" -->
+               {{ fevoritelist.favname }}
+            </a></mat-card-subtitle>
+          <!-- <mat-card-subtitle>SW Developer , Mumbai</mat-card-subtitle> -->
+         
+                </mat-card-header>
+      </mat-card>
+    
+      
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+      
+
+      <div class="card card-default mb-3" style="padding: 20px;" >
+        <h6><b>Year:</b> &nbsp;&nbsp;{{finyear}}</h6>
+
+      </div>
+
+      <div class="card card-default mb-3" style="padding: 20px;" >
+        <h6><b>My Area</b></h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                
+                <td>
+                  <b>Center(s)</b>
+                </td>
+                <td>
+                  <b>School(s)</b>
+                </td>
+                <td>
+                  <b>Enrolment(s)</b>
+                </td>
+                <td>
+                  <b>Employees(s) </b>
+                </td>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr >
+
+                <td>
+                 7
+                </td>
+
+                <td>
+                 24
+                </td>
+                <td>
+              9387
+                </td>
+                <td>
+                 24
+                </td>
+
+
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        <h6><b>CAL Program Summary - City Wise</b></h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>
+                  <b>City(s)</b>
+                </td>
+                <td>
+                  <b>Center(s)</b>
+                </td>
+                <td>
+                  <b>School(s)</b>
+                </td>
+                <td>
+                  <b>Enrolment(s)</b>
+                </td>
+                <td>
+                  <b>Employees(s) </b>
+                </td>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  Mumbai
+                 </td>
+                <td>
+                 7
+                </td>
+
+                <td>
+                 24
+                </td>
+                <td>
+              9387
+                </td>
+                <td>
+                 24
+                </td>
+
+
+              </tr>
+            
+              <td><b>Total</b></td>
+             <td><b>7</b></td>
+             <td><b>24</b></td>
+             <td><b>9387</b></td>
+             <td><b>24</b></td>
+             <tr>
+
+
+             </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <h6><b>CAL Program Summary - All India State</b></h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>
+                  <b>State(s)</b>
+                </td>
+                <td>
+                  <b>Center(s)</b>
+                </td>
+                <td>
+                  <b>School(s)</b>
+                </td>
+                <td>
+                  <b>Enrolment(s)</b>
+                </td>
+                <td>
+                  <b>Employees(s) </b>
+                </td>
+
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  Maharashtra
+                 </td>
+                <td>
+                 7
+                </td>
+
+                <td>
+                 24
+                </td>
+                <td>
+              9387
+                </td>
+                <td>
+                 24
+                </td>
+
+
+              </tr>
+            
+              <td><b>Total</b></td>
+             <td><b>7</b></td>
+             <td><b>24</b></td>
+             <td><b>9387</b></td>
+             <td><b>24</b></td>
+             <tr>
+
+
+             </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      </div>
+ 
+    </div>
+  </div>
+

@@ -1,0 +1,259 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/OfficeList']"> OfficeList</a>
+</li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Add Office</li>
+</ol>
+
+<form [formGroup]="OfficeForm"    (ngSubmit)="AddOffice(OfficeForm.value)">
+  
+  <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <h4 style="float: left;">Office  Form </h4>
+  </div>
+  </div>
+  </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 form-group">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <button type="button" class="btn btn-warning" [routerLink]="['/OfficeList']" style="margin-right: 10px;">Back</button>
+      <button type="submit" class="btn btn-warning" [disabled]="!OfficeForm .valid"  >Submit</button>
+          </div>
+  </div>
+</div>
+  <div class="container">
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+      <div class="row">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+          <div class="row form-group" [ngClass]="{'has-error': ((OfficeForm.get('offname').touched ||
+          OfficeForm.get('offname').dirty) &&
+          OfficeForm.get('offname').errors)}" >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                   <label>Name of the office:</label>
+                   <span style="color: red"> *</span>
+               </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                 <input id="offname" type="text" class="form-control" formControlName="offname" [ngModel] = "office?.offname"
+                 [(ngModel)]="model.offname">
+                 <span class="text-danger"
+                  *ngIf="((OfficeForm.get('offname').touched ||
+                  OfficeForm.get('offname').dirty) &&
+                  OfficeForm.get('offname').errors)">
+                  <small *ngIf="OfficeForm.get('offname').errors.required">
+                    Office Name is required
+              </small>
+                </span>
+              </div>
+          </div>
+          <div class="row form-group"  [ngClass]="{'has-error': ((OfficeForm.get('ogid').touched ||
+          OfficeForm.get('ogid').dirty) &&
+          OfficeForm.get('ogid').errors)}">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Orgnisation :</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="ogname" type="text" class="form-control"  formControlName="ogid" [ngModel]="office?.ogid" [(ngModel)]="model.ogid" >
+                <option  [ngValue]="null">Select</option>
+                            <option *ngFor="let og of OrgnizationList" value={{og.ogid}}>{{og.ogname}}</option>
+              </select>
+              <span class="text-danger"
+              *ngIf="((OfficeForm.get('ogid').touched ||
+              OfficeForm.get('ogid').dirty) &&
+              OfficeForm.get('ogid').errors)">
+              <small *ngIf="OfficeForm.get('ogid').errors.required">
+                Orgnisation is required
+          </small>
+            </span>
+            </div>
+          </div>
+          <div class="row form-group" [ngClass]="{'has-error': ((OfficeForm.get('address').touched ||
+          OfficeForm.get('address').dirty) &&
+          OfficeForm.get('address').errors)}"  >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> Address:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <input id="address" type="textarea" class="form-control" formControlName="address" [ngModel] = "office?.address"
+              [(ngModel)]="model.address">
+              <span class="text-danger"
+              *ngIf="((OfficeForm.get('address').touched ||
+              OfficeForm.get('address').dirty) &&
+              OfficeForm.get('address').errors)">
+              <small *ngIf="OfficeForm.get('address').errors.required">
+                Address is required
+          </small>
+            </span>
+              </div>
+        </div>
+        <div class="row form-group"  [ngClass]="{'has-error': ((OfficeForm.get('state').touched ||
+        OfficeForm.get('state').dirty) &&
+        OfficeForm.get('state').errors)}" >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> State:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="state" type="text" class="form-control" formControlName="state" [ngModel] = "office?.state"
+              [(ngModel)]="model.state"  (change)="onSelectState($event.target.value)">
+                  <option  [ngValue]="null">Select</option>
+                  <option *ngFor="let state of state" value={{state.stname}} > {{state.stname}}</option>
+               </select>
+               <span class="text-danger"
+              *ngIf="((OfficeForm.get('state').touched ||
+              OfficeForm.get('state').dirty) &&
+              OfficeForm.get('state').errors)">
+              <small *ngIf="OfficeForm.get('state').errors.required">
+                State is required
+          </small>
+            </span>
+              </div>
+        </div>
+        <div class="row "  [ngClass]="{'has-error': ((OfficeForm.get('district').touched ||
+        OfficeForm.get('district').dirty) &&
+        OfficeForm.get('district').errors)}"  >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> District:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 form-group">
+              <select id="district" type="text" class="form-control" formControlName="district" 
+              [ngModel] = "office?.district"
+              [(ngModel)]="model.district" (change)="onSelectDistrict($event.target.value)">
+              <option  [ngValue]="null">Select</option>
+              <option *ngFor="let distirct of  Distirct" value={{distirct.dtname}} >{{distirct.dtname }}</option>
+               </select>
+               <span class="text-danger"
+              *ngIf="((OfficeForm.get('district').touched ||
+              OfficeForm.get('district').dirty) &&
+              OfficeForm.get('district').errors)">
+              <small *ngIf="OfficeForm.get('district').errors.required">
+                  District is required
+          </small>
+            </span>
+              </div>
+        </div>
+       
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <div class="row form-group" [ngClass]="{'has-error': ((OfficeForm.get('city').touched ||
+        OfficeForm.get('city').dirty) &&
+        OfficeForm.get('city').errors)}"  >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> City:</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <select id="city" type="text" class="form-control" formControlName="city"
+               [ngModel] = "office?.city"
+              [(ngModel)]="model.city">
+                  <option  [ngValue]="null">Select</option>
+                  <option *ngFor="let city of city"value={{city.ctname}}>{{city.ctname}}</option>
+               </select>
+               <span class="text-danger"
+               *ngIf="((OfficeForm.get('city').touched ||
+               OfficeForm.get('city').dirty) &&
+               OfficeForm.get('city').errors)">
+               <small *ngIf="OfficeForm.get('city').errors.required">
+                City is required
+           </small>
+             </span>
+              </div>
+        </div>
+          <div class="row form-group" [ngClass]="{'has-error': ((OfficeForm.get('pin').touched ||
+          OfficeForm.get('pin').dirty) &&
+          OfficeForm.get('pin').errors)}"    >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Pincode:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="pin" type="text" class="form-control" formControlName="pin" [ngModel] = "office?.pin"
+                  [(ngModel)]="model.pin" maxlength="6">
+                  <span class="text-danger"
+                  *ngIf="((OfficeForm.get('pin').touched ||
+                  OfficeForm.get('pin').dirty) &&
+                  OfficeForm.get('pin').errors)">
+                  <small *ngIf="OfficeForm.get('pin').errors.required">
+                    Pincode is required
+              </small>
+              <small *ngIf="OfficeForm.get('pin').errors.minlength ||
+              OfficeForm.get('pin').errors.maxlength">
+                      Mobile should be 6 digit    </small>
+                             <br>
+                               <small *ngIf="OfficeForm.get('pin').errors.pattern">
+         Mobile should be Number </small>
+                </span>
+                </div>
+          </div>
+          <div class="row form-group"  >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Office Area:</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="offarea" type="textarea" class="form-control" formControlName="offarea" [ngModel] = "office?.offarea"
+                  [(ngModel)]="model.offarea">
+                </div>
+          </div>
+          <div class="row form-group" [ngClass]="{'has-error': ((OfficeForm.get('contact1').touched ||
+          OfficeForm.get('contact1').dirty) &&
+          OfficeForm.get('contact1').errors)}" >
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label> Contact No:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <input id="contact1" type="text" class="form-control" formControlName="contact1" [ngModel] = "office?.contact1"
+                  [(ngModel)]="model.contact1" maxlength="10">
+                  <span class="text-danger"
+                  *ngIf="((OfficeForm.get('contact1').touched ||
+                  OfficeForm.get('contact1').dirty) &&
+                  OfficeForm.get('contact1').errors)">
+                  <small *ngIf="OfficeForm.get('contact1').errors.required">
+                      Contact  is required
+              </small>
+              <small *ngIf="OfficeForm.get('contact1').errors.minlength ||
+              OfficeForm.get('contact1').errors.maxlength">
+                         Mobile should be 10digit    </small>
+                                <br>
+                                  <small *ngIf="OfficeForm.get('contact1').errors.pattern">
+            Mobile should be Number </small>
+                </span>
+                </div>
+          </div>
+          <div class="row " [ngClass]="{'has-error': ((OfficeForm.get('contact2').touched ||
+          OfficeForm.get('contact2').dirty) &&
+          OfficeForm.get('contact2').errors)}" >
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label> WhatsApp No:</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 form-group">
+              <input id="contact2" type="text" class="form-control" formControlName="contact2" [ngModel] = "office?.contact2"
+                  [(ngModel)]="model.contact2" maxlength="10">
+                  <span class="text-danger"
+                  *ngIf="((OfficeForm.get('contact2').touched ||
+                  OfficeForm.get('contact2').dirty) &&
+                  OfficeForm.get('contact2').errors)">
+                  
+              <small *ngIf="OfficeForm.get('contact2').errors.minlength ||
+              OfficeForm.get('contact2').errors.maxlength">
+                         Mobile should be 10digit    </small>
+                                <br>
+                                  <small *ngIf="OfficeForm.get('contact2').errors.pattern">
+            Mobile should be Number </small>
+                </span>
+              </div>
+        </div>
+      </div>
+      </div>
+  </div>
+ 
+  </div>
+  
+  </form>

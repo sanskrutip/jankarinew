@@ -1,0 +1,216 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i> Mode of payment
+  </li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+  
+
+<form class="login-form" #excelForm="ngForm" (ngSubmit)="Show(excelForm.value)">
+
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">Mode of payment </h4>
+    </div>
+  </div>
+    <div class="card card-default mb-3" style="padding: 20px !important;">
+      <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <label>Program</label>
+                  </div>
+                  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <select class="form-control"   name="Program"  [(ngModel)]="searchprogram"  (change)="onSelectProgram($event.target.value)">
+                      <option  [ngValue]="select">Select</option>
+                      <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}</option>
+                    </select> 
+                    </div>
+            </div>            
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Department</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"   name="department"  (change)="onSelectDept($event.target.value)" 
+                [(ngModel)]="searchdepartment">
+                    <option  [ngValue]="select">Select</option>
+                    <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>{{Departmentlist.column1}}</option>
+                  </select>
+              </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Partner Name</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"   name="partner"  [(ngModel)]="searchpartner">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let Partnerlist of Partner" value={{Partnerlist.column2}}>{{Partnerlist.column1}}</option>
+                </select>
+              </div>
+                </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Payment Mode</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" name="Payment" ngModel [(ngModel)]="searchpay">
+                  <option  [ngValue]="select">Select</option>
+                  <option>Chqs(IBCW)</option>
+                  <option>FIT</option>
+                  <option>NEFT</option>
+                  <option>RTGS </option>
+                  <option>Paid by School</option>
+                  <option>Paid by Associate</option>
+                  <option>Pay Debit</option>
+                </select>
+              </div>
+             </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Month</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control" name="month" ngModel [(ngModel)]="searchmonth">
+                  <option  [ngValue]="select">Select</option>
+                  <option>JANUARY</option>
+                  <option>FEBRUARY</option>
+                  <option>MARCH</option>
+                  <option>APRIL </option>
+                  <option>MAY</option>
+                  <option>JUNE</option>
+                  <option>JULY</option>
+                  <option>AUGUST</option>
+                  <option>SEPTEMBER</option>
+                  <option>OCTOBER</option>
+                  <option>NOVEMBER</option>
+                  <option>DECEMBER</option>
+                </select>
+              </div>
+              
+              </div>
+      
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Year</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+              <select class="form-control" name="year" ngModel [(ngModel)]="searchyear">
+                <option  [ngValue]="select">Select</option>
+                <option>2015</option>
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018 </option>
+                <option>2019</option>
+                <option>2020</option>
+              </select>
+            </div>
+            </div>
+    
+          </div>
+          </div>
+          <br>
+      <div class="row">
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+              <div class="row">
+                  <button type="button" class="btn btn-warning" (click)="filterrecord(searchprogram,searchdepartment,searchpartner,searchpay,searchmonth,searchyear)">Find</button>
+           </div>
+          </div>
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+              <div class="row">
+                  <button type="button" class="btn btn-warning" (click)="ExportReport(searchprogram,searchdepartment,searchpartner,searchpay,searchmonth,searchyear)" >Export</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- <button>Show</button> <button (click)="save()">Save</button> -->
+
+</form>
+
+<div class="table-responsive">
+  <table class="table table-bordered" >
+    <thead>
+      <tr class="warning">
+        <td style="min-width: 70px;">
+          <b>Sr No</b>
+        </td>
+        <td>
+          <b> Program</b>
+        </td>
+        <td style="min-width: 100px;">
+          <b> Department</b>
+        </td>
+      
+       
+        <td style="min-width: 150px;">
+          <b>Employee Name</b>
+        </td>
+        <td style="min-width: 150px;">
+          <b>Payment mode</b>
+        </td>
+        <td style="min-width: 120px;">
+          <b>Account Number</b>
+        </td>
+        <td style="min-width: 130px;">
+          <b>Total Salary </b>
+        </td>
+        <td>
+          <b>Partner Name </b>
+        </td>
+       
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr #myVar
+        *ngFor="let GetRptSalaryMod of GetRptSalaryMod let i = index;">
+        <td>{{i+1}}</td>
+        <td>
+          {{GetRptSalaryMod.pgname }}
+        </td>
+        <td>
+          {{GetRptSalaryMod.department }}
+        </td>
+        <td>
+          {{GetRptSalaryMod.employeename  }}
+        </td>
+        <td>
+          {{GetRptSalaryMod.paytype   }}
+        </td>
+        <td>
+          {{GetRptSalaryMod.accno }}
+        </td>
+        <td>
+          {{GetRptSalaryMod.netamt}}
+        </td>
+        <td>
+          {{GetRptSalaryMod.partnername }}
+        </td>
+      
+    
+      </tr>
+    </tbody>
+  </table>
+  </div>

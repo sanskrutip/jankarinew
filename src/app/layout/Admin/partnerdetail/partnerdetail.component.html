@@ -1,0 +1,98 @@
+<div class="button-row">
+ 
+  <span>
+    
+   <button type="button" class="btn btn-warning" [routerLink]="['/PartnerList']">Back</button> 
+  </span> &nbsp;&nbsp;&nbsp;
+  
+  
+  <hr>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+        <h4> Partner Details</h4>
+    </mat-panel-title>
+    <a (click)="editPartner()" style="cursor: pointer; ">
+        <i class="fa fa-pencil-square fa-5x" aria-hidden="true" style="padding-right: 30px;"></i>
+        </a>
+    </mat-expansion-panel-header>
+    
+    <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>Partner Name:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.partnername }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>Company :</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.company }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>Contact Person:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.contactpersonname }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>State:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.state }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>District:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.district }}
+            
+            </div>
+            </div>
+            
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>City:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.city   }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b>Address:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.address }}
+            </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label><b> Contact No:</b></label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            {{ Partner?.phoneno }}
+            </div>
+            </div>
+            
+            
+            </div>
+            </div>
+</mat-expansion-panel>
+</mat-accordion>

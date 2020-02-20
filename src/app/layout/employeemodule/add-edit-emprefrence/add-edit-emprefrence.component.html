@@ -1,0 +1,160 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="EmpReferenceForm" (ngSubmit)="AddEmpReference(EmpReferenceForm.value)">
+            <div class="button-row" >
+                    
+                        <span>
+                         <button type="button" class="btn btn-warning" (click)="Back()">Back</button> 
+                        </span> &nbsp;&nbsp;&nbsp;
+                        
+                        
+                       
+                        
+                          <button type="button" class="btn btn-warning"   style="float: right;" (click)="Skip()">Skip</button>
+                          <hr>
+                        </div>
+                        <h4>Employee References  </h4>
+  <div class="card card-default mb-3" style="padding: 20px;"> 
+  <div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpReferenceForm.get('refname').touched ||
+  EmpReferenceForm.get('refname').dirty) &&
+  EmpReferenceForm.get('refname').errors)}" >
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>References:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <input id="refname" type="text" class="form-control" formControlName="refname" [ngModel]="EmpR?.refname " [(ngModel)]="model2.refname ">
+  <span class="text-danger"
+  *ngIf="((EmpReferenceForm.get('refname').touched ||
+  EmpReferenceForm.get('refname').dirty) &&
+  EmpReferenceForm.get('refname').errors)">
+  <small *ngIf="EmpReferenceForm.get('refname').errors.required">
+  References is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpReferenceForm.get('designation').touched ||
+  EmpReferenceForm.get('designation').dirty) &&
+  EmpReferenceForm.get('designation').errors)}">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>Designation:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <input id="designation" type="text" class="form-control" formControlName="designation" [ngModel]="EmpR?.designation " [(ngModel)]="model2.designation ">
+  <span class="text-danger"
+  *ngIf="((EmpReferenceForm.get('designation').touched ||
+  EmpReferenceForm.get('designation').dirty) &&
+  EmpReferenceForm.get('designation').errors)">
+  <small *ngIf="EmpReferenceForm.get('designation').errors.required">
+  Designation is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  <!-- <div class="row form-group" >
+  <button type="submit" class="btn btn-warning" [disabled]="!EmpReferenceForm .valid" >Submit</button>
+  </div> -->
+  
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpReferenceForm.get('contactno').touched ||
+  EmpReferenceForm.get('contactno').dirty) &&
+  EmpReferenceForm.get('contactno').errors)}">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>Contact:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <input id="contactno" type="text" class="form-control" formControlName="contactno" [ngModel]="EmpR?.contactno " [(ngModel)]="model2.contactno ">
+  <span class="text-danger"
+  *ngIf="((EmpReferenceForm.get('contactno').touched ||
+  EmpReferenceForm.get('contactno').dirty) &&
+  EmpReferenceForm.get('contactno').errors)">
+  <small *ngIf="EmpReferenceForm.get('contactno').errors.required">
+  Contact is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  
+  </div>
+  </div>
+  <div class="row"  >
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="form-group"  >
+      <button type="submit" class="btn btn-warning" [disabled]="!EmpReferenceForm.valid" >Submit</button>
+            </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+  <table class="table">
+  <thead>
+  <tr class="warning">
+  <td><b>Sr NO.</b></td>
+  <td>
+  <b>References</b>
+  </td>
+  <td>
+  <b>Designation</b>
+  </td>
+  <td>
+  <b>Contact</b>
+  </td>
+  <td>
+  <b>Remove</b>
+  </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr #myVar *ngFor="let EmployeeReference of EmployeeReference let i = index;" >
+  <td>{{i+1}}</td>
+  <td>
+  {{EmployeeReference.refname}}
+  </td>
+  <td>
+  {{EmployeeReference.designation}}
+  </td>
+  <td>
+  {{EmployeeReference.contactno}}
+  </td>
+  
+  <td>
+  <!-- <div  >
+  <a (click)="Delete2(EmployeeReference.refid)" style="cursor: pointer; text-decoration: underline;">
+        <b>Delete</b>
+    </a>
+  </div> -->
+  
+  <b>
+    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+        Delete
+    </a></b>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+          Are you sure want to Delete ?</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="Delete2(EmployeeReference.refid)" (click)="modal.close('Cross click')">Yes</button>
+        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+      </div>
+    
+    </ng-template>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </form>

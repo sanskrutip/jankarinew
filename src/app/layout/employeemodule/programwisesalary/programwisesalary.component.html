@@ -1,0 +1,341 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i> Program Wise Salary
+
+  </li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="salaryrptForm" (ngSubmit)="filterrecord(salaryrptForm.value)" >
+    <div class="row form-group" >
+      <div class="col-md-12">
+        <h4 style="float: left;">Program Wise Salary</h4>
+      </div>
+    </div>
+      <div class="card card-default mb-3" style="padding: 20px !important;">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+              <div class="row">
+                  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                      <label>Program</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                      <select class="form-control"   name="Program"  [(ngModel)]="searchprogram"  (change)="onSelectProgram($event.target.value)" [ngModelOptions]="{standalone: true}">
+                        <option  [ngValue]="select">Select</option>
+                        <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}</option>
+                      </select>                
+                        </div>
+              </div>            
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                  <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Department</label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control"   name="department"   
+                [(ngModel)]="searchdepartment" [ngModelOptions]="{standalone: true}">
+                    <option  [ngValue]="select">Select</option>
+                    <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>{{Departmentlist.column1}}</option>
+                  </select>
+                </div>
+                  </div>
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                  <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Partner </label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control"   name="partner"  [(ngModel)]="searchpartner" [ngModelOptions]="{standalone: true}">
+                    <option  [ngValue]="select">Select</option>
+                    <option *ngFor="let Partnerlist of Partnerlist" value={{Partnerlist.column2}}>{{Partnerlist.column1}}</option>
+                  </select>
+                </div>
+               </div>
+              </div>
+            </div><br>
+            <div class="row">
+           
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((salaryrptForm.get('startmonth').touched ||
+              salaryrptForm.get('startmonth').dirty) &&
+              salaryrptForm.get('startmonth').errors)}" >
+                  <div class="row">
+  
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                  <label>Start Month</label>
+                  <span style="color: red"> *</span>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                  <select class="form-control"   name="Month"  
+                  [(ngModel)]="searchstartmonth" formControlName="startmonth">
+                  <option [ngValue]="select">Select</option>
+                  <option value="01">JANUARY</option>
+                  <option value="02">FEBRUARY</option>
+                  <option value="03">MARCH</option>
+                  <option value="04">APRIL </option>
+                  <option value="05">MAY</option>
+                  <option value="06">JUNE</option>
+                  <option value="07">JULY</option>
+                  <option value="08">AUGUST</option>
+                  <option value="09">SEPTEMBER</option>
+                  <option value="10">OCTOBER</option>
+                  <option value="11">NOVEMBER</option>
+                  <option value="12">DECEMBER</option>
+                    </select>
+                    <span class="text-danger"
+            *ngIf="((salaryrptForm.get('startmonth').touched ||
+            salaryrptForm.get('startmonth').dirty) &&
+            salaryrptForm.get('startmonth').errors)">
+            <small *ngIf="salaryrptForm.get('startmonth').errors.required">
+              Start Month is required
+        </small>
+          </span>
+                </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 " [ngClass]="{'has-error': ((salaryrptForm.get('endmonth').touched ||
+              salaryrptForm.get('endmonth').dirty) &&
+              salaryrptForm.get('endmonth').errors)}" >
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>End Month</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                  <select class="form-control"   name="Month"  
+                  [(ngModel)]="searchendmonth" formControlName="endmonth">
+                  <option [ngValue]="select">Select</option>
+                  <option value="01">JANUARY</option>
+                  <option value="02">FEBRUARY</option>
+                  <option value="03">MARCH</option>
+                  <option value="04">APRIL </option>
+                  <option value="05">MAY</option>
+                  <option value="06">JUNE</option>
+                  <option value="07">JULY</option>
+                  <option value="08">AUGUST</option>
+                  <option value="09">SEPTEMBER</option>
+                  <option value="10">OCTOBER</option>
+                  <option value="11">NOVEMBER</option>
+                  <option value="12">DECEMBER</option>
+                    </select>
+                    <span class="text-danger"
+                    *ngIf="((salaryrptForm.get('endmonth').touched ||
+                    salaryrptForm.get('endmonth').dirty) &&
+                    salaryrptForm.get('endmonth').errors)">
+                    <small *ngIf="salaryrptForm.get('endmonth').errors.required">
+                      End Month is required
+                </small>
+                  </span>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 "  [ngClass]="{'has-error': ((salaryrptForm.get('finyear').touched ||
+            salaryrptForm.get('finyear').dirty) &&
+            salaryrptForm.get('finyear').errors)}">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>	Financial Year</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                  <select class="form-control"   name="Month"  
+                  [(ngModel)]="searchfinyear" formControlName="finyear">
+                  <option [ngValue]="select">Select</option>
+                  <option>2016-2017</option>
+            <option>2017-2018</option>
+            <option>2018-2019</option>
+            <option>2019-2020</option>
+            <option>2020-2021</option>
+                    </select>
+                    <span class="text-danger"
+                    *ngIf="((salaryrptForm.get('finyear').touched ||
+                    salaryrptForm.get('finyear').dirty) &&
+                    salaryrptForm.get('finyear').errors)">
+                    <small *ngIf="salaryrptForm.get('finyear').errors.required">
+                      Financial Year is required
+                </small>
+                  </span>
+                </div>
+                </div>
+            </div>
+           
+            </div><br>
+        
+  
+            <br>
+        <div class="row">
+            <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                    <button type="button" class="btn btn-warning" (click)="filterrecord(searchprogram,searchdepartment,searchpartner,searchstartmonth,searchendmonth,searchfinyear)" [disabled]="!salaryrptForm .valid" (click)="showMyContainer=!showMyContainer">Find</button>
+  
+            </div>
+            <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                    <button type="button" class="btn btn-warning" (click)="ExportReport(searchprogram,searchdepartment,searchpartner,searchstartmonth,searchendmonth,searchfinyear)">Export</button>
+
+              
+          </div>
+      </div>
+      
+      </div>
+
+
+
+    </form>
+<div *ngIf="showMyContainer">
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+          <b>Total Records: {{programsalarycount}}</b>
+        <b> <span *ngIf ="!programsalarycount || programsalarycount.length==0">0</span></b> 
+        </div>
+        <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+          <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" >
+        <thead>
+          <tr class="warning">
+            <td style="min-width: 70px;">
+              <b>Sr No</b>
+            </td>
+            <td>
+              <b> State</b>
+            </td>
+            <td style="min-width: 100px;">
+              <b> City</b>
+            </td>
+          
+           
+            <td style="min-width: 150px;">
+              <b>Employee Name</b>
+            </td>
+            <td style="min-width: 150px;">
+              <b>Employee Partner</b>
+            </td>
+            <td style="min-width: 120px;">
+              <b>Program Name</b>
+            </td>
+            <td style="min-width: 130px;">
+              <b>Department	</b>
+            </td>
+            <td>
+              <b>January </b>
+            </td>
+            <td >
+              <b>February</b>
+            </td>
+         
+            <td >
+              <b>March</b>
+            </td>
+            
+            <td >
+              <b>April</b>
+            </td>
+            <td >
+              <b>May</b>
+            </td>
+            <td >
+              <b>June</b>
+            </td>
+            <td >
+              <b>July</b>
+            </td>
+           
+            <td >
+              <b>August</b>
+            </td>
+    
+            <td>
+              <b>September</b>
+            </td>
+            <td >
+              <b>October</b>
+            </td>
+            <td >
+              <b>November</b>
+            </td>
+            <td >
+              <b>December</b>
+            </td>
+            <td >
+              <b>Total</b>
+            </td>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr #myVar
+            *ngFor="let programsalary of programsalary| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+            <td>{{i+1}}</td>
+            <td>
+              {{programsalary.State }}
+            </td>
+            <td>
+              {{programsalary.City }}
+            </td>
+            <td>
+              {{programsalary.Employee_Name  }}
+            </td>
+            <td>
+              {{programsalary.partnername   }}
+            </td>
+            <td>
+              {{programsalary.Program_Name }}
+            </td>
+            <td>
+              {{programsalary.desname}}
+            </td>
+            <td>
+              {{programsalary.January }}
+            </td>
+            <td>
+              {{programsalary.February}}
+            </td>
+            <td>
+              {{programsalary.March }}
+            </td>
+            <td>
+              {{programsalary.April }}
+            </td>
+            <td>
+              {{programsalary.May  }}
+            </td>
+            <td>
+              {{programsalary.June  }}
+            </td>
+            <td>
+                {{programsalary.July  }}
+              </td>
+            <td>
+              {{programsalary.August }}
+            </td>
+            <td>
+              {{programsalary.September  }}
+            </td>
+            <td>
+              {{programsalary.October }}
+            </td>
+            <td>
+              {{programsalary.November }}
+            </td>
+           
+            <td>
+              {{programsalary.December  }}
+            </td>
+            <td>
+              {{programsalary.Total  }}
+            </td>
+           
+    
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

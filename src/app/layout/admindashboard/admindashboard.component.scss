@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .sliders {
+    position: relative;
+    width: 100vw;
+    height: 66vw;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .img {
+    width: 10%;
+    height: 10%;
+  }
+
+  // demo
+  /* 1. Generic styles. */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.78);
+}
+
+/* 2. Style the card notification. */
+#notification {
+	position: absolute;
+	top: 25rem;
+	right: 0;
+	background: #FFF;
+	border: 1px solid rgba(0, 0, 0, 0.13);
+	box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.07);
+	border-radius: 3px;
+	padding: 2rem 4rem 2rem 2rem;
+}
+
+	#notification:after {
+		content: "";
+		display: block;
+		width: 5px;
+		height: 100%;
+		background-color: #8BC82F;
+		position: absolute;
+		left: 0;
+		top: 0;
+		border-radius: 2px 0 0 2px;
+	}
+
+	#notification p {
+		margin: 0 0 1rem 0;
+	}
+
+		#notification p:last-child {
+			margin: 0;
+			color: rgba(0, 0, 0, 0.6);
+		}
+
+/* 3. Create the animation keyframes. */
+@keyframes slideLeft {
+	0%, 100% {
+		transform: translate3d(100%, 0, 0);
+	}
+	10%, 90% {
+		transform: translate3d(-2rem, 0, 0);
+	}
+}
+
+/* 4. Add the animation to the card. */
+// #notification {
+// 	transform: translate3d(100%, 0, 0);
+// 	animation: slideLeft 5s 1s 1 cubic-bezier(0.68, -0.55, 0.265, 1.55);
+// }
+  // demo ends

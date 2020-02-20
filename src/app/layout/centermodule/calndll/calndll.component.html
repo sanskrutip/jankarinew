@@ -1,0 +1,153 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Userlist</li>
+</ol>
+<div class="container">
+  <div>
+    <h3>center list</h3>
+  </div>
+  <div class="card card-default mb-3" style="padding: 20px;">
+    <div class="row" id="user">
+      <div class="col-md 2">Center Name:</div>
+      <div class="col-md 2">
+        <select class="form-control" [(ngModel)]="searchorg" name="orgnizationname">
+          <option [ngValue]="select">Select</option>
+          <option *ngFor="let org of OrgnizationList" value={{org.ogid}}>{{org.ogname}}</option>
+        </select>
+      </div>
+      <div class="col-md 2">State:</div>
+      <div class="col-md 2">
+        <select class="form-control" [(ngModel)]="searchpro" name="pgname">
+          <option [ngValue]="select">Select</option>
+          <option *ngFor="let pro of ProgramList" value={{pro.pgid}}>{{pro.pgname}}</option>
+        </select>
+      </div>
+      <div class="col-md 2">City:</div>
+      <div class="col-md 2">
+
+        <input class="form-control" type="text" [(ngModel)]="searchname" name="name">
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="row" id="user">
+      <div class="col-md 2">Team Leader:</div>
+      <div class="col-md 2">
+        <input class="form-control" type="text" [(ngModel)]="searchuser" name="username">
+      </div>
+      <div class="col-md 2">Center Type:</div>
+      <div class="col-md 2">
+        <select class="form-control" [(ngModel)]="searchstatus" id="status">
+          <option [ngValue]="select">Select</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+
+        </select>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+        <div class="row">
+          <button class="btn btn-warning"
+            (click)="filterrecord(searchorg,searchpro,searchname,searchuser,searchstatus)">Find</button>
+
+        </div>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+        <div class="row">
+          <button type="button" class="btn btn-warning" [routerLink]="['/UserDetails']">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin:5px">
+  <div class="row">
+
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+      <b>Total Records: {{usercount}}</b>
+      <b> <span *ngIf="!usercount || usercount.length==0"></span></b>
+    </div>
+    <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="warning">
+          <th>
+            Sr NO.
+          </th>
+          <th>
+            Center ID
+          </th>
+          <th>
+            Center Name
+          </th>
+          <th>
+            Team Leader
+          </th>
+          <th>
+            State
+          </th>
+          <th>
+            District
+          </th>
+          <th>
+            City
+          </th>
+          <th>
+            Center Type
+          </th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let CenterList of CenterList| paginate: { itemsPerPage: 10, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+
+
+          <td>
+            {{CenterList.centid}}
+          </td>
+          <td>
+            <b>
+              <a >
+                {{CenterList.centname}}
+              </a>
+            </b>
+          </td>
+          <td>
+            {{CenterList.teamleadername}}
+          </td>
+          <td>
+            {{CenterList.state}}
+          </td>
+          <td>
+            {{CenterList.district}}
+          </td>
+          <td>
+            {{CenterList.city}}
+          </td>
+          <td>
+            {{CenterList.centertype}}
+          </td>
+          
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

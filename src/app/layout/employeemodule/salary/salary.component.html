@@ -1,0 +1,184 @@
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/SalaryList']"> Salary List</a>
+  </li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Generate Salary</li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="SalaryForm">
+  <div class="container">
+    <div>
+      <h5>Generate Salary</h5>
+    </div>
+    <div class="card card-default mb-3" style="padding: 20px;">
+      <div class="row">
+        <div class="col-md 2">Program:</div>
+        <div class="col-md 2" [ngClass]="{'has-error': ((SalaryForm.get('pgid').touched ||
+  SalaryForm.get('pgid').dirty) &&
+  SalaryForm.get('pgid').errors)}">
+          <select id="pgname" type="text" class="form-control" [(ngModel)]="searchpro" formControlName="pgid"
+            [ngModel]="role?.pgid" [(ngModel)]="model.pgid" (change)="onSelectPro($event.target.value)">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}
+            </option>
+          </select>
+          <span class="text-danger" *ngIf="((SalaryForm.get('pgid').touched ||
+              SalaryForm.get('pgid').dirty) &&
+              SalaryForm.get('pgid').errors)">
+            <small *ngIf="SalaryForm.get('pgid').errors.required">
+              Program is required
+            </small>
+          </span>
+        </div>
+        <div class="col-md 2">Department:</div>
+        <div class="col-md 2" [ngClass]="{'has-error': ((SalaryForm.get('depid').touched ||
+  SalaryForm.get('depid').dirty) &&
+  SalaryForm.get('depid').errors)}">
+          <select id="depid" type="text" class="form-control" formControlName="depid" [ngModel]="role?.depid"
+            [(ngModel)]="model.depid" [(ngModel)]="searchdep">
+            <option [ngValue]="null">Select</option>
+            <option *ngFor="let og of Departmentlist" value={{og.column2}}>{{og.column1 }}</option>
+          </select>
+          <span class="text-danger" *ngIf="((SalaryForm.get('depid').touched ||
+   SalaryForm.get('depid').dirty) &&
+   SalaryForm.get('depid').errors)">
+            <small *ngIf="SalaryForm.get('depid').errors.required">
+              Department is required
+            </small>
+          </span>
+        </div>
+        <div class="col-md 2">Month:</div>
+        <div class="col-md 2">
+          <select class="form-control" formControlName="month" [(ngModel)]="searchmonth"
+          id="month" type="text" class="form-control" [ngModel]="role?.month"
+            [(ngModel)]="model.month">
+            <option [ngValue]="select">Select</option>
+            <option value="1">JANUARY</option>
+            <option value="2">FEBRUARY</option>
+            <option value="3">MARCH</option>
+            <option value="4">APRIL </option>
+            <option value="5">MAY</option>
+            <option value="6">JUNE</option>
+            <option value="7">JULY</option>
+            <option value="8">AUGUST</option>
+            <option value="9">SEPTEMBER</option>
+            <option value="10">OCTOBER</option>
+            <option value="11">NOVEMBER</option>
+            <option value="12">DECEMBER</option>
+          </select>
+          <span class="text-danger"  *ngIf="((SalaryForm.get('month').touched || SalaryForm.get('month').dirty) &&
+          SalaryForm.get('month').errors)">
+          <small *ngIf="SalaryForm.get('month').errors.required">
+            Month is required
+      </small>
+        </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-2">Year:</div>
+        <div class="col-md-2">
+          <select class="form-control" formControlName="year" [(ngModel)]="searchyear"
+          id="year" type="text" class="form-control" [ngModel]="role?.year"
+            [(ngModel)]="model.year">
+            <option [ngValue]="select">Select</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+          <span class="text-danger"  *ngIf="((SalaryForm.get('year').touched || SalaryForm.get('year').dirty) &&
+          SalaryForm.get('year').errors)">
+          <small *ngIf="SalaryForm.get('year').errors.required">
+            Year is required
+      </small>
+        </span>
+        </div>
+        <div class="col-md-2">Financial year:</div>
+        <div class="col-md-2">
+          <select class="form-control" formControlName="financialyear" [(ngModel)]="searchfiyear"
+          id="financialyear" type="text" class="form-control" [ngModel]="role?.financialyear"
+            [(ngModel)]="model.financialyear">
+            <option [ngValue]="select">Select</option>
+            <option>2016-2017</option>
+            <option>2017-2018</option>
+            <option>2018-2019</option>
+            <option>2019-2020</option>
+            <option>2020-2021</option>
+          </select>
+          <span class="text-danger"  *ngIf="((SalaryForm.get('financialyear').touched || SalaryForm.get('financialyear').dirty) &&
+          SalaryForm.get('financialyear').errors)">
+          <small *ngIf="SalaryForm.get('financialyear').errors.required">
+            Financialyear is required
+      </small>
+        </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <button progress-button="someFunctionThatReturnsPromise()" type="submit" class="btn btn-warning" [disabled]="!SalaryForm .valid"
+            (click)="Show(searchpro,searchdep,searchmonth,searchyear,searchfiyear)"
+            >Show
+
+            <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h6 class="modal-title" id="modal-basic-title">
+        Attendance is not available Please fill attendance first</h6>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-footer">
+      <span>
+        <button type="button" class="btn btn-outline-dark" (click)="redirect(searchpro, searchdep, searchmonth, searchyear, searchfiyear)"
+        (click)="c('Close click')"
+        >OK</button>
+      </span>
+      <span>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+      </span>
+      
+    </div>
+  </ng-template>
+  
+  
+
+  <ng-template #content1 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      
+      <h6 class="modal-title" id="modal-basic-title">
+        Biometric Attendance is not available Please upload attendance first</h6>
+      
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="d('Close click')" (click)="Refresh()">Ok</button>
+    </div>
+  </ng-template>
+  
+  
+</form>

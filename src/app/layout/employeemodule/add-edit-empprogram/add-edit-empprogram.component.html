@@ -1,0 +1,232 @@
+<div class="row form-group">
+      <div class="col-md-12 col-xs-12">
+      <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+      </div>
+      </div> 
+<form [formGroup]="EmpProgramForm" (ngSubmit)="AddEmpProgram(EmpProgramForm.value)">
+      <div class="button-row">
+            <span>
+                  <button type="button" class="btn btn-warning" (click)="Back()">Back</button> 
+                 </span> &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-warning"  style="float: right;" (click)="Skip()">Skip</button>
+            <hr>
+      </div>
+      <h4>Employee Program</h4>
+
+      <div class="card card-default mb-3" style="padding: 20px;">
+            <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                        <div class="row form-group" [ngClass]="{'has-error': ((EmpProgramForm.get('finyear').touched ||
+  EmpProgramForm.get('finyear').dirty) &&
+  EmpProgramForm.get('finyear').errors)}">
+                              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <label>Finacial Year:</label>
+                              </div>
+                              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <select id="finyear" type="text" class="form-control" formControlName="finyear"
+                                          [ngModel]="Empprogram?.finyear" [(ngModel)]="model.finyear">
+                                          <option [ngValue]="null">Select</option>
+                                          <option *ngFor="let Financialyear of year"
+                                                value={{Financialyear.column1}}>{{Financialyear.column1}}</option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="((EmpProgramForm.get('finyear').touched ||
+  EmpProgramForm.get('finyear').dirty) &&
+  EmpProgramForm.get('finyear').errors)">
+                                          <small *ngIf="EmpProgramForm.get('finyear').errors.required">
+                                                Finacial Year is required
+                                          </small>
+
+                                    </span>
+                              </div>
+                        </div>
+
+                 
+                        <div class="row form-group" [ngClass]="{'has-error': ((EmpProgramForm.get('depid').touched ||
+  EmpProgramForm.get('depid').dirty) &&
+  EmpProgramForm.get('depid').errors)}">
+                              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <label>Department: </label>
+                              </div>
+                              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <select id="depid" type="text" class="form-control" formControlName="depid"
+                                          [ngModel]="Empprogram?.depid" [(ngModel)]="model.depid"
+                                          (change)="onSelectDepartment($event.target.value)">
+                                          <option [ngValue]="null">Select</option>
+                                          <option *ngFor="let Departmentlist of Departmentlist"
+                                                value={{Departmentlist.column2}}>{{Departmentlist.column1}}</option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="((EmpProgramForm.get('depid').touched ||
+  EmpProgramForm.get('depid').dirty) &&
+  EmpProgramForm.get('depid').errors)">
+                                          <small *ngIf="EmpProgramForm.get('depid').errors.required">
+                                                Department is required
+                                          </small>
+
+                                    </span>
+                              </div>
+                        </div>
+
+                        <div class="row form-group" [ngClass]="{'has-error': ((EmpProgramForm.get('reportto').touched ||
+                        EmpProgramForm.get('reportto').dirty) &&
+                        EmpProgramForm.get('reportto').errors)}">
+                                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                                          <label> Reports To: </label>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                                          <select id="reportto" type="text" class="form-control" formControlName="reportto"
+                                                                [ngModel]="Empprogram?.reportto" [(ngModel)]="model.reportto">
+                                                                <option [ngValue]="null">Select</option>
+                                                                <option *ngFor="let employee of employee" value={{employee.column2}}>
+                                                                      {{employee.column1}}</option>
+                                                          </select>
+                                                          <span class="text-danger" *ngIf="((EmpProgramForm.get('reportto').touched ||
+                        EmpProgramForm.get('reportto').dirty) &&
+                        EmpProgramForm.get('reportto').errors)">
+                                                                <small *ngIf="EmpProgramForm.get('reportto').errors.required">
+                                                                      Reports To is required
+                                                                </small>
+                      
+                                                          </span>
+                                                    </div>
+                                              </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                              <div class="row form-group" [ngClass]="{'has-error': ((EmpProgramForm.get('pgid').touched ||
+                              EmpProgramForm.get('pgid').dirty) &&
+                              EmpProgramForm.get('pgid').errors)}">
+                                                          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                                                <label>Program: </label>
+                                                          </div>
+                                                          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                                                <select id="pgid" type="text" class="form-control" formControlName="pgid"
+                                                                      [ngModel]="Empprogram?.pgid" [(ngModel)]="model.pgid"
+                                                                      (change)="onSelectProgram($event.target.value)">
+                                                                      <option [ngValue]="null">Select</option>
+                                                                      <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.pgid}}>
+                                                                            {{ProgramList.pgname}}</option>
+                                                                </select>
+                                                                <span class="text-danger" *ngIf="((EmpProgramForm.get('pgid').touched ||
+                              EmpProgramForm.get('pgid').dirty) &&
+                              EmpProgramForm.get('pgid').errors)">
+                                                                      <small *ngIf="EmpProgramForm.get('pgid').errors.required">
+                                                                            Program is required
+                                                                      </small>
+                            
+                                                                </span>
+                                                          </div>
+                                                    </div>
+                        <div class="row form-group" [ngClass]="{'has-error': ((EmpProgramForm.get('desid').touched ||
+  EmpProgramForm.get('desid').dirty) &&
+  EmpProgramForm.get('desid').errors)}">
+                              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <label> Designation: </label>
+                              </div>
+                              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <select id="desid" type="text" class="form-control" formControlName="desid"
+                                          [ngModel]="Empprogram?.desid" [(ngModel)]="model.desid" (change)="onSelectDesignation($event.target.value)">
+                                          <option [ngValue]="null">Select</option>
+
+                                          <option *ngFor="let Designationlist of Designationlist"
+                                                value={{Designationlist.column2}}>{{Designationlist.column1}}</option>
+
+                                    </select>
+                                    <span class="text-danger" *ngIf="((EmpProgramForm.get('desid').touched ||
+  EmpProgramForm.get('desid').dirty) &&
+  EmpProgramForm.get('desid').errors)">
+                                          <small *ngIf="EmpProgramForm.get('desid').errors.required">
+                                                Designation is required
+                                          </small>
+
+                                    </span>
+                              </div>
+                        </div>
+                  
+
+                  </div>
+            </div>
+            <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                              <button type="submit" class="btn btn-warning"
+                                    [disabled]="!EmpProgramForm.valid">Submit</button>
+                        </div>
+                  </div>
+            </div>
+            <div class="table-responsive">
+                  <table class="table">
+                        <thead>
+                              <tr class="warning">
+                                    <td><b>Sr NO.</b></td>
+                                    <td>
+                                          <b> Finacial Year</b>
+                                    </td>
+                                    <td>
+                                          <b>Program</b>
+                                    </td>
+                                    <td>
+                                          <b>Department</b>
+                                    </td>
+                                    <td>
+                                          <b>Designation</b>
+                                    </td>
+
+                                    <td>
+                                          <b>Reports To</b>
+                                    </td>
+                                    <td>
+                                          <b>Remove</b>
+                                    </td>
+                              </tr>
+                        </thead>
+                        <tbody>
+                              <tr #myVar *ngFor="let EmployeeProgram of EmployeeProgram let i = index;">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                          {{EmployeeProgram.finyear}}
+                                    </td>
+                                    <td>
+                                          {{EmployeeProgram.pgname}}
+                                    </td>
+                                    <td>
+                                          {{EmployeeProgram.depname}}
+                                    </td>
+                                    <td>
+                                          {{EmployeeProgram.desname}}
+                                    </td>
+                                    <td>
+                                          {{EmployeeProgram.reporttoname}}
+                                    </td>
+                                    <td>
+                                          <!-- <div>
+                                                <a (click)="Delete(EmployeeProgram.efid)"
+                                                      style="cursor: pointer; text-decoration: underline;">
+                                                      <b>Delete</b>
+                                                </a>
+                                          </div> -->
+
+                                          <b>
+                                                <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                                                    Delete
+                                                </a></b>
+                            
+                                                <ng-template #content let-modal>
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                                                      Are you sure want to Delete ?</h5>
+                                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" (click)="Delete(EmployeeProgram.efid)" (click)="modal.close('Cross click')">Yes</button>
+                                                    <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                                                  </div>
+                                                
+                                                </ng-template>
+                                    </td>
+                              </tr>
+                        </tbody>
+                  </table>
+            </div>
+      </div>
+</form>

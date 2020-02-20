@@ -1,0 +1,103 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/SalaryList']"> Salary List</a>
+  </li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Salary Details</li>
+</ol><form [formGroup]="StateForm">
+  <div class="row form-group">
+    <div class="col-md-12 col-xs-12">
+    <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+    </div>
+    </div> 
+  <div>
+    <h3>Salary Details</h3>
+  </div>
+
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+        <p><b>Total Records: {{salcount}}</b></p>
+      </div>
+      <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+        <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th rowspan="2">Sr No</th>
+            <th rowspan="2">Employee Name</th>
+            <th rowspan="2">Gross Amount</th>
+            <th rowspan="2">Absent Day</th>
+            <th rowspan="2">Approve</th>
+            <th rowspan="2">Remark</th>
+            <th colspan="4" style="text-align: center;">Earnings</th>
+            <th colspan="8" style="text-align: center;">Deduction</th>
+            <th rowspan="2">Total Deduction</th>
+            <th rowspan="2">Net salary</th>
+            <th rowspan="2">Employer PF</th>
+            <th rowspan="2">ESIC</th>
+            <th rowspan="2">CTC Amount</th>
+
+          </tr>
+          <tr>
+
+            <th>Basic</th>
+            <th>HRA</th>
+            <th>TA</th>
+            <th>Other Allowance</th>
+            <th>AbsAmount</th>
+            <th>EPF</th>
+            <th>ESIC</th>
+            <th>TDS</th>
+            <th>PT</th>
+            <th>Telephone</th>
+            <th>Advance</th>
+            <th>Loan</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr #myVar
+            *ngFor="let Salaryapprove of Salaryapprove let i = index; ">
+            <td>{{i+1}}</td>
+            <td>{{Salaryapprove.employeename}}</td>
+            <td>{{Salaryapprove.grosssalary}}</td>
+            <td> {{Salaryapprove.absent}} </td>
+            
+            <td>
+              <div *ngIf="Salaryapprove?.approve==0"> <input type="checkbox" checked></div>
+              <div *ngIf="Salaryapprove?.approve==2"> <input type="checkbox">
+              </div>
+              
+            </td>
+
+            <td>{{Salaryapprove.salstatus}}</td>
+            <td>{{Salaryapprove.basicamt}}</td>
+            <td>{{Salaryapprove.hraamt}}</td>
+            <td>{{Salaryapprove.taamt}}</td>
+            <td>{{Salaryapprove.oaamt}}</td>
+            <td>{{Salaryapprove.absamt}}</td>
+            <td>{{Salaryapprove.epfamt}} </td>
+            <td>{{Salaryapprove.esic1}}</td>
+            <td>{{Salaryapprove.tds}}</td>
+            <td>{{Salaryapprove.pt}}</td>
+            <td>{{Salaryapprove.telephone}}</td>
+            <td>{{Salaryapprove.advance}}</td>
+            <td>{{Salaryapprove.loan}}</td>
+            <td>{{Salaryapprove.totaldeduct}}</td>
+            <td>{{Salaryapprove.netamt}}</td>
+            <td> {{Salaryapprove.cpfamt}} </td>
+            <td>{{Salaryapprove.esic2}}</td>
+            <td>{{Salaryapprove.ctcamt}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

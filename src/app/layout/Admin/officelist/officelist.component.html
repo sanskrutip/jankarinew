@@ -1,0 +1,67 @@
+<app-page-header [heading]="'Office List'" ></app-page-header>
+<form class="form-horizontal" #searchForm="ngForm" >
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h3 style="float: left;">Office List </h3>
+    </div>
+  </div>
+  <!-- <div class="row"> -->
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+          <div class="row" >
+              <button type="button" class="btn btn-warning" [routerLink]="['/AddOffice']">Add Office</button>
+        </div>
+      </div>
+    <!-- </div> -->
+    
+    <div style="margin:5px">
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+          <span *ngIf ="!count || count.length==0; else elseBlock">No Record Found!</span>
+          <ng-template #elseBlock><b>Total Records: {{count}}</b></ng-template>
+        </div>
+        <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+          <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table ">
+          <thead>
+            <tr class="warning">
+              <td>
+                <b>Sr NO.</b>
+              </td>
+              <td>
+                <b>Office ID</b>
+              </td>
+              <td>
+                <b>Office Name</b>
+              </td>
+              <td>
+                <b>State</b>
+              </td>
+              <td>
+                <b>City</b>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  #myVar *ngFor="let officelist of officelist| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;" >
+              <td>{{i+1}}</td>
+              <td>
+                  {{officelist.offid}}
+              </td>
+              <td>
+                <a [routerLink] = "['/OfficeDetail',officelist.offid]" >{{officelist.offname}}</a>
+              </td>
+               <td>
+                  {{officelist.state}}
+                  </td>
+              <td>
+                {{officelist.city}}
+                    </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>

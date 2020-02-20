@@ -1,0 +1,52 @@
+.example-container {
+    overflow-x: scroll;
+  }
+
+  
+th.mat-header-cell{
+padding: 10px!important;
+background-color: #f3db09;
+//font-weight: bold;
+color: black !important;
+font-size: 12px !important;
+text-align: center !important;
+
+}
+td.mat-cell{
+    text-align: center !important; 
+}
+
+
+
+tr.mat-header-row{
+
+    height: 20px !important;
+    text-align: center !important;
+   
+}
+.mat-cell{
+    font-size: 12px !important;
+    color:black !important;
+    text-align: center;
+}
+
+td{
+    border: 1px solid #D1CFCF;
+    
+}
+.abc{
+    text-align: center !important;
+}
+
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    font-size: 12px !important;
+    color: black !important;
+    width: 70% !important;
+}
+
+th {
+    border: 1px solid rgba(0,0,0,.16);
+}

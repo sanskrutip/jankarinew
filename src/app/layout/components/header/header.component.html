@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #F3DB09;height:56px;">
+    <img src="/assets/images/piflogo.png" alt="Logo" class="img-responsive" style="height: 50px;">
+&nbsp;&nbsp;
+
+<h5>
+    <b style="color: black !important; ">Jankari Portal</b> 
+</h5>
+ 
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+        <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+       
+        <ul class="navbar-nav ml-auto" style="color: black !important">
+            <li class="nav-item " ngbDropdown id="addata">
+                <a href="javascript:void(0)" class="nav-link" (click)="home()"   matTooltip="Home" style="color: black !important">
+                    <i class="fa fa-home fa-lg "></i>
+                </a>
+            </li>
+            <li class="nav-item dropdown" ngbDropdown >
+                <a  href="javascript:void(0)" class="nav-link" (click)="redirect()"   matTooltip="Notifications" style="color: black !important;" >
+                    <i class="fa fa-bell fa-lg"></i>
+               
+                     <span class="badge badge-info">{{notifycount}}</span>
+                 <span *ngIf ="!notifycount || notifycount.length==0"></span>
+                </a>
+               
+            </li>
+            
+            <li class="nav-item dropdown" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle style="color: black !important">
+                    <i class="fa fa-user fa-lg"></i>  &nbsp;<b >{{ FullName }}</b>
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:void(0)"  (click)="ClickProfile()"  style="font-size: 0.8rem!important;">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
+                    </a>
+                    <a class="dropdown-item"  href="javascript:void(0)" (click)="ClickMyDairy()" style="font-size: 0.8rem!important;">
+                        <i class="fa fa-book" aria-hidden="true"></i>&nbsp;
+                        {{ 'My-Diary' | translate }}
+                    </a>
+                    <a class="dropdown-item"  href="javascript:void(0)" (click)="ClickMyJankari()" style="font-size: 0.8rem!important;">
+                        <i class="fa fa-fw fa-user" aria-hidden="true"></i>&nbsp;
+                        {{ 'My-Jankari' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="onLoggedout()" style="font-size: 0.8rem!important;">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+                    </a>
+                 
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,249 @@
+<ul class="breadcrumb">
+  <li>
+    <a href="Javascript:void(0)" [routerLink]="['/Employee']">Employee&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+  </li>
+  <li>
+    <i class="fa {{icon}}"></i>Employee List
+  </li>
+  <b>{{pgname}} - {{finyear}}</b>
+</ul>
+
+<!-- <form class="form-horizontal" #searchForm="ngForm" > -->
+<div class="row form-group">
+  <div class="col-md-12">
+    <h4 style="float: left;">Employee List </h4>
+    <!-- (click)="toggleSelected()" -->
+    <button mat-icon-button style="float: right;">
+
+      <mat-icon *ngIf="(fevoritelist?.length == 1 )" aria-label="Example icon-button with a heart icon"
+        (click)="removefevorite()" style="color: red;" matTooltip="Remove From Favourite">
+        favorite
+      </mat-icon>
+
+      <mat-icon *ngIf="(fevoritelist?.length == 0 )" aria-label="Example icon-button with a heart icon"
+        (click)=" open(content)" matTooltip="Add To Favourite">
+        favorite_border
+      </mat-icon>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title">
+            Add To Favourite</h6>
+
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="fevForm" (ngSubmit)="addfevorite(fevForm.value)">
+            <div class=" form-group" [ngClass]="{'has-error': ((fevForm.get('fevname').touched ||
+              fevForm.get('fevname').dirty) &&
+              fevForm.get('fevname').errors)}">
+              <label style="padding-left: 15px;">Name</label>
+              <span style="color: red"> *</span>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input id="name" type="text" class="form-control" formControlName="fevname">
+
+                <div>
+                  <span class="text-danger" *ngIf="((fevForm.get('fevname').touched ||
+              fevForm.get('fevname').dirty) &&
+              fevForm.get('fevname').errors)">
+                    <small *ngIf="fevForm.get('fevname').errors.required">
+                      Favourite Name is required
+                    </small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" [disabled]="!fevForm .valid" (click)="addfevorite()"
+            (click)="modal.close('Cross click')">Save</button>
+          <button type="button" class="btn btn-warning" (click)="modal.dismiss('Cross click')">Cancel</button>
+        </div>
+
+      </ng-template>
+    </button>
+
+  </div>
+</div>
+
+<div class="card card-default mb-3" style="padding: 20px !important;">
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Name</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <input class="form-control" type="text" [(ngModel)]="searchname" name="name">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Office State</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+         
+          <mat-form-field>
+            <mat-select [formControl]="toppings" [(ngModel)]="searchstate" multiple placeholder="Select State">
+              <mat-select-trigger >
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                  (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option  *ngFor="let state of state"  value={{state.column1}}>{{state.column1.replace(',', '')}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>  
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Office City</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        
+          <mat-form-field>
+            <mat-select [formControl]="toppings" [(ngModel)]="searchcity" multiple placeholder="Select City">
+              <mat-select-trigger >
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                  (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option  *ngFor="let city of city"  value={{city.column1}}>{{city.column1}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Program </label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="ProgramList" [(ngModel)]="searchprogram">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="row">
+
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label>Designation</label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select class="form-control" name="Designationlist" [(ngModel)]="searchdesignation">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let Designationlist of Designationlist" value={{Designationlist.column2}}>
+              {{Designationlist.column1}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+      <div class="row">
+        <button type="button" class="btn btn-warning" (click)="filterrecord()">Search</button>
+
+      </div>
+    </div>
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+      <div class="row">
+        <button type="button" class="btn btn-warning" [routerLink]="['/AddEmployeePersonal']">Add Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+<span>
+</span>
+<div style="margin:5px">
+
+<div class="row">
+
+    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+      <b>Total Records: {{empcount}}</b>
+      <b> <span *ngIf="!empcount || empcount.length==0"></span></b>
+    </div>
+    <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div class="table-responsive">
+
+    <table class="table table-bordered" matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr class="warning">
+          <td>
+            <b>Sr NO.</b>
+          </td>
+          <td>
+            <b>Employee ID</b>
+          </td>
+          <td>
+            <b>Employee Name</b>
+          </td>
+          <td>
+            <b>Designation</b>
+          </td>
+          <td>
+            <b>Reports To</b>
+          </td>
+          <td>
+            <b>State</b>
+          </td>
+          <td>
+            <b>City</b>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let employeelist of employeelist| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+          <td>
+            {{employeelist.empid}}
+          </td>
+          <td><b>
+              <a [routerLink]="['/EmployeeDetails',employeelist.empid]">{{employeelist.fullname}}</a>
+            </b>
+          </td>
+          <td>
+            {{employeelist.desname}}
+          </td>
+          <td>
+            {{employeelist.reporttoname}}
+          </td>
+          <td>
+            {{employeelist.state}}
+          </td>
+          <td>
+            {{employeelist.city}}
+          </td>
+        </tr>
+      </tbody>
+      <tr style="text-align: center;">
+        <td colspan="7" class="loader" *ngIf="loading else loaded">
+          <!-- <b>Loading ...</b> -->
+        </td>
+      <tr>
+    </table>
+  </div>
+</div>
+<!-- </form> -->

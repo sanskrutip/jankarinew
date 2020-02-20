@@ -1,0 +1,264 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Employee Leave Report
+
+
+
+  </li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div>
+<form [formGroup]="leaverptForm" (ngSubmit)="filterrecord(leaverptForm.value)" >
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">Employee Leave Report</h4>
+    </div>
+  </div>
+    <div class="card card-default mb-3" style="padding: 20px !important;">
+      <div class="row">
+       
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Department</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"   name="department"   
+              [(ngModel)]="searchdepartment" [ngModelOptions]="{standalone: true}">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>{{Departmentlist.column1}}</option>
+                </select>
+              </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((leaverptForm.get('frommonth').touched ||
+            leaverptForm.get('frommonth').dirty) &&
+            leaverptForm.get('frommonth').errors)}" >
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>From Month</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Month"  
+                [(ngModel)]="searchfrommonth" formControlName="frommonth">
+                <option [ngValue]="select">Select</option>
+                <option value="01">JANUARY</option>
+                <option value="02">FEBRUARY</option>
+                <option value="03">MARCH</option>
+                <option value="04">APRIL </option>
+                <option value="05">MAY</option>
+                <option value="06">JUNE</option>
+                <option value="07">JULY</option>
+                <option value="08">AUGUST</option>
+                <option value="09">SEPTEMBER</option>
+                <option value="10">OCTOBER</option>
+                <option value="11">NOVEMBER</option>
+                <option value="12">DECEMBER</option>
+                  </select>
+                  <span class="text-danger"
+          *ngIf="((leaverptForm.get('frommonth').touched ||
+          leaverptForm.get('frommonth').dirty) &&
+          leaverptForm.get('frommonth').errors)">
+          <small *ngIf="leaverptForm.get('frommonth').errors.required">
+            From Month is required
+      </small>
+        </span>
+              </div>
+              </div>
+            </div>
+
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 "  [ngClass]="{'has-error': ((leaverptForm.get('fromyear').touched ||
+          leaverptForm.get('fromyear').dirty) &&
+          leaverptForm.get('fromyear').errors)}">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>	From Year</label>
+              <span style="color: red"> *</span>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Month"  
+                [(ngModel)]="searchfromyear" formControlName="fromyear">
+                <option [ngValue]="select">Select</option>
+                <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+                  </select>
+                  <span class="text-danger"
+                  *ngIf="((leaverptForm.get('fromyear').touched ||
+                  leaverptForm.get('fromyear').dirty) &&
+                  leaverptForm.get('fromyear').errors)">
+                  <small *ngIf="leaverptForm.get('fromyear').errors.required">
+                    From Year is required
+              </small>
+                </span>
+              </div>
+              </div>
+          </div>
+
+
+
+          </div><br>
+          <div class="row">
+         
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((leaverptForm.get('tomonth').touched ||
+            leaverptForm.get('tomonth').dirty) &&
+            leaverptForm.get('tomonth').errors)}" >
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>To Month</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Month"  
+                [(ngModel)]="searchtomonth" formControlName="tomonth">
+                <option [ngValue]="select">Select</option>
+                <option value="01">JANUARY</option>
+                <option value="02">FEBRUARY</option>
+                <option value="03">MARCH</option>
+                <option value="04">APRIL </option>
+                <option value="05">MAY</option>
+                <option value="06">JUNE</option>
+                <option value="07">JULY</option>
+                <option value="08">AUGUST</option>
+                <option value="09">SEPTEMBER</option>
+                <option value="10">OCTOBER</option>
+                <option value="11">NOVEMBER</option>
+                <option value="12">DECEMBER</option>
+                  </select>
+                  <span class="text-danger"
+          *ngIf="((leaverptForm.get('tomonth').touched ||
+          leaverptForm.get('tomonth').dirty) &&
+          leaverptForm.get('tomonth').errors)">
+          <small *ngIf="leaverptForm.get('tomonth').errors.required">
+            To Month is required
+      </small>
+        </span>
+              </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 "  [ngClass]="{'has-error': ((leaverptForm.get('toyear').touched ||
+            leaverptForm.get('toyear').dirty) &&
+            leaverptForm.get('toyear').errors)}">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>To Year</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                  <select class="form-control"   name="Month"  
+                  [(ngModel)]="searchtoyear" formControlName="toyear">
+                  <option [ngValue]="select">Select</option>
+                  <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+                    </select>
+                    <span class="text-danger"
+                    *ngIf="((leaverptForm.get('toyear').touched ||
+                    leaverptForm.get('toyear').dirty) &&
+                    leaverptForm.get('toyear').errors)">
+                    <small *ngIf="leaverptForm.get('toyear').errors.required">
+                      To Year is required
+                </small>
+                  </span>
+                </div>
+                </div>
+            </div>
+         
+          </div><br>
+      
+
+          <br>
+      <div class="row">
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                  <button type="button" class="btn btn-warning" (click)="filterrecord(searchdepartment,searchfrommonth,searchfromyear,searchtomonth,searchtoyear)" [disabled]="!leaverptForm .valid" (click)="showMyContainer=!showMyContainer">Find</button>
+
+          </div>
+          <!-- <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12  form-group">
+                  <button type="button" class="btn btn-warning" (click)="ExportReport(searchdepartment,searchfrommonth,searchfromyear,searchtomonth,searchtoyear)">Export</button>
+
+        </div> -->
+    </div>
+    
+    </div>
+
+
+
+  </form>
+<div *ngIf="showMyContainer">
+  <div class="row">
+      <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+        <b>Total Records: {{leaverptcount}}</b>
+      <b> <span *ngIf ="!leaverptcount || leaverptcount.length==0">0</span></b> 
+      </div>
+      <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+        <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  <div class="table-responsive">
+    <table class="table table-bordered" >
+      <thead>
+        <tr class="warning">
+          <td style="min-width: 70px;">
+            <b>Sr No</b>
+          </td>
+          <td>
+            <b> Department Name</b>
+          </td>
+          <td style="min-width: 100px;">
+            <b> Employee Name</b>
+          </td>
+        
+         
+          <td style="min-width: 150px;">
+            <b>Present Days	</b>
+          </td>
+          <td style="min-width: 150px;">
+            <b>Absent Day	</b>
+          </td>
+          <td style="min-width: 120px;">
+            <b>Extra Day</b>
+          </td>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let leaverpt of leaverpt| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+          <td>
+            {{leaverpt.depname }}
+          </td>
+          <td>
+            {{leaverpt.empname }}
+          </td>
+          <td>
+            {{leaverpt.totpresent  }}
+          </td>
+          <td>
+            {{leaverpt.totabsent   }}
+          </td>
+          <td>
+            {{leaverpt.totextra }}
+          </td>
+         
+         
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

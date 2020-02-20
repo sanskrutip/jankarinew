@@ -1,0 +1,364 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/UserList']"> UserList</a>
+  </li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>UserDetails</li>
+</ol>
+
+<form [formGroup]="UserForm" (ngSubmit)="AddUser(UserForm.value) ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <h4 style="float: left;">User Details</h4>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 form-group">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <button type="button" class="btn btn-warning" type="submit" [disabled]="!UserForm .valid"
+            style="margin-right: 10px;">Save</button>
+          <button [routerLink]="['/UserList']" class="btn btn-warning">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card card-default mb-3" style="padding: 20px;">
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserForm.get('ogid').touched ||
+                  UserForm.get('ogid').dirty) &&
+                  UserForm.get('ogid').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Employee Organization:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="ogid" type="text" class="form-control" formControlName="ogid" [ngModel]="user?.ogid"
+                  [(ngModel)]="model.ogid" (change)="onSelectOrg($event.target.value)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of OrgnizationList" value={{og.ogid}}>{{og.ogname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserForm.get('ogid').touched ||
+                        UserForm.get('ogid').dirty) &&
+                        UserForm.get('ogid').errors)">
+                  <small *ngIf="UserForm.get('ogid').errors.required">
+                    Organization is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserForm.get('pgname').touched ||
+                    UserForm.get('pgname').dirty) &&
+                    UserForm.get('pgname').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Employee Program:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="pgname" type="text" class="form-control" formControlName="pgname" [ngModel]="user?.pgname"
+                  [(ngModel)]="model.pgname" (change)="onSelectPro($event.target.value)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of ProgramList" value={{og.column2}}>{{og.column1}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserForm.get('pgname').touched ||
+                          UserForm.get('pgname').dirty) &&
+                          UserForm.get('pgname').errors)">
+                  <small *ngIf="UserForm.get('pgname').errors.required">
+                    Program is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserForm.get('depname').touched ||
+                      UserForm.get('depname').dirty) &&
+                      UserForm.get('depname').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Employee Department:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="depname" type="text" class="form-control" formControlName="depname"
+                  [ngModel]="user?.depname" [(ngModel)]="model.depname" (change)="onSelectDep($event.target.value)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of Departmentlist" value={{og.depid}}>{{og.depname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserForm.get('depname').touched ||
+                            UserForm.get('depname').dirty) &&
+                            UserForm.get('depname').errors)">
+                  <small *ngIf="UserForm.get('depname').errors.required">
+                    Department is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserForm.get('empname').touched ||
+                        UserForm.get('empname').dirty) &&
+                        UserForm.get('empname').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Employee Name:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="empname" type="text" class="form-control" formControlName="empname"
+                  [ngModel]="user?.empname" [(ngModel)]="model.empname" (change)="onSelectEmp($event)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of EmployeeNameList" value={{og.empid}}>{{og.empname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserForm.get('empname').touched ||
+                              UserForm.get('empname').dirty) &&
+                              UserForm.get('empname').errors)">
+                  <small *ngIf="UserForm.get('empname').errors.required">
+                    Employee Name is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="divuserid">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>User Id:</label>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <input id="userid" type="text" class="form-control" formControlName="userid" [ngModel]="userr?.userid"
+                  [(ngModel)]="model.userid" *ngFor="let userr of userr" value={{userr.userid}}>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="divusername">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>User Name:</label>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <input id="username" type="text" class="form-control" formControlName="username"
+                  [ngModel]="userr?.username" [(ngModel)]="model.username" *ngFor="let userr of userr"
+                  value={{userr.username}}>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- second form  -->
+
+
+<form [formGroup]="UserDForm" (ngSubmit)="AddUserDetails(UserDForm.value)" *ngIf="show_dialog">
+  <div class="container">
+    <div class="container">
+      <div class="card card-default mb-3" style="padding: 20px;">
+
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserDForm.get('ogid').touched ||
+                  UserDForm.get('ogid').dirty) &&
+                  UserDForm.get('ogid').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Organization:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="ogid" type="text" class="form-control" formControlName="ogid" [ngModel]="user?.ogid"
+                  [(ngModel)]="model.ogid" (change)="onSelectOrg($event.target.value)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of OrgnizationList" value={{og.ogid}}>{{og.ogname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserDForm.get('ogid').touched ||
+                      UserDForm.get('ogid').dirty) &&
+                      UserDForm.get('ogid').errors)">
+                  <small *ngIf="UserDForm.get('ogid').errors.required">
+                    Organization is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserDForm.get('pgname').touched ||
+                    UserDForm.get('pgname').dirty) &&
+                    UserDForm.get('pgname').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Program:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="pgname" type="text" class="form-control" formControlName="pgname" [ngModel]="user?.pgname"
+                  [(ngModel)]="model.pgname" (change)="onchangepro($event.target.value)">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of ProgramList" value={{og.pgid}}>{{og.pgname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserDForm.get('pgname').touched ||
+                        UserDForm.get('pgname').dirty) &&
+                        UserDForm.get('pgname').errors)">
+                  <small *ngIf="UserDForm.get('pgname').errors.required">
+                    Program is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserDForm.get('depname').touched ||
+                      UserDForm.get('depname').dirty) &&
+                      UserDForm.get('depname').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Department:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="depname" type="text" class="form-control" formControlName="depname"
+                  [ngModel]="user?.depname" [(ngModel)]="model.depname">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of Departmentlist" value={{og.depid}}>{{og.depname}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserDForm.get('depname').touched ||
+                          UserDForm.get('depname').dirty) &&
+                          UserDForm.get('depname').errors)">
+                  <small *ngIf="UserDForm.get('depname').errors.required">
+                    Department is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((UserDForm.get('rolename').touched ||
+                        UserDForm.get('rolename').dirty) &&
+                        UserDForm.get('rolename').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Role:</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select id="rolename" type="text" class="form-control" formControlName="rolename"
+                  [ngModel]="user?.rolename" [(ngModel)]="model.rolename">
+                  <option [ngValue]="null">Select</option>
+                  <option *ngFor="let og of Userrole" value={{og.roleid}}>{{og.rolename}}</option>
+                </select>
+                <span class="text-danger" *ngIf="((UserDForm.get('rolename').touched ||
+                            UserDForm.get('rolename').dirty) &&
+                            UserDForm.get('rolename').errors)">
+                  <small *ngIf="UserDForm.get('rolename').errors.required">
+                    Role is required
+                  </small>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 form-group">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+
+              <button type="submit" class="btn btn-warning" [disabled]="!UserDForm .valid">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="warning">
+                <td><b>Sr No.</b></td>
+                <td>
+                  <b>Organization</b>
+                </td>
+                <td>
+                  <b>Program</b>
+                </td>
+                <td>
+                  <b>Role Name</b>
+                </td>
+                <td>
+                  <b>Role</b>
+                </td>
+                <td>
+                  <b>Remove</b>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr #myVar *ngFor="let user of Userprolist| paginate: { itemsPerPage: 10, currentPage: p  } let i = index;">
+                <td>{{i+1}}</td>
+                <td>
+                  {{user.ogname}}
+                </td>
+                <td>
+                  {{user.pgname}}
+                </td>
+                <td>
+                  {{user.rolename}}
+                </td>
+                <td>
+                  {{user.role}}
+                </td>
+              
+                <td>
+                  <b>
+                    <a (click)="open(content)" style="cursor: pointer; text-decoration: underline;">
+                      Delete
+                    </a>
+                  </b>
+
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle"
+                          aria-hidden="true"></i>&nbsp;
+                        Are you sure want to Delete ?</h5>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" (click)="Delete(user.upid)"
+                        (click)="modal.close('Cross click')">Yes</button>
+                      <button type="button" class="btn btn-info" (click)="modal.dismiss('Cross click')">No</button>
+                    </div>
+
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

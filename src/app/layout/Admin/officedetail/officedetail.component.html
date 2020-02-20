@@ -1,0 +1,114 @@
+<div class="button-row">
+  
+  <span>
+    
+   <button type="button" class="btn btn-warning" [routerLink]="['/OfficeList']">Back</button> 
+  </span> &nbsp;&nbsp;&nbsp;
+  
+  
+  <hr>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+        <h4> Office Details</h4>
+    </mat-panel-title>
+    <a (click)="editOffice()" style="cursor: pointer; ">
+        <i class="fa fa-pencil-square fa-5x" aria-hidden="true" style="padding-right: 30px;"></i>
+        </a>
+    </mat-expansion-panel-header>
+    
+    
+        <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Office Name:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.offname }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Orgnisation :</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.ogname }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Address:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.address }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>State:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.state }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>District:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.district }}
+                
+                </div>
+                </div>
+                
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>City:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.city   }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Pincode:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.pin }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Office Area:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.offarea }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Contact No:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.contact1 }}
+                </div>
+                </div>
+                <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>WhatsApp No:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ office?.contact2 }}
+                </div>
+                </div>
+                
+                </div>
+                </div>
+</mat-expansion-panel>
+</mat-accordion>

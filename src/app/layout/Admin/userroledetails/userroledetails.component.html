@@ -1,0 +1,141 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/UserRole']"> UserRole List</a>
+</li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Role Details</li>
+</ol>
+
+
+<div style="padding: 2%;">
+  <h4> Role Details</h4>
+</div>
+    <div class="card card-default mb-3"  style="padding: 20px;">
+      <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label><b>Role ID:</b></label>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+               {{ RoleDetail?.roleid}}
+            </div>
+        
+        
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label><b> Role Name:</b></label>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+              {{ RoleDetail?.rolename}}
+            </div>
+       
+        
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <b>Program:</b>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+              {{ RoleDetail?.pgname}}
+            </div>
+        
+        
+    </div>
+
+</div>
+<br>
+<div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+    <div class="row" >
+     <button type="button" class="btn btn-warning" (click)="Addmenu()" >Add Menus</button>
+
+  </div>
+</div>
+<br>
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              <b>Role menu</b>
+          </mat-panel-title>
+      </mat-expansion-panel-header>
+      <h5 style="text-align: center;">Menu List</h5>
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+          <p ><b>Total Record:{{menucount}} </b></p>
+        </div>
+        <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+          <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="warning">
+              <td><b>Sr NO.</b></td>
+            
+              <td>
+                <b>Menu ID</b>
+              </td>
+              <td>
+                <b>Menu</b>
+              </td>
+              <td>
+                <b>Url Page</b>
+              </td>
+              <td>
+                  <b>Parent</b>
+              </td>
+              <td>
+                <b>Operation</b>
+            </td>
+              
+            </tr>
+          </thead>
+            <tbody>
+           
+              <tr  #myVar *ngFor="let Rolemenu of Rolemenu| paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+              
+                <td>{{i+1}}</td>
+                
+                <td>
+                    {{Rolemenu.menuid}}
+              
+                </td>
+               
+                <td>
+                   {{Rolemenu.menuname}} 
+                  </td>
+                  <td>
+                    {{Rolemenu.menuurl}} 
+                   </td>
+                   <td>
+                    {{Rolemenu.parentmenu}} 
+                   </td>
+                <td><b>
+                  <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                      Delete
+                  </a></b>
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                        Are you sure want to Delete ?</h6>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+               
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-info" (click)="Delete(Rolemenu.menuid)" (click)="modal.close('Cross click')">Yes</button>
+                      <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                    </div>
+                  
+                  </ng-template>
+               
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+
+
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,92 @@
+/* Create four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .fa-5x {
+    font-size: 2em !important;
+  }
+  // .col-xl-3 {  
+  //   position: relative;
+  //   width: 16%;
+  //   min-height: 1px;
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  //   margin-left: 5%;
+  //   margin-bottom: 4%;
+  // }
+  @media only screen and (min-width: 1200px) {
+  .col-xl-3 {
+    flex: 0 0 25%;
+    max-width: 10%;
+  }
+  }
+  
+  // @media only screen and (min-width: 1600px) {
+  //   .col-xl-3 {
+  //     flex: 0 0 25%;
+  //     max-width: 10%;
+  // }
+  // }
+  // @media only screen and (min-width: 400px) {
+  // .col-xl-3 {
+  //   position: relative;
+  //   width: 27%;
+  //   min-height: 1px;
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  //   margin-left: 5%;
+  //   margin-bottom: 4%;
+  // }
+  // }
+  
+  // @media only screen and (min-width: 320px) {
+  //   .col-xl-3 {
+  //     position: relative;
+  //     width: 37%;
+  //     min-height: 1px;
+  //     padding-right: 15px;
+  //     padding-left: 15px;
+  //     margin-left: 5%;
+  //     margin-bottom: 4%;
+  // }
+  // }
+  
+  @media only screen and (min-width: 360px) {
+    .col-xl-3 {
+      position: relative;
+      width: 33%;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-left: 11%;
+      margin-bottom: 4%;
+  }
+  
+  }
+  
+  
+  @media only screen and (min-width: 768px) {
+  .col-xl-3 {
+    position: relative;
+    width: 16%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: 5%;
+    margin-bottom: 4%;
+    text-align: center;
+  }
+  }
+  
+

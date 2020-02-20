@@ -1,0 +1,185 @@
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/ApproveLeaveList']">Approve LeaveList</a>
+</li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Approve Leave</li>
+</ol>
+
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+  
+
+
+<form  [formGroup]="ApproveForm"  (ngSubmit)="ApproveLeave(ApproveLeave.value)">
+
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">Approve Leave </h4>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="card card-default mb-3" style="padding: 20px;" >
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label><b> Emp ID:</b></label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.empid}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <label><b>Employee Name:</b></label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.employeename}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b> Start Date:</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.leavefrom| date: 'dd-MM-yyyy'}}
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b>End Date:</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.leaveto| date: 'dd-MM-yyyy'}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b>Leave Type:</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.leavetype}}
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b> Reason:</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          {{Employeeleave?.leavedescription}}
+        </div>
+      </div>
+      <div class="row form-group" [ngClass]="{'has-error': ((ApproveForm.get('status').touched ||
+      ApproveForm.get('status').dirty) &&
+      ApproveForm.get('status').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b> Status:</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <select id="status" type="text" class="form-control" formControlName="status" [ngModel]="leave?.status" [(ngModel)]="model.status" >
+            <option  [ngValue]="null">Select</option>
+            <option  Value="Approve">Approve</option>
+            <option  Value="Rejected">Rejected</option>
+            <option  Value="Pending">Pending</option>
+          </select>
+          <span class="text-danger"
+          *ngIf="((ApproveForm.get('status').touched ||
+          ApproveForm.get('status').dirty) &&
+          ApproveForm.get('status').errors)">
+          <small *ngIf="ApproveForm.get('status').errors.required">
+            Status is required
+      </small>
+        </span>
+        </div>
+      </div>
+   
+      <div class="row form-group" [ngClass]="{'has-error': ((ApproveForm.get('remark').touched ||
+      ApproveForm.get('remark').dirty) &&
+      ApproveForm.get('remark').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <b> Remark</b>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+          <textarea type="text" class="form-control"  formControlName="remark" [ngModel]="leave?.remark" [(ngModel)]="model.remark" style="resize: none;"></textarea>
+          <span class="text-danger"
+          *ngIf="((ApproveForm.get('remark').touched ||
+          ApproveForm.get('remark').dirty) &&
+          ApproveForm.get('remark').errors)">
+          <small *ngIf="ApproveForm.get('remark').errors.required">
+            Remark is required
+      </small>
+        </span>
+        </div>
+      </div>
+      <div class="row form-group">
+       
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        
+          <input type="checkbox"  formControlName="escalate"  (change)="escalate = !escalate" [(ngModel)]="model.escalate"> &nbsp;&nbsp;<b>Escalate This Issue</b>
+        </div>
+      </div>
+      <br>
+      <div class="button-row">
+        <span>
+          <button type="submit" class="btn btn-warning" [disabled]="!ApproveForm .valid">Update</button>
+        </span> &nbsp;&nbsp;&nbsp;
+
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div style="margin:5px">
+      <div class="table-responsive">
+          <table class="table">
+              <thead>
+                  <tr class="warning">
+                      <td>
+                          <b>Leavetype</b>
+                      </td>
+                      <td>
+                          <b>Actual Leaves</b>
+                      </td>
+                      <td>
+                          <b>Used Leaves</b>
+                      </td>
+                      <td>
+                          <b>Pending Leaves</b>
+                      </td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let Leavecountdata of Leavecountdata">
+                      <td>
+                  {{Leavecountdata.leavetype}}
+              </td>
+                      <td>
+                  {{Leavecountdata.actualleave }}
+              </td>
+                      <td>
+                  {{Leavecountdata.usedleave}}
+              </td>
+              <td>
+                  {{Leavecountdata.remainingleave}}
+              </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  </div>
+
+
+
+
+</div>
+</form>

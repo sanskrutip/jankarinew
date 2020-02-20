@@ -1,0 +1,112 @@
+<app-page-header [heading]="'User Activity'"></app-page-header>
+<form class="form-horizontal" #searchForm="ngForm">
+  <div class="row form-group">
+    <div class="col-md-12">
+      <h4 style="float: left;">User Activity </h4>
+    </div>
+  </div>
+  <div class="card card-default mb-3" style="padding: 20px !important;">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>UserName</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input class="form-control" type="text" name="name" [(ngModel)]="searchname"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <label>Date</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="date" type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="searchdate"
+              [ngModelOptions]="{standalone: true}">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 form-group">
+        <button type="button" class="btn btn-warning" (click)="filterrecord(searchname,searchdate)">Search</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin:5px">
+    <div class="row">
+
+      <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+        <b>Total Records: {{ActivityCount}}</b>
+        <b> <span *ngIf="!ActivityCount || ActivityCount.length==0"></span></b>
+      </div>
+      <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+        <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" matSort (matSortChange)="sortData($event)">
+        <thead>
+          <tr class="warning">
+            <td>
+              <b>Sr NO.</b>
+            </td>
+            <td>
+              <b> ID</b>
+            </td>
+            <td>
+              <b>User Name</b>
+            </td>
+            <td>
+              <b>Date</b>
+            </td>
+            <td>
+              <b>Activity</b>
+            </td>
+            <td>
+              <b>Page Url</b>
+            </td>
+            <td>
+              <b>Ip Address</b>
+            </td>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr #myVar
+            *ngFor="let UserActivity of UserActivityList| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+            <td>{{i+1}}</td>
+            <td>
+              {{UserActivity.userid}}
+            </td>
+            <td>
+              {{UserActivity.employeename}}
+
+            </td>
+            <td>
+              {{UserActivity.aLogDate| date: 'dd-MM-yyyy'}}
+            </td>
+            <td>
+              {{UserActivity.activity}}
+            </td>
+            <td>
+              {{UserActivity.pageurl}}
+            </td>
+            <td>
+              {{UserActivity.userip}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

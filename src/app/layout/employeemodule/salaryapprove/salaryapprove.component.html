@@ -1,0 +1,190 @@
+<form #UpdateForm="ngForm">
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div class="form-group">
+        <mat-spinner-button class="btn" [options]="spinnerButtonOptions" (btnClick)="someFunc()" (click)="save()">Save
+        </mat-spinner-button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="mat-elevation-z8 example-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="SrNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 80px !important;">SrNo</th>
+        <td mat-cell *matCellDef="let Salaryapprove;  let i = index;"> {{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="depname">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;">   Department Name </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.depname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="employeename">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;">   Employee Name </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.employeename}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remark">
+        <th mat-header-cell *matHeaderCellDef > Remark </th>
+        <td mat-cell *matCellDef="let Salaryapprove">
+
+          <mat-form-field floatLabel="never">
+            <input matInput [value]="this.remark" [(ngModel)]="Salaryapprove.remark"
+              [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="grosssalary" >
+        <th mat-header-cell *matHeaderCellDef style="min-width: 110px !important;"> Gross Salary </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.grosssalary}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="absentday">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 110px !important;"> Absent Days </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.absentday}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="totaldeduct">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 80px !important;"> Total Deduction </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.totaldeduct}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="netamt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 60px !important;"> net Amount </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.netamt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ctcamt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 60px !important;"> CTC </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.ctcamt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="absent">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;"> Absent </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.absent}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="basicamt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 110px !important;">Basic Amount</th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.basicamt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hraamt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;">HRA</th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.hraamt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="taamt">
+        <th mat-header-cell *matHeaderCellDef> TA </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.taamt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="oaamt">
+        <th mat-header-cell *matHeaderCellDef> OA </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.oaamt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="absamt">
+        <th mat-header-cell *matHeaderCellDef> Absent amount </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.absamt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="epfamt">
+        <th mat-header-cell *matHeaderCellDef> EPF </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.epfamt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="esic1">
+        <th mat-header-cell *matHeaderCellDef> ESIC </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.esic1}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="tds">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;"> TDS </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.tds}} </td> 
+      </ng-container>
+
+
+      <ng-container matColumnDef="pt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 110px !important;"> PT </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.pt}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="telephone">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 110px !important;"> Telephone </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.telephone}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="advance">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 130px !important;">Advance </th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.advance}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="loan">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 80px !important;">Loan</th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.loan}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpfamt">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 80px !important;">cpfamt</th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.cpfamt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="esic2">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 80px !important;">esic2</th>
+        <td mat-cell *matCellDef="let Salaryapprove"> {{Salaryapprove.esic2}} </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="remark">
+        <th mat-header-cell *matHeaderCellDef > Remark </th>
+        <td mat-cell *matCellDef="let Salaryapprove">
+
+          <mat-form-field floatLabel="never">
+            <input matInput [value]="this.remark" [(ngModel)]="Salaryapprove.remark"
+              [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </td>
+      </ng-container> -->
+
+    
+      <ng-container matColumnDef="approve" >
+        <th mat-header-cell *matHeaderCellDef style="min-width: 80px !important;">
+        
+          <mat-checkbox #ref (change)="$event ? masterToggle(ref) : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td  mat-cell *matCellDef="let Salaryapprove" >
+          <mat-checkbox (click)="$event.stopPropagation()"  [value]="this.approve" [(ngModel)]="Salaryapprove.approve"
+          [ngModelOptions]="{standalone: true}"
+            (change)="$event ? selection.toggle(Salaryapprove) : null;isSomeSelected()" [checked]="selection.isSelected(Salaryapprove)"
+            style="margin-left: 25px !important;">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+
+    </table>
+
+  </div>
+
+</form>

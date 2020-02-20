@@ -1,0 +1,29 @@
+.warning{
+    background-color: rgb(241, 240, 240);
+}
+ul li
+ {
+   display: inline;
+ }
+ b
+ {
+  margin-left: auto;
+ }
+ a
+{
+ text-decoration: none;
+}
+ 
+ @media only screen and (max-width:992px)
+ {
+    ul li{
+        display: flex;
+        display: inline;
+        flex-direction: row;
+       flex: 1;
+       }
+
+      b{
+        flex: 2;
+      }
+ }

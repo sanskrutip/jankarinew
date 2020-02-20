@@ -1,0 +1,38 @@
+
+<div class="login-page">
+    <div class="content" >
+        <form class="login-form" fxFlex  #loginForm= "ngForm" (ngSubmit)="Loginuser(loginForm.value)">
+            <div class="text-center">
+                <img src="/assets/images/logo.png" alt="Logo" class="img-responsive" style="margin-bottom: 20px;">
+            </div>
+            <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                            <input matInput name="UserName" ngModel type="text" placeholder="Email" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                            <input matInput name="Password" ngModel type="password" placeholder="Password" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <button mat-raised-button class="w-100" style="margin-top: 30px;background-color: #F58634;" >Login</button>
+                </div>
+            </div>
+            <br>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                    <div fxFlexFill>
+                        <a   style="color: rgb(240, 77, 2)" [routerLink]="['/Signup']"><b>Register Now</b></a>
+                    </div>
+                
+                </div>
+            <br>
+            <p *ngIf="message" class="text-center error"  style="color: red">{{message}}</p>
+        </form>
+    </div>
+</div>

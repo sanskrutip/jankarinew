@@ -1,0 +1,177 @@
+<ul class="breadcrumb">
+  <li>
+    <a href="Javascript:void(0)" [routerLink]="['/Center']">Center&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+  </li>
+  <li>
+    <i class="fa {{icon}}"></i>Centerlist
+  </li>
+  <b>{{pgname}} - {{finyear}}</b>
+</ul>
+  
+<div class="container">
+  <div>
+    <h3>Center List</h3>
+  </div>
+  <div class="card card-default mb-3" style="padding: 20px;">
+    <div class="row" id="user">
+      <div class="col-md 2">Center Name:</div>
+      <div class="col-md 2">  
+          <input class="form-control" type="text" [(ngModel)]="searchname" name="name">
+      </div>
+      <div class="col-md 2">State:</div>
+      <div class="col-md 2">
+          <select class="form-control"   name="state"  [(ngModel)]="searchstate" (change)="onSelectState($event.target.value)">
+              <option  [ngValue]="select">Select</option>
+              <option *ngFor="let state of state" value={{state.column1}}>{{state.column1}}</option>
+            </select>
+      </div>
+      <div class="col-md 2">City:</div>
+      <div class="col-md 2">
+
+          <select class="form-control"  name="city"
+          [(ngModel)]="searchcity">
+            <option  [ngValue]="select">Select</option>
+            <option *ngFor="let city of city"value={{city.column1}}>{{city.column1}}</option>
+          </select>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="row" id="user">
+      <div class="col-md 2">Team Leader:</div>
+      <div class="col-md 2">
+          <select class="form-control" name="teamleaderid" [(ngModel)]="searchTL">
+         <option [ngValue]="select">Select</option>
+         <option *ngFor="let Comman of Comman4" value={{Comman.column2}}>{{Comman.column1}}</option>
+       </select>
+      </div>
+      <div class="col-md 2">Partner:</div>
+      <div class="col-md 2">
+          <select class="form-control" name="partnerid" [(ngModel)]="searchPartner"  >
+              <option [ngValue]="select">Select</option>
+              <option *ngFor="let Partnerlist of CenterPartner" value={{Partnerlist.column2}}>{{Partnerlist.column1}}
+              </option>
+            </select>
+      </div>
+      <div class="col-md 2">Center Type:</div>
+      <div class="col-md 2">
+      <select class="form-control" name="centid" [(ngModel)]="searchCentertype" 
+                 >
+                  <option [ngValue]="select">Select</option>
+                  <option *ngFor="let centertypelist of centertypelist" value={{centertypelist.column2}}>{{centertypelist.column1}}
+                  </option>
+       </select>
+      </div>
+
+    </div>
+    <br>   
+    <div class="row">
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+        <div class="row">
+          <button class="btn btn-warning"
+            (click)="filterrecord(searchname,searchstate,searchcity,searchTL,searchPartner,searchCentertype)">Find</button>
+
+        </div>
+      </div>
+      <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+        <div class="row">
+          <button type="button" class="btn btn-warning" [routerLink]="['/AddEditCenter']">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div style="margin:5px">
+  <div class="row">
+
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+      <b>Total Records: {{centercount}}</b>
+      <b> <span *ngIf="!centercount || centercount.length==0"></span></b>
+    </div>
+    <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="warning">
+          <th>
+            Sr NO.
+          </th>
+          <th>
+            Center ID
+          </th>
+          <th>
+            Center Name
+          </th>
+          <th>
+            Team Leader
+          </th>
+          <th>
+            State
+          </th>
+          <th>
+            District
+          </th>
+          <th>
+            City
+          </th>
+          <th>
+            Center Type
+          </th>
+          <th>
+            Partner
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr #myVar
+          *ngFor="let CenterList of CenterList| paginate: { itemsPerPage: 10, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+
+
+          <td>
+
+
+                {{CenterList.centid}}
+
+          </td>
+          <td>
+            <b>
+              <a [routerLink] = "['/CenterDetail',CenterList.centid]">
+                {{CenterList.centname}}
+              </a>
+            </b>
+          </td>
+          <td>
+            {{CenterList.teamleadername}}
+          </td>
+          <td>
+            {{CenterList.state}}
+          </td>
+          <td>
+            {{CenterList.district}}
+          </td>
+          <td>
+            {{CenterList.city}}
+          </td>
+          <td>
+            {{CenterList.centertype}}
+          </td>
+          <td>
+            {{CenterList.partnername}}
+          </td>
+          
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

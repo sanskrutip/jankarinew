@@ -1,0 +1,188 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+
+<!-- <form [formGroup]="EmpProgramForm" (ngSubmit)="AddEmpProgram(EmpProgramForm.value)"> -->
+  <div class="button-row" >
+                    
+    <span>
+     <button type="button" class="btn btn-warning" (click)="Back()">Back</button> 
+    </span> &nbsp;&nbsp;&nbsp;
+    
+    
+   
+    
+    
+      <hr>
+    </div>
+  <h4>Employee Document</h4>
+  <form [formGroup]="docform" (ngSubmit)="submit(docform.value)">
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+      <div class="row" [ngClass]="{'has-error': ((docform.get('year').touched ||
+      docform.get('year').dirty) &&
+      docform.get('year').errors)}">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <label> Financial year:</label> 
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+              <select class="form-control" 
+          id="financialyear" type="text" class="form-control" [(ngModel)]="selectedOption"  (change)="doSomething()" formControlName="year" >
+            <option [ngValue]="select">Select</option>
+            <!-- <option  value="2016-2017">2016-2017</option>
+            <option  value="2017-2018">2017-2018</option>
+            <option  value="2018-2019">2018-2019</option>
+            <option  value="2019-2020">2019-2020</option>
+            <option  value="2020-2021">2020-2021</option> -->
+            <option *ngFor="let year of year" value={{year.column1}}>{{year.column1}}</option>
+          </select>
+          <span class="text-danger"
+          *ngIf="((docform.get('year').touched ||
+          docform.get('year').dirty) &&
+          docform.get('year').errors)">
+          <small *ngIf="docform.get('year').errors.required">
+              Financial year is required
+      </small>
+        </span>
+          </div>
+    </div>
+    
+
+    <br>
+        
+        <div class="row">
+              <div class="card card-default col-md-6 col-lg-6 col-sm-12 col-xs-12 form-group">
+                    <div class=" form-group" style="padding: 15px;">
+                    <div>
+                        <input type="checkbox" [checked]="al" formControlName="al"  (change)="al = !al"  [(ngModel)]="model.al" /> Appointment Letter
+                      </div>
+                      <div>
+                          <input type="checkbox" [checked]="jd"  formControlName="jd"  (change)="jd = !jd" [(ngModel)]="model.jd" /> JD
+                        </div>
+                        <div>
+                            <input type="checkbox" [checked]="icc"  formControlName="icc"   (change)="icc = !icc"  [(ngModel)]="model.icc"/> ICC policy
+                          </div>
+                          <div>
+                              <input type="checkbox" [checked]="ss" formControlName="ss"    (change)="ss = !ss"  [(ngModel)]="model.ss"/> Salary Slip
+                            </div>
+                            <div>
+                                <input type="checkbox" [checked]="sd"  formControlName="sd" (change)="sd = !sd"  [(ngModel)]="model.sd"/> Self Declaration Form
+                              </div>
+                              <div>
+                                  <input type="checkbox" [checked]="cp"    formControlName="cp" (change)="cp = !cp"  [(ngModel)]="model.cp"/> Child policy
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                <button type="submit" class="btn btn-warning" [disabled]="!docform .valid"
+                                >Submit</button> 
+                              </div>
+                  
+
+              </div>
+        </div>
+        
+  </div>
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+            <p ><b>Total Record: {{doccount}}</b></p>
+          </div>
+          <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="warning">
+              <td><b>Sr NO.</b></td>
+              
+              <td>
+                <b>Financial year</b>
+              </td>
+              <td>
+                <b>Appointment Letter</b>
+              </td>
+              <td>
+                <b> JD
+                  </b>
+              </td>
+              <td>
+                  <b> ICC policy
+                    </b>
+                </td>
+                <td>
+                    <b>Salary Slip
+                      </b>
+                  </td>
+                  <td>
+                      <b> Self Declaration Form
+                        </b>
+                    </td>
+                    <td>
+                        <b> Child policy
+                          </b>
+                      </td>
+                      
+
+             
+            </tr>
+          </thead>
+            <tbody>
+            <tr  #myVar *ngFor="let Empdocument of Empdocument | paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+              
+                <td>{{i+1}}</td>
+                
+                <td>
+                  
+                   {{Empdocument.financialyear}}   
+                </td>
+                <td >
+                    <div *ngIf="Empdocument?.al==0"> <input type="checkbox" checked></div>
+                    <div *ngIf="Empdocument?.al==1"> <input type="checkbox"   >
+                  </div>
+                  <!-- {{Empdocument.al}}   -->
+                </td>
+                <td>
+                    <div *ngIf="Empdocument?.jd==0"> <input type="checkbox"  checked></div>
+                    <div *ngIf="Empdocument?.jd==1"> <input type="checkbox"  >
+                  </div>
+                    <!-- {{Empdocument.jd}}   -->
+                  </td>
+                  <td>
+                      <div *ngIf="Empdocument?.icc==0"> <input type="checkbox"  checked></div>
+                      <div *ngIf="Empdocument?.icc==1"> <input type="checkbox"  >
+                    </div>
+                      <!-- {{Empdocument.icc}}   -->
+                    </td>
+                    <td>
+                        <div *ngIf="Empdocument?.ss==0"> <input type="checkbox"  checked></div>
+                        <div *ngIf="Empdocument?.ss==1"> <input type="checkbox"  >
+                      </div>
+                        <!-- {{Empdocument.ss}}   -->
+                      </td>
+                      <td>
+                          <div *ngIf="Empdocument?.sd==0"> <input type="checkbox"  checked></div>
+                          <div *ngIf="Empdocument?.sd==1"> <input type="checkbox"   >
+                        </div>
+                          <!-- {{Empdocument.sd}}   -->
+                        </td>
+                        <td>
+                            <div *ngIf="Empdocument?.cp==0">
+                              <input type="checkbox"  checked>
+                            </div>
+                            <div *ngIf="Empdocument?.cp==1">
+                                <input type="checkbox" ></div>
+                          </td>
+                        
+                
+         
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  
+</form>

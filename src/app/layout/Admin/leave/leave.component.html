@@ -1,0 +1,129 @@
+<app-page-header [heading]="'Leave Count'" ></app-page-header>
+
+
+  
+<form [formGroup]="LeaveForm"  (ngSubmit)="AddLeaveCount(LeaveForm.value)">
+
+  <div >
+      <h3>Leave Count</h3>
+  </div>
+
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+      <div class="row  form-group"  >
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <label>Leave Type</label>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" [ngClass]="{'has-error': ((LeaveForm.get('leavetype').touched ||
+                       LeaveForm.get('leavetype').dirty) &&
+                       LeaveForm.get('leavetype').errors)}">
+
+                       <input  id="leavetype" type="text" class="form-control" formControlName="leavetype" [ngModel]="leave?.leavetype" [(ngModel)]="model.leavetype">
+
+                    <span class="text-danger"
+              *ngIf="((LeaveForm.get('leavetype').touched ||
+             LeaveForm.get('leavetype').dirty) &&
+             LeaveForm.get('leavetype').errors)">
+              <small *ngIf="LeaveForm.get('leavetype').errors.required">
+                Leave type is required
+          </small>
+            </span>
+                  </div>    
+     
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label>Leave Count:</label>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"[ngClass]="{'has-error': ((LeaveForm.get('leavecount1').touched ||
+             LeaveForm.get('leavecount1').dirty) &&
+             LeaveForm.get('leavecount1').errors)}">
+               
+             <input  id="leavecount1" type="text" class="form-control" formControlName="leavecount1" [ngModel]="leave?.leavecount1" [(ngModel)]="model.leavecount1">
+       
+              
+                <span class="text-danger"
+              *ngIf="((LeaveForm.get('leavecount1').touched ||
+             LeaveForm.get('leavecount1').dirty) &&
+             LeaveForm.get('leavecount1').errors)">
+              <small *ngIf="LeaveForm.get('leavecount1').errors.required">
+                  Leave Count is required
+          </small>
+            </span>
+              </div>
+        
+    </div>
+
+    <div class="row"  >
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="form-group"  >
+     
+      <button type="submit" class="btn btn-warning"  [disabled]="!LeaveForm .valid">Add</button>
+            </div>
+    </div>
+  </div>
+  </div>
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+              <p ><b>Total  Records: {{leavecount}}</b></p>
+            </div>
+            <div  class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                  <td><b>Sr NO.</b></td>
+               
+                  <td>
+                    <b>Leave Type</b>
+                  </td>
+                  <td>
+                    <b> Leave Count</b>
+                  </td>
+                  <td>
+                    <b>Remove</b>
+                  </td>
+              </tr>
+            </thead>
+            
+              <tbody>
+              <tr  #myVar *ngFor="let leaveCount of leaveCount | paginate: { itemsPerPage: 10, currentPage: p  } let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                
+                  <td>
+                    {{leaveCount.leavetype}}
+                  </td>
+                  <td>
+                    {{leaveCount.leavecount1}}
+                  </td>
+                  <td><b>
+                    <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+                        Delete
+                    </a></b>
+
+                    <ng-template #content let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+                          Are you sure want to Delete ?</h5>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                 
+                 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-info" (click)="Delete(leaveCount.lcid)" (click)="modal.close('Cross click')">Yes</button>
+                        <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+                      </div>
+                    
+                    </ng-template>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </form>

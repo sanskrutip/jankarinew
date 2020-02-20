@@ -1,0 +1,240 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="employeeForm" (ngSubmit)="UpdateEmployee(employeeForm.value)">
+  <div class="button-row">
+  <h4> Employee Salary Detail</h4>
+  <span>
+   <button type="button" class="btn btn-warning" (click)="Back()" >Back</button> 
+  </span> &nbsp;&nbsp;&nbsp;
+  
+  <span>
+  <button type="submit" class="btn btn-warning" [disabled]="!employeeForm.valid">Submit</button>
+  </span>&nbsp;&nbsp;&nbsp;
+  
+ 
+  <span>
+    <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+    </span>
+  <hr>
+  </div>
+ 
+ <mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+  <mat-panel-title>
+  Salary Information
+  </mat-panel-title>
+  
+  </mat-expansion-panel-header>
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+    <div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('grosssalary').touched ||
+    employeeForm.get('grosssalary').dirty) &&
+    employeeForm.get('grosssalary').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Gross Salary:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+   
+    <input id="grosssalary" type="text" class="form-control" formControlName="grosssalary"
+    [ngModel]="employee?.grosssalary" [(ngModel)]="model.grosssalary">
+    <span class="text-danger" *ngIf="((employeeForm.get('grosssalary').touched ||
+    employeeForm.get('grosssalary').dirty) &&
+    employeeForm.get('grosssalary').errors)">
+    <small *ngIf="employeeForm.get('grosssalary').errors.required">
+    Gross Salary is required
+    </small>
+    <small *ngIf="employeeForm.get('grosssalary').errors.pattern">
+    Gross Salary should be Number </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('salcreator').touched ||
+    employeeForm.get('salcreator').dirty) &&
+    employeeForm.get('salcreator').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Salary Creator:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="salcreator" type="text" class="form-control" formControlName="salcreator"
+    [ngModel]="employee?.salcreator" [(ngModel)]="model.salcreator">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let employee of employeename" value={{employee.empid}}>{{employee.empname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('salcreator').touched ||
+    employeeForm.get('salcreator').dirty) &&
+    employeeForm.get('salcreator').errors)">
+    <small *ngIf="employeeForm.get('salcreator').errors.required">
+    Salary Creator is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('salapproval').touched ||
+    employeeForm.get('salapproval').dirty) &&
+    employeeForm.get('salapproval').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Salary Approval:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="salapproval" type="text" class="form-control" formControlName="salapproval"
+    [ngModel]="employee?.salapproval" [(ngModel)]="model.salapproval">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let employee of employeename" value={{employee.empid}}>{{employee.empname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('salapproval').touched ||
+    employeeForm.get('salapproval').dirty) &&
+    employeeForm.get('salapproval').errors)">
+    <small *ngIf="employeeForm.get('salapproval').errors.required">
+    Salary Approval is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('paytype').touched ||
+    employeeForm.get('paytype').dirty) &&
+    employeeForm.get('paytype').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Pay Type:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="paytype" type="text" class="form-control" formControlName="paytype"
+    [ngModel]="employee?.paytype" [(ngModel)]="model.paytype">
+    <option [ngValue]="null">Select</option>
+    <option value="NA">NA</option>
+    <option value="Chqs (IBCW)">Chqs (IBCW)</option>
+    <option value="FT">FT</option>
+    <option value="NEFT">NEFT</option>
+    <option value="Paid by Associate">Paid by Associate</option>
+    <option value="Paid by School">Paid by School</option>
+    <option value="Pay Debit">Pay Debit</option>
+    <option value="RTGS">RTGS</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('paytype').touched ||
+    employeeForm.get('paytype').dirty) &&
+    employeeForm.get('paytype').errors)">
+    <small *ngIf="employeeForm.get('paytype').errors.required">
+    Paytype is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('bankname').touched ||
+    employeeForm.get('bankname').dirty) &&
+    employeeForm.get('bankname').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Bank Name: </label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="bankname" type="text" class="form-control" formControlName="bankname"
+    [ngModel]="employee?.bankname" [(ngModel)]="model.bankname">
+    <span class="text-danger" *ngIf="((employeeForm.get('bankname').touched ||
+    employeeForm.get('bankname').dirty) &&
+    employeeForm.get('bankname').errors)">
+    <small *ngIf="employeeForm.get('bankname').errors.required">
+    Bank Name is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('branch').touched ||
+    employeeForm.get('branch').dirty) &&
+    employeeForm.get('branch').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Branch: </label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="branch" type="text" class="form-control" formControlName="branch" [ngModel]="employee?.branch"
+    [(ngModel)]="model.branch">
+    <span class="text-danger" *ngIf="((employeeForm.get('branch').touched ||
+    employeeForm.get('branch').dirty) &&
+    employeeForm.get('branch').errors)">
+    <small *ngIf="employeeForm.get('branch').errors.required">
+    Branch is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('accno').touched ||
+    employeeForm.get('accno').dirty) &&
+    employeeForm.get('accno').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Account No: </label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="accno" type="text" class="form-control" formControlName="accno" [ngModel]="employee?.accno"
+    [(ngModel)]="model.accno">
+    <span class="text-danger" *ngIf="((employeeForm.get('accno').touched ||
+    employeeForm.get('accno').dirty) &&
+    employeeForm.get('accno').errors)">
+    <small *ngIf="employeeForm.get('accno').errors.required">
+    Account No is required
+    </small>
+    <small *ngIf="employeeForm.get('accno').errors.pattern">
+    Account No should be Number </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('neftcode').touched ||
+    employeeForm.get('neftcode').dirty) &&
+    employeeForm.get('neftcode').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>NEFT Code: </label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="neftcode" type="text" class="form-control" formControlName="neftcode"
+    [ngModel]="employee?.neftcode" [(ngModel)]="model.neftcode">
+    <span class="text-danger" *ngIf="((employeeForm.get('neftcode').touched ||
+    employeeForm.get('neftcode').dirty) &&
+    employeeForm.get('neftcode').errors)">
+    <small *ngIf="employeeForm.get('neftcode').errors.required">
+    NEFT Code is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('branchadd').touched ||
+    employeeForm.get('branchadd').dirty) &&
+    employeeForm.get('branchadd').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Branch Address: </label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="branchadd" type="text" class="form-control" formControlName="branchadd"
+    [ngModel]="employee?.branchadd" [(ngModel)]="model.branchadd">
+    <span class="text-danger" *ngIf="((employeeForm.get('branchadd').touched ||
+    employeeForm.get('branchadd').dirty) &&
+    employeeForm.get('branchadd').errors)">
+    <small *ngIf="employeeForm.get('branchadd').errors.required">
+    Branch Address is required
+    </small>
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+ 
+  </mat-expansion-panel>
+</mat-accordion>
+   
+</form>
+

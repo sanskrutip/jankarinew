@@ -1,0 +1,131 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Userlist</li>
+</ol>
+<div class="container" >
+    <div >
+        <h3>User list</h3>
+    </div>
+  <div class="card card-default mb-3" style="padding: 20px;">    
+<div class="row" id="user">
+  <div class="col-md 2">Organization:</div>
+  <div class="col-md 2">
+      <select class="form-control"  [(ngModel)]="searchorg" name="orgnizationname">
+          <option  [ngValue]="select">Select</option>
+          <option *ngFor="let org of OrgnizationList"value={{org.ogid}}>{{org.ogname}}</option>
+        </select>
+</div>
+  <div class="col-md 2">Program:</div>
+  <div class="col-md 2">
+      <select class="form-control"  [(ngModel)]="searchpro" name="pgname">
+          <option  [ngValue]="select">Select</option>
+          <option *ngFor="let pro of ProgramList" value={{pro.column2}}>{{pro.column1}}</option>
+        </select>
+  </div>
+  <div class="col-md 2">Employee Name:</div>
+  <div class="col-md 2">
+
+    <input class="form-control" type="text" [(ngModel)]="searchname" name="name">
+  </div>
+
+</div>
+
+<br>
+
+<div class="row" id="user">
+    <div class="col-md 2">User Name:</div>
+    <div class="col-md 2">
+      <input class="form-control" type="text" [(ngModel)]="searchuser" name="username">
+  </div>
+    <div class="col-md 2">Status:</div>
+    <div class="col-md 2">
+        <select class="form-control" [(ngModel)]="searchstatus" id="status">
+            <option  [ngValue]="select">Select</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            
+          </select>
+    </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-2"></div>
+    
+  </div>
+ <br>
+  <div class="row">
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+        <div class="row">
+          <button  class="btn btn-warning" (click)="filterrecord(searchorg,searchpro,searchname,searchuser,searchstatus)">Find</button>
+
+     </div>
+    </div>
+    <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+        <div class="row">
+            <button type="button" class="btn btn-warning" [routerLink] = "['/UserDetails']">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="margin:5px">
+  <div class="row">
+
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" >
+      <b >Total Records: {{usercount}}</b>
+      <b> <span *ngIf ="!usercount || usercount.length==0"></span></b>
+    </div>
+    <div  class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
+      <pagination-controls style="float: right" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered" >
+      <thead>
+        <tr class="warning">
+          <td>
+            <b>Sr NO.</b>
+          </td>
+          <td>
+            <b> ID</b>
+          </td>
+          <td>
+            <b>User Name</b>
+          </td>
+          <td>
+              <b>Full Name</b>
+            </td>
+            <td>
+                <b>Status</b>
+              </td>
+            
+        </tr>
+      </thead>
+      <tbody>
+        <tr  #myVar *ngFor="let user of Userlist| paginate: { itemsPerPage: 10, currentPage: p  } let i = index;" >
+          <td>{{i+1}}</td>
+          
+          
+          <td>
+            {{user.userid}}
+          </td>
+          <td>
+           <b>
+            <a  [routerLink] = "['/UserDetail',user.userid]">
+              {{user.username}}
+            </a>
+          </b>
+            </td>
+            <td>
+              {{user.fullname}}
+              </td>
+              <td>
+                {{user.status}}
+                </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+    <b style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+</div>
+
+
+<form [formGroup]="centerForm" (ngSubmit)="Addcenter(centerForm.value)">
+  <div class="button-row">
+    <!-- <h4>Center</h4> -->
+    <span>
+      <button type="button" class="btn btn-warning" (click)="Back()">Back</button>
+    </span>&nbsp;&nbsp;&nbsp;
+
+    <span>
+      <button type="submit" class="btn btn-warning" [disabled]="!centerForm.valid">Submit</button>
+    </span>
+
+
+    <span>
+      <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+    </span>
+
+    <hr>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Other Information
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div class="card card-default mb-3" style="padding: 20px;">
+        <!-- start -->
+        <div class="row" id="collapseExample">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('leaderposteravail').touched ||
+            centerForm.get('leaderposteravail').dirty) &&
+            centerForm.get('leaderposteravail').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Is IT Leader Posters Available ?</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="leaderposteravail" type="text" class="form-control"
+                  [ngModel]="centedetail?.leaderposteravail" 
+                  formControlName="leaderposteravail">
+                  <option [ngValue]="select">Select</option>
+                  <option Value=Yes>Yes</option>
+                  <option Value=No>No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('leaderposteravail').touched ||
+  centerForm.get('leaderposteravail').dirty) &&
+  centerForm.get('leaderposteravail').errors)">
+                  <small *ngIf="centerForm.get('leaderposteravail').errors.required">
+                    is required
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('animatedposteravail').touched ||
+            centerForm.get('animatedposteravail').dirty) &&
+            centerForm.get('animatedposteravail').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Is Animated Posters Available ?</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="animatedposteravail" type="text" class="form-control"
+                  [ngModel]="centedetail?.animatedposteravail" 
+                  formControlName="animatedposteravail">
+                  <option [ngValue]="select">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('animatedposteravail').touched ||
+  centerForm.get('animatedposteravail').dirty) &&
+  centerForm.get('animatedposteravail').errors)">
+                  <small *ngIf="centerForm.get('animatedposteravail').errors.required">
+                    Animated Posters is required
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('librarybooksavail').touched ||
+                    centerForm.get('librarybooksavail').dirty) &&
+                    centerForm.get('librarybooksavail').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Is Library Books Available ?</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="librarybooksavail" type="text" class="form-control"
+                  [ngModel]="centedetail?.librarybooksavail" 
+                  formControlName="librarybooksavail">
+                  <option [ngValue]="select">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('librarybooksavail').touched ||
+  centerForm.get('librarybooksavail').dirty) &&
+  centerForm.get('librarybooksavail').errors)">
+                  <small *ngIf="centerForm.get('librarybooksavail').errors.required">
+                    librarybooksavail is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('partnerboardavail').touched ||
+            centerForm.get('partnerboardavail').dirty) &&
+            centerForm.get('partnerboardavail').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Is Partner Board Available ?</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="partnerboardavail" type="text" class="form-control"
+                  [ngModel]="centedetail?.partnerboardavail" 
+                  formControlName="partnerboardavail">
+                  <option [ngValue]="select">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('partnerboardavail').touched ||
+    centerForm.get('partnerboardavail').dirty) &&
+    centerForm.get('partnerboardavail').errors)">
+                  <small *ngIf="centerForm.get('partnerboardavail').errors.required">
+                    Partner Board is required
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div class="row form-group" [ngClass]="{'has-error': ((centerForm.get('labmaterialprovied').touched ||
+                    centerForm.get('labmaterialprovied').dirty) &&
+                    centerForm.get('labmaterialprovied').errors)}">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Is Lab Materials Provided ?</label>
+                <span style="color: red"> *</span>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control" id="labmaterialprovied" type="text" class="form-control"
+                  [ngModel]="centedetail?.labmaterialprovied" 
+                  formControlName="labmaterialprovied">
+                  <option [ngValue]="select">Select</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+
+                </select>
+                <span class="text-danger" *ngIf="((centerForm.get('labmaterialprovied').touched ||
+                                centerForm.get('labmaterialprovied').dirty) &&
+                                centerForm.get('labmaterialprovied').errors)">
+                  <small *ngIf="centerForm.get('labmaterialprovied').errors.required">
+                    Lab Materials is required
+                  </small>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+    <br>
+  </mat-accordion>
+</form>

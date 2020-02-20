@@ -1,0 +1,112 @@
+<form #UpdateForm="ngForm">
+<ol class="breadcrumb" >
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Master']"> Master</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="Javascript:void(0)" [routerLink]="['/UserRole']"> UserRole List</a>
+</li>
+<li class="breadcrumb-item">
+  <a href="Javascript:void(0)"  (click)="back()">Role Details</a>
+</li>
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Menus Assign</li>
+</ol>
+<div style="padding: 2%;">
+  <h4> Role Menu Assign</h4>
+</div>
+<div class="card card-default mb-3"  style="padding: 20px;">
+  <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label><b>Role ID:</b></label>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+           {{ RoleDetail?.roleid}}
+        </div>
+    
+    
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label><b> Role Name:</b></label>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+          {{ RoleDetail?.rolename}}
+        </div>
+   
+    
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <b>Program:</b>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+          {{ RoleDetail?.pgname}}
+        </div>
+    
+    
+</div>
+
+</div>
+<div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+    <div class="row" >
+     <button type="submit" class="btn btn-warning" (click)="Update()" >Update</button>
+
+  </div>
+</div>
+
+<h5 style="text-align: center;">Menu List</h5>
+     
+<br>
+
+<div class="mat-elevation-z8 example-container">
+  <table mat-table [dataSource]="dataSource" matSort style="width:100%;">
+
+    <ng-container matColumnDef="SrNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sr No</th>
+      <td mat-cell *matCellDef="let Rolemenu;  let i = index;"> {{i+1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="menuid">
+      <th mat-header-cell *matHeaderCellDef> ID</th>
+      <td mat-cell *matCellDef="let Rolemenu"> {{Rolemenu.menuid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="menuname">
+      <th mat-header-cell *matHeaderCellDef> UrlPage </th>
+      <td mat-cell *matCellDef="let Rolemenu"> {{Rolemenu.menuname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="menuurl">
+      <th mat-header-cell *matHeaderCellDef> UrlPage </th>
+      <td mat-cell *matCellDef="let Rolemenu"> {{Rolemenu.menuurl}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="parentmenu">
+      <th mat-header-cell *matHeaderCellDef>Parent </th>
+      <td mat-cell *matCellDef="let Rolemenu"> {{Rolemenu.parentmenu}} </td>
+    </ng-container>
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="opration">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Opration</span>
+        <br>
+        <mat-checkbox #ref (change)="$event ? masterToggle(ref) : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let Rolemenu" >
+        <mat-checkbox (click)="$event.stopPropagation()" [value]="this.opration" [(ngModel)]="Rolemenu.opration"
+        [ngModelOptions]="{standalone: true}"
+          (change)="$event ? selection.toggle(Rolemenu) : null;isSomeSelected()" [checked]="selection.isSelected(Rolemenu)">
+      
+       
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+
+  </table>
+
+</div>
+</form>

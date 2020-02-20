@@ -1,0 +1,498 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+       <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee</a>
+  </li>
+ 
+  <li class="breadcrumb-item active"><i class="fa {{icon}}"></i>Partner Wise Salary
+
+
+  </li>
+</ol>
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form class="login-form" #excelForm="ngForm">
+
+  <div class="row form-group" >
+    <div class="col-md-12">
+      <h4 style="float: left;">Partner Wise Salary </h4>
+    </div>
+  </div>
+    <div class="card card-default mb-3" style="padding: 20px !important;">
+      <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <label>Name</label>
+                  </div>
+                  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  
+                    <input id="name" type="text" class="form-control"  [(ngModel)]="searchname" [ngModelOptions]="{standalone: true}">
+                  </div>
+            </div>            
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Office State</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"   name="state"  (change)="onSelectState($event.target.value)" 
+              [(ngModel)]="searchstate" [ngModelOptions]="{standalone: true}">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let state of state" value={{state.column1}}>{{state.column1}}</option>
+                </select>
+              </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Office City</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"  name="city"
+                [(ngModel)]="searchcity" [ngModelOptions]="{standalone: true}">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let city of city"value={{city.column1}}>{{city.column1}}</option>
+                </select>
+              </div>
+                </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Orgnization</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select id="ogname" type="text" class="form-control"  [(ngModel)]="searchorg"  [ngModelOptions]="{standalone: true}" >
+                  <option  [ngValue]="select">Select</option>
+                              <option *ngFor="let og of OrgnizationList" value={{og.ogid}}>{{og.ogname}}</option>
+                </select>
+              </div>
+             </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Program</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control"   name="Program"  [(ngModel)]="searchprogram"  (change)="onSelectPro($event.target.value)" >
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let ProgramList of ProgramList" value={{ProgramList.column2}}>{{ProgramList.column1}}</option>
+                </select>  
+              </div>
+              
+              </div>
+      
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Department</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+           
+                <select class="form-control"   name="department"  (change)="onSelectDepartment($event.target.value)" 
+              [(ngModel)]="searchdepartment">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let Departmentlist of Departmentlist" value={{Departmentlist.column2}}>{{Departmentlist.column1}}</option>
+                </select>
+            </div>
+            </div>
+    
+          </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Designation</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <select class="form-control"  name="designation"
+                [(ngModel)]="searchdesignation">
+                  <option  [ngValue]="select">Select</option>
+                  <option *ngFor="let Designationlist of Designationlist"value={{Designationlist.column2}}>{{Designationlist.column1}}</option>
+                </select>
+              </div>
+             </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Employee Type</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control" name="emptype"  [(ngModel)]="searchemptype" [ngModelOptions]="{standalone: true}">
+                    <option  [ngValue]="select">Select</option>
+
+                  <option>NA</option>
+                  <option>Contractor</option>
+                 
+                </select>
+              </div>
+              
+              </div>
+      
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Partner</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+              <select class="form-control"   name="partner"  [(ngModel)]="searchpartner" [ngModelOptions]="{standalone: true}">
+                <option  [ngValue]="select">Select</option>
+                <option *ngFor="let Partnerlist of Partnerlist" value={{Partnerlist.column2}}>{{Partnerlist.column1}}</option>
+              </select>
+            </div>
+            </div>
+    
+          </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ">
+                <div class="row">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Financial Year</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                  <select class="form-control" name="finyear" [(ngModel)]="searchfyear" >
+                  <option [ngValue]="select">Select</option>
+                  <option>2016-2017</option>
+                  <option>2017-2018</option>
+                  <option>2018-2019</option>
+                  <option>2019-2020</option>
+                  <option>2020-2021</option>
+                </select>
+              </div>
+             </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="row">
+
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label>Payment Mode</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+                <select class="form-control" name="Payment"  [(ngModel)]="searchpay" [ngModelOptions]="{standalone: true}">
+                
+                    <option  [ngValue]="select">Select</option>
+                    <option>Chqs(IBCW)</option>
+                  <option>FIT</option>
+                  <option>NEFT</option>
+                  <option>RTGS </option>
+                  <option>Paid by School</option>
+                  <option>Paid by Associate</option>
+                  <option>Pay Debit</option>
+                </select>
+              </div>
+              
+              </div>
+      
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label>Employee Status</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"> 
+              <select class="form-control" name="year"  [(ngModel)]="searchstatus" [ngModelOptions]="{standalone: true}">
+                  <option  [ngValue]="select">Select</option>
+
+                <option>Active</option>
+                <option>Inactive</option>
+            
+              </select>
+            </div>
+            </div>
+    
+          </div>
+          </div>
+          <br>
+      <div class="row">
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group">
+              <div class="row">
+                  <button type="button" class="btn btn-warning" (click)="filterrecord(searchname,searchstate,searchcity,searchorg,searchprogram,searchdepartment,searchdesignation,searchemptype,searchpartner,searchfyear,searchpay,searchstatus)">Find</button>
+           </div>
+          </div>
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12 form-group" id="divAddbutton">
+              <div class="row">
+                  <button type="button" class="btn btn-warning" (click)="ExportReport(searchname,searchstate,searchcity,searchorg,searchprogram,searchdepartment,searchdesignation,searchemptype,searchpartner,searchfyear,searchpay,searchstatus)" >Export</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<!-- <button>Show</button> <button (click)="save()">Save</button> -->
+
+
+<div class="table-responsive">
+    <table>
+        <tr class="warning">
+        
+          <th colspan="18"></th>
+          <th colspan="6">April</th>
+      <th colspan="6">May</th>
+      <th colspan="6">June</th>
+       <th colspan="6">July</th>
+      <th colspan="6">August</th>
+      <th colspan="6">September</th>
+      <th colspan="6">October</th>
+      <th colspan="6">November</th>   
+       <th colspan="6">December</th>  
+      <th colspan="6">January</th>
+      <th colspan="6">February</th>   
+       <th colspan="6">March</th> 
+      <th colspan="6">GRAND TOTAL</th>   
+      
+         
+        </tr>
+        <tr class="warning">
+         
+      <th>Sr No</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Employee ID</th>
+      <th>Employee Name</th>
+      <th>Gender</th>
+      <th>Date Of Birth</th>
+      <th>Date Of Join</th>
+      <th>Pan Number</th>
+
+      <th>Aadhar Number</th>
+    
+      <th>Employee Status</th>
+      <th>Program</th>
+      <th>Department</th>
+      <th>Designation</th>
+      <th>Partner Name</th>
+      <th>PayType</th>
+      <th>Beneficiary Id</th>
+      <th>Financial Year</th>
+      
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+      
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+      
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+      
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+      
+      <th>CTC Amount</th>
+      <th>Gross Amount</th>
+      <th>Total Deduction</th>
+      <th>Net Salary</th>
+      <th>Salary Status</th>
+      <th>Remark</th>
+     
+      
+      <th>Total Basic Salary</th>
+      <th>Total Deduction</th>
+      <th>Total Net Salary</th>
+      
+      
+      
+        </tr>
+
+        <tr  #myVar *ngFor="let GetRptPartnerMonthlySalary of GetRptPartnerMonthlySalary| paginate: { itemsPerPage: 20, currentPage: p  } let i = index;">
+          <td>{{i+1}}</td>
+          <td>{{GetRptPartnerMonthlySalary.state}}</td>
+          <td>{{GetRptPartnerMonthlySalary.city}}</td>
+          <td>{{GetRptPartnerMonthlySalary.empid}}</td>
+          <td>{{GetRptPartnerMonthlySalary.empname}}</td>
+          <td>{{GetRptPartnerMonthlySalary.gender}}</td>
+          <td>{{GetRptPartnerMonthlySalary.dob}}</td>
+          <td>{{GetRptPartnerMonthlySalary.doj}}</td>
+          <td>{{GetRptPartnerMonthlySalary.pancard}}</td>
+          <td>{{GetRptPartnerMonthlySalary.aadharnumber}}</td>
+         
+          <td>
+
+              <div *ngIf="GetRptPartnerMonthlySalary?.status==0">abc </div>
+              <div *ngIf="GetRptPartnerMonthlySalary?.status==1">xyz</div>
+          </td>
+
+
+          <td>{{GetRptPartnerMonthlySalary.pgname}}</td>
+          <td>{{GetRptPartnerMonthlySalary.depname}}</td>
+          <td>{{GetRptPartnerMonthlySalary.desname}}</td>
+          <td>{{GetRptPartnerMonthlySalary.partnername}}</td>
+          <td>{{GetRptPartnerMonthlySalary.paytype}}</td>
+          <td>{{GetRptPartnerMonthlySalary.beneficiaryid}} </td>
+
+          <td></td>
+         
+          <td>{{GetRptPartnerMonthlySalary.basicapril}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossapril}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductapril}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netapril}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusapril}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonapril}}</td>
+          
+          <td>{{GetRptPartnerMonthlySalary.basicmay}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossmay}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductmay}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netmay}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusmay}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonmay}}</td>
+          
+          <td>{{GetRptPartnerMonthlySalary.basicjune}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossjune}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductjune}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netjune}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusjune}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonjune}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicjuly}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossjuly}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductjuly}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netjuly}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusjuly}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonjuly}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicaugust}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossaugust}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductaugust}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netaugust}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusaugust}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonaugust}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicsept}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grosssept}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductsept}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netsept}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusept}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonsept}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicoct}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossoct}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductoct}} </td>
+          <td>{{GetRptPartnerMonthlySalary.netoct}} </td>
+          <td>{{GetRptPartnerMonthlySalary.statusoct}} </td>
+          <td>{{GetRptPartnerMonthlySalary.reasonoct}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicnov}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossnov}} </td>
+          <td>{{GetRptPartnerMonthlySalary.deductnov}}</td>
+          <td>{{GetRptPartnerMonthlySalary.netnov}}</td>
+          <td>{{GetRptPartnerMonthlySalary.statusnov}}</td>
+          <td>{{GetRptPartnerMonthlySalary.reasonnov}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicdec}}</td>
+          <td>{{GetRptPartnerMonthlySalary.grossdec}}</td>
+          <td>{{GetRptPartnerMonthlySalary.deductdec}}</td>
+          <td>{{GetRptPartnerMonthlySalary.netdec}}</td>
+          <td>{{GetRptPartnerMonthlySalary.statusdec}}</td>
+          <td>{{GetRptPartnerMonthlySalary.reasondec}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicjan}} </td>
+          <td>{{GetRptPartnerMonthlySalary.grossjan}} </td>
+          <td>{{GetRptPartnerMonthlySalary.dedductjan}}</td>
+          <td>{{GetRptPartnerMonthlySalary.netjan}}</td>
+          <td>{{GetRptPartnerMonthlySalary.statusjan}}</td>
+          <td>{{GetRptPartnerMonthlySalary.reasonjan}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicfeb}}</td>
+          <td>{{GetRptPartnerMonthlySalary.grossfeb}}</td>
+          <td>{{GetRptPartnerMonthlySalary.deductfeb}}</td>
+          <td>{{GetRptPartnerMonthlySalary.netfeb}}</td>
+          <td>{{GetRptPartnerMonthlySalary.statusfeb}}</td>
+          <td>{{GetRptPartnerMonthlySalary.reasonfeb}}</td>
+
+          <td>{{GetRptPartnerMonthlySalary.basicmarch}}</td>
+          <td>{{GetRptPartnerMonthlySalary.grossmarch}}</td>
+          <td>{{GetRptPartnerMonthlySalary.deductmarch}}</td>
+          <td>{{GetRptPartnerMonthlySalary.netmarch}}</td>
+          <td>{{GetRptPartnerMonthlySalary.statusmarch}}</td>
+          <td>{{GetRptPartnerMonthlySalary.reasonmarch}}</td>
+         
+          
+          <td>{{GetRptPartnerMonthlySalary.basictotal}}</td>
+          <td>{{GetRptPartnerMonthlySalary.deducttotal}}</td>
+          <td>{{GetRptPartnerMonthlySalary.nettotal}}</td>
+        </tr>
+      
+      </table>
+       
+  </div>
+</form>

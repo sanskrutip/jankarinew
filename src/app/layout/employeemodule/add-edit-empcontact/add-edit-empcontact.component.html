@@ -1,0 +1,232 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+  
+
+<form [formGroup]="employeeForm" (ngSubmit)="UpdateEmployee(employeeForm.value)">
+  <div class="button-row">
+  <h4> Employee Contact</h4>
+  <span>
+   <button type="button" class="btn btn-warning"  (click)="Back()" >Back</button> 
+  </span> &nbsp;&nbsp;&nbsp;
+
+  <span>
+  <button type="submit" class="btn btn-warning" [disabled]="!employeeForm.valid">Submit</button>
+  </span>&nbsp;&nbsp;&nbsp;
+  
+ 
+    <span>
+      <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+      </span>
+    <hr>
+  </div>
+ 
+ <mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+  <mat-panel-title>
+  Contact Information
+  </mat-panel-title>
+  
+  </mat-expansion-panel-header>
+ 
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+    <div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('state').touched ||
+    employeeForm.get('state').dirty) &&
+    employeeForm.get('state').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> State:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="state" type="text" class="form-control" formControlName="state" [ngModel]="employee?.state"
+    [(ngModel)]="model.state" (change)="onSelectState($event.target.value)">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let state of state" value={{state.stname}}> {{state.stname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('state').touched ||
+    employeeForm.get('state').dirty) &&
+    employeeForm.get('state').errors)">
+    <small *ngIf="employeeForm.get('state').errors.required">
+    state is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('district').touched ||
+    employeeForm.get('district').dirty) &&
+    employeeForm.get('district').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> District:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="district" type="text" class="form-control" formControlName="district"
+    [ngModel]="employee?.district" [(ngModel)]="model.district"
+    (change)="onSelectDistrict($event.target.value)">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let distirct of Distirct" value={{distirct.dtname}}>{{distirct.dtname }}</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('district').touched ||
+    employeeForm.get('district').dirty) &&
+    employeeForm.get('district').errors)">
+    <small *ngIf="employeeForm.get('district').errors.required">
+        District is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('city').touched ||
+    employeeForm.get('city').dirty) &&
+    employeeForm.get('city').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> City:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="city" type="text" class="form-control" formControlName="city" [ngModel]="employee?.city"
+    [(ngModel)]="model.city">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let city of city" value={{city.ctname}}>{{city.ctname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((employeeForm.get('city').touched ||
+    employeeForm.get('city').dirty) &&
+    employeeForm.get('city').errors)">
+    <small *ngIf="employeeForm.get('city').errors.required">
+    city is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('address').touched ||
+    employeeForm.get('address').dirty) &&
+    employeeForm.get('address').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Address:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <textarea id="address" type="text" class="form-control" formControlName="address"
+    [ngModel]="employee?.address" [(ngModel)]="model.address"></textarea>
+    <span class="text-danger" *ngIf="((employeeForm.get('address').touched ||
+    employeeForm.get('address').dirty) &&
+    employeeForm.get('address').errors)">
+    <small *ngIf="employeeForm.get('address').errors.required">
+    Address is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('pincode').touched ||
+    employeeForm.get('pincode').dirty) &&
+    employeeForm.get('pincode').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Pincode:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="pincode" type="text" class="form-control" formControlName="pincode" [ngModel]="employee?.pincode"
+    [(ngModel)]="model.pincode" maxlength="6">
+    <span class="text-danger" *ngIf="((employeeForm.get('pincode').touched ||
+    employeeForm.get('pincode').dirty) &&
+    employeeForm.get('pincode').errors)">
+    <small *ngIf="employeeForm.get('pincode').errors.required">
+    pincode is required
+    </small>
+    <small *ngIf="employeeForm.get('pincode').errors.minlength ||
+    employeeForm.get('pincode').errors.maxlength">
+    Pin should be 6 digit </small>
+    <br>
+    <small *ngIf="employeeForm.get('pincode').errors.pattern">
+    Pin should be Number </small>
+    </span>
+    </div>
+    </div>
+    
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('mobile').touched ||
+    employeeForm.get('mobile').dirty) &&
+    employeeForm.get('mobile').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Contact NO:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="mobile" type="text" class="form-control" formControlName="mobile" [ngModel]="employee?.mobile"
+    [(ngModel)]="model.mobile" maxlength="10">
+    <span class="text-danger" *ngIf="((employeeForm.get('mobile').touched ||
+    employeeForm.get('mobile').dirty) &&
+    employeeForm.get('mobile').errors)">
+    <small *ngIf="employeeForm.get('mobile').errors.required">
+    mobile is required
+    </small>
+    <small *ngIf="employeeForm.get('mobile').errors.minlength ||
+    employeeForm.get('mobile').errors.maxlength">
+    Mobile should be 10 digit </small>
+    <br>
+    <small *ngIf="employeeForm.get('mobile').errors.pattern">
+    Mobile should be Number </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('altmobile').touched ||
+    employeeForm.get('altmobile').dirty) &&
+    employeeForm.get('altmobile').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Alternet Contact NO:</label>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="altmobile" type="text" class="form-control" formControlName="altmobile"
+    [ngModel]="employee?.altmobile" [(ngModel)]="model.altmobile" maxlength="10">
+    <span class="text-danger" *ngIf="((employeeForm.get('altmobile').touched ||
+    employeeForm.get('altmobile').dirty) &&
+    employeeForm.get('altmobile').errors)">
+    
+    <small *ngIf="employeeForm.get('altmobile').errors.minlength ||
+    employeeForm.get('altmobile').errors.maxlength">
+    Mobile should be 10 digit </small>
+    <br>
+    <small *ngIf="employeeForm.get('altmobile').errors.pattern">
+    Mobile should be Number </small>
+    </span>
+    </div>
+    </div>
+    
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((employeeForm.get('email').touched ||
+    employeeForm.get('email').dirty) &&
+    employeeForm.get('email').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Personal Email:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="email" type="text" class="form-control" formControlName="email" [ngModel]="employee?.email"
+    [(ngModel)]="model.email">
+    <span class="text-danger" *ngIf="((employeeForm.get('email').touched ||
+    employeeForm.get('email').dirty) &&
+    employeeForm.get('email').errors)">
+    <small *ngIf="employeeForm.get('email').errors.required">
+    Email is required
+    </small>
+    <small *ngIf="employeeForm.get('email').errors.pattern">
+    Email should be pattern </small>
+    </span>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+   
+</form>

@@ -1,0 +1,371 @@
+
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+  
+  
+<form [formGroup]="CenterForm" (ngSubmit)="Addcenter(CenterForm.value)">
+  <div class="button-row">
+    <span>
+      <button type="button" class="btn btn-warning"  (click)="Back()">Back</button>
+      </span>&nbsp;&nbsp;&nbsp;
+  
+  <span>
+  <button type="submit" class="btn btn-warning" [disabled]="!CenterForm.valid">Submit</button>
+  </span>
+  
+  
+    <span>
+      <button type="button" class="btn btn-warning" style="float: right;" (click)="Skip()">Skip</button>
+      </span>
+    <hr>
+  </div>
+ 
+ <mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header>
+  <mat-panel-title>
+  Contact Information
+  </mat-panel-title>
+  
+  </mat-expansion-panel-header>
+ 
+  <div class="card card-default mb-3" style="padding: 20px;">
+    
+    <div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('contactno').touched ||
+        CenterForm.get('contactno').dirty) &&
+        CenterForm.get('contactno').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label> Center Contact No:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="contactno" type="text" class="form-control" formControlName="contactno" [ngModel]="centedetail?.contactno"
+            [(ngModel)]="model.contactno" maxlength="10">
+        <span class="text-danger" *ngIf="((CenterForm.get('contactno').touched ||
+        CenterForm.get('contactno').dirty) &&
+        CenterForm.get('contactno').errors)">
+        <small *ngIf="CenterForm.get('contactno').errors.required">
+            Center Contact No is required
+        </small>
+        <small *ngIf="CenterForm.get('contactno').errors.minlength ||
+        CenterForm.get('contactno').errors.maxlength">
+        Mobile should be 10 digit 
+      </small>
+        <br>
+        <small *ngIf="CenterForm.get('contactno').errors.pattern">
+        Mobile should be Number
+       </small>
+        </span>
+        </div>
+        </div>
+        <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('centeremail').touched ||
+        CenterForm.get('centeremail').dirty) &&
+        CenterForm.get('centeremail').errors)}">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <label> Center Email ID:</label>
+        <span style="color: red"> *</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <input id="centeremail" type="text" class="form-control" formControlName="centeremail" [ngModel]="centedetail?.centeremail"
+            [(ngModel)]="model.centeremail" >
+        <span class="text-danger" *ngIf="((CenterForm.get('centeremail').touched ||
+        CenterForm.get('centeremail').dirty) &&
+        CenterForm.get('centeremail').errors)">
+        <small *ngIf="CenterForm.get('centeremail').errors.required">
+            Center Email ID is required
+        </small>
+        <small *ngIf="CenterForm.get('centeremail').errors.pattern">
+          Email should be pattern </small>
+        </span>
+        </div>
+        </div>
+
+
+
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('state').touched ||
+    CenterForm.get('state').dirty) &&
+    CenterForm.get('state').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> State:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="state" type="text" class="form-control" formControlName="state" [ngModel]="centedetail?.state"
+    [(ngModel)]="model.state" (change)="onSelectState($event.target.value)">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let state of state" value={{state.stname}}> {{state.stname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('state').touched ||
+    CenterForm.get('state').dirty) &&
+    CenterForm.get('state').errors)">
+    <small *ngIf="CenterForm.get('state').errors.required">
+    state is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('district').touched ||
+    CenterForm.get('district').dirty) &&
+    CenterForm.get('district').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> District:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="district" type="text" class="form-control" formControlName="district"
+    [ngModel]="centedetail?.district" [(ngModel)]="model.district"
+    (change)="onSelectDistrict($event.target.value)">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let distirct of Distirct" value={{distirct.dtname}}>{{distirct.dtname }}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('district').touched ||
+    CenterForm.get('district').dirty) &&
+    CenterForm.get('district').errors)">
+    <small *ngIf="CenterForm.get('district').errors.required">
+        District is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('city').touched ||
+    CenterForm.get('city').dirty) &&
+    CenterForm.get('city').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label> City:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <select id="city" type="text" class="form-control" formControlName="city" [ngModel]="centedetail?.city"
+    [(ngModel)]="model.city">
+    <option [ngValue]="null">Select</option>
+    <option *ngFor="let city of city" value={{city.ctname}}>{{city.ctname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('city').touched ||
+    CenterForm.get('city').dirty) &&
+    CenterForm.get('city').errors)">
+    <small *ngIf="CenterForm.get('city').errors.required">
+    city is required
+    </small>
+    </span>
+    </div>
+    </div>
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('address').touched ||
+    CenterForm.get('address').dirty) &&
+    CenterForm.get('address').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Address:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <textarea id="address" type="text" class="form-control" formControlName="address"
+    [ngModel]="centedetail?.address" [(ngModel)]="model.address"></textarea>
+    <span class="text-danger" *ngIf="((CenterForm.get('address').touched ||
+    CenterForm.get('address').dirty) &&
+    CenterForm.get('address').errors)">
+    <small *ngIf="CenterForm.get('address').errors.required">
+    Address is required
+    </small>
+    </span>
+    </div>
+    </div>
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('pinno').touched ||
+    CenterForm.get('pinno').dirty) &&
+    CenterForm.get('pinno').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Pincode NO:</label>
+    <span style="color: red"> *</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+    <input id="pinno" type="text" class="form-control" formControlName="pinno" [ngModel]="centedetail?.pinno"
+    [(ngModel)]="model.pinno" maxlength="6">
+    <span class="text-danger" *ngIf="((CenterForm.get('pinno').touched ||
+    CenterForm.get('pinno').dirty) &&
+    CenterForm.get('pinno').errors)">
+    <small *ngIf="CenterForm.get('pinno').errors.required">
+    pincode is required
+    </small>
+    <small *ngIf="CenterForm.get('pinno').errors.minlength ||
+    CenterForm.get('pinno').errors.maxlength">
+    Pin should be 6 digit </small>
+    <br>
+    <small *ngIf="CenterForm.get('pinno').errors.pattern">
+    Pin should be Number </small>
+    </span>
+    </div>
+    </div>
+
+ 
+    
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+ 
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('teamleaderid').touched ||
+    CenterForm.get('teamleaderid').dirty) &&
+    CenterForm.get('teamleaderid').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Team Leader:</label>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" name="teamleaderid" id="teamleaderid" type="text"
+             formControlName="teamleaderid" [ngModel]="centedetail?.teamleaderid"
+            [(ngModel)]="model.teamleaderid">
+            <option [ngValue]="select">Select</option>
+            <option *ngFor="let Comman of Comman" value={{Comman.empid}}>{{Comman.fullname}}</option>
+          </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('teamleaderid').touched ||
+    CenterForm.get('teamleaderid').dirty) &&
+    CenterForm.get('teamleaderid').errors)">
+   
+    </span>
+    </div>
+    </div>
+    
+    
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('pcid').touched ||
+    CenterForm.get('pcid').dirty) &&
+    CenterForm.get('pcid').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Program Coordinator:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" id="pcid" type="text"
+      formControlName="pcid" [ngModel]="centedetail?.pcid"
+      [(ngModel)]="model.pcid">
+      <option [ngValue]="select">Select</option>
+      <option *ngFor="let Comman of Comman1" value={{Comman.empid}}>{{Comman.fullname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('pcid').touched ||
+    CenterForm.get('pcid').dirty) &&
+    CenterForm.get('pcid').errors)">
+  
+    </span>
+    </div>
+    </div>
+
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('ohid').touched ||
+    CenterForm.get('ohid').dirty) &&
+    CenterForm.get('ohid').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Operation Head:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" name="empid"
+      formControlName="ohid" [ngModel]="centedetail?.ohid"
+      [(ngModel)]="model.ohid">
+      <option [ngValue]="select">Select</option>
+      <option *ngFor="let Comman of Comman2" value={{Comman.empid}}>{{Comman.fullname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('ohid').touched ||
+    CenterForm.get('ohid').dirty) &&
+    CenterForm.get('ohid').errors)">
+
+    </span>
+    </div>
+    </div>
+
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('progassociate').touched ||
+    CenterForm.get('progassociate').dirty) &&
+    CenterForm.get('progassociate').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Program/Research Associate:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" name="progassociate"  
+      formControlName="progassociate" [ngModel]="centedetail?.progassociate"
+      [(ngModel)]="model.progassociate">
+      <option [ngValue]="select">Select</option>
+      <option *ngFor="let Comman of Comman3" value={{Comman.empid}}>{{Comman.fullname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('progassociate').touched ||
+    CenterForm.get('progassociate').dirty) &&
+    CenterForm.get('progassociate').errors)">
+   
+    </span>
+    </div>
+    </div>
+
+  
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('eteamleaderid').touched ||
+    CenterForm.get('eteamleaderid').dirty) &&
+    CenterForm.get('eteamleaderid').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Hardware TL:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" name="eteamleaderid"  
+      formControlName="eteamleaderid" [ngModel]="centedetail?.eteamleaderid"
+      [(ngModel)]="model.eteamleaderid">
+      <option [ngValue]="select">Select</option>
+      <option *ngFor="let Comman of Comman4" value={{Comman.empid}}>{{Comman.fullname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('eteamleaderid').touched ||
+    CenterForm.get('eteamleaderid').dirty) &&
+    CenterForm.get('eteamleaderid').errors)">
+   
+    </span>
+    </div>
+    </div>
+
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('engid').touched ||
+    CenterForm.get('engid').dirty) &&
+    CenterForm.get('engid').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Hardware Engineer:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select class="form-control" name="empid"
+      formControlName="engid" [ngModel]="centedetail?.engid"
+      [(ngModel)]="model.engid">
+      <option [ngValue]="select">Select</option>
+      <option *ngFor="let Comman of Comman4" value={{Comman.empid}}>{{Comman.fullname}}</option>
+    </select>
+    <span class="text-danger" *ngIf="((CenterForm.get('engid').touched ||
+    CenterForm.get('engid').dirty) &&
+    CenterForm.get('engid').errors)">
+   
+    </span>
+    </div>
+    </div>
+
+    <div class="row form-group" [ngClass]="{'has-error': ((CenterForm.get('centbillapplicable').touched ||
+    CenterForm.get('centbillapplicable').dirty) &&
+    CenterForm.get('centbillapplicable').errors)}">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <label>Center Bill Apllicable:</label>
+    <span style="color: red">*</span>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <select id="centbillapplicable" type="text" class="form-control" formControlName="centbillapplicable" [ngModel]="centedetail?.centbillapplicable"
+      [(ngModel)]="model.centbillapplicable">
+      <option [ngValue]="null">Select</option>
+      <option >Yes</option>
+      <option >No</option>
+      <option >NA</option>
+      </select>
+    <span an class="text-danger" *ngIf="((CenterForm.get('centbillapplicable').touched ||
+    CenterForm.get('centbillapplicable').dirty) &&
+    CenterForm.get('centbillapplicable').errors)">
+    
+    </span>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+   
+</form>

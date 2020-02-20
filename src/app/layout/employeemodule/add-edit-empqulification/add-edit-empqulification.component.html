@@ -1,0 +1,199 @@
+<div class="row form-group">
+  <div class="col-md-12 col-xs-12">
+  <b  style="float:right;">{{pgname}} - {{finyear}}</b>
+  </div>
+  </div> 
+<form [formGroup]="EmpQualificationForm" (ngSubmit)="AddEmpQualification(EmpQualificationForm.value)">
+  
+            <div class="button-row">
+                    
+                        <span>
+                         <button type="button" class="btn btn-warning" (click)="Back()">Back</button> 
+                        </span> &nbsp;&nbsp;&nbsp;
+                        
+                        
+                       
+                        
+                          <button type="button" class="btn btn-warning"  style="float: right;" (click)="Skip()">Skip</button>
+                          <hr>
+                        </div>
+                        <h4>Employee Qualification  </h4>
+      <div class="card card-default mb-3" style="padding: 20px;"  >
+  <div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpQualificationForm.get('degree').touched ||
+  EmpQualificationForm.get('degree').dirty) &&
+  EmpQualificationForm.get('degree').errors)}" >
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>Degree:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <select id="degree" type="text" class="form-control" formControlName="degree" [ngModel]="EmpQ?.degree"
+  [(ngModel)]="model1.degree">
+  <option [ngValue]="null">Select</option>
+  <option value="BSC">BSC</option>
+  <option value="Bcom">Bcom</option>
+  <option value="SSC">SSC</option>
+  <option value="HSC">HSC</option>
+  </select>
+  <span class="text-danger"
+  *ngIf="((EmpQualificationForm.get('degree').touched ||
+  EmpQualificationForm.get('degree').dirty) &&
+  EmpQualificationForm.get('degree').errors)">
+  <small *ngIf="EmpQualificationForm.get('degree').errors.required">
+  Degree is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpQualificationForm.get('university').touched ||
+  EmpQualificationForm.get('university').dirty) &&
+  EmpQualificationForm.get('university').errors)}">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>University:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <input id="university" type="text" class="form-control" formControlName="university" [ngModel]="EmpQ?.university " [(ngModel)]="model1.university ">
+  <span class="text-danger"
+  *ngIf="((EmpQualificationForm.get('university').touched ||
+  EmpQualificationForm.get('university').dirty) &&
+  EmpQualificationForm.get('university').errors)">
+  <small *ngIf="EmpQualificationForm.get('university').errors.required">
+  University is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  <!-- <div class="row form-group" >
+  <button type="submit" class="btn btn-warning" [disabled]="!EmpQualificationForm .valid" >Submit</button>
+  </div>
+   -->
+  
+  
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpQualificationForm.get('year').touched ||
+  EmpQualificationForm.get('year').dirty) &&
+  EmpQualificationForm.get('year').errors)}">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>year:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <input id="year" type="text" class="form-control" formControlName="year" [ngModel]="EmpQ?.year " [(ngModel)]="model1.year ">
+  <span class="text-danger"
+  *ngIf="((EmpQualificationForm.get('year').touched ||
+  EmpQualificationForm.get('year').dirty) &&
+  EmpQualificationForm.get('year').errors)">
+  <small *ngIf="EmpQualificationForm.get('year').errors.required">
+  year is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  <div class="row form-group" [ngClass]="{'has-error': ((EmpQualificationForm.get('classes').touched ||
+  EmpQualificationForm.get('classes').dirty) &&
+  EmpQualificationForm.get('classes').errors)}">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+  <label>classes:</label>
+  </div>
+  <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+  <select id="classes" type="text" class="form-control" formControlName="classes" [ngModel]="EmpQ?.classes"
+  [(ngModel)]="model1.classes">
+  <option [ngValue]="null">Select</option>
+  <option value="A">A</option>
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+  </select>
+  <span class="text-danger"
+  *ngIf="((EmpQualificationForm.get('classes').touched ||
+  EmpQualificationForm.get('classes').dirty) &&
+  EmpQualificationForm.get('classes').errors)">
+  <small *ngIf="EmpQualificationForm.get('classes').errors.required">
+  Classes is required
+  </small>
+  
+  </span>
+  </div>
+  </div>
+  
+  
+  </div>
+  </div>
+  <div class="row"  >
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="form-group"  >
+      <button type="submit" class="btn btn-warning" [disabled]="!EmpQualificationForm.valid" >Submit</button>
+            </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+  <table class="table">
+  <thead>
+  <tr class="warning">
+        <td><b>Sr NO.</b></td>
+  <td>
+  <b> Degree</b>
+  </td>
+  <td>
+  <b>University</b>
+  </td>
+  <td>
+  <b>Year</b>
+  </td>
+  <td>
+  <b>Classes</b>
+  </td>
+  
+  <td>
+  <b>Remove</b>
+  </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr #myVar *ngFor="let EmployeeQualification of EmployeeQualification let i = index;" >
+  <td>{{i+1}}</td>
+  <td>
+  {{EmployeeQualification.degree }}
+  </td>
+  <td>
+  {{EmployeeQualification.university}}
+  </td>
+  <td>
+  {{EmployeeQualification.year}}
+  </td>
+  <td>
+  {{EmployeeQualification.classes}}
+  </td>
+  
+  <td>
+  
+  <b>
+      <a (click)="open(content)"  style="cursor: pointer; text-decoration: underline;">
+          Delete
+      </a></b>
+
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-basic-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;
+            Are you sure want to Delete ?</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" (click)="Delete1(EmployeeQualification.quliid)" (click)="modal.close('Cross click')">Yes</button>
+          <button type="button" class="btn btn-info"  (click)="modal.dismiss('Cross click')">No</button>
+        </div>
+      
+      </ng-template>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </form>

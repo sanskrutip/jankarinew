@@ -1,0 +1,585 @@
+
+  <!-- <div class="breadcrumb"> -->
+    <ul class="breadcrumb">
+        <li>
+          <a href="Javascript:void(0)" [routerLink]="['/Employee']"> Employee&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+        </li>
+        <li>
+          <a href="Javascript:void(0)" [routerLink]="['/EmployeeList']"> Employee List&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</a>
+        </li>
+        <li>
+          <i class="fa {{icon}}"></i>Employee Details
+        </li>
+        <b>{{pgname}} - {{finyear}}</b>
+      </ul>
+    <!-- </div> -->
+  <mat-tab-group>
+      <!-- personal details start -->
+      <mat-tab label="Personal Information"> 
+   <div class="container pt-3">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12  first6">
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Prefix:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.prefix}}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>First Name:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.firstname }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Middle Name:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.middlename }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Last Name:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.lastname }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Birthdate:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.dob| date: 'yyyy-MM-dd' }}
+      
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Bloodgroup:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.bloodgroup  }}
+      
+      </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 second6">
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Marital Status:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.maritalstatus   }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Gender:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.gender }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Aadhar No:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.aadharnumber }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Pancard No:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.pancard }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Passport No:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.passportno }}
+      </div>
+      </div>
+      <div class="row form-group">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <label><b>Hobbies:</b></label>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      {{ employee?.hobby }}
+      </div>
+      </div>
+      </div>
+      </div>
+  </div>
+      </mat-tab>
+      <!-- personal information end -->
+      <!-- contact details -->
+      <mat-tab label="Contact Details">
+        <div class="container pt-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 first6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>State:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.state }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>District:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.district }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>City:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.city }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Address:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.address }}
+              </div>
+              </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 second6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Contact NO:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.mobile }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Alternet Contact NO:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.altmobile }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Personal Email:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.email }}
+              </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <label><b>Pincode:</b></label>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                {{ employee?.pincode }}
+                </div>
+                </div> 
+              </div>
+              </div>
+          </div>
+      </mat-tab>
+      <!-- contact details end -->
+      <!-- office details start -->
+      <mat-tab label="Office Details">
+        <div class="container pt-3">  
+        <div class="row">
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 first6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Office:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.offname }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Emp Code:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.emp_code }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Beneficiary Id:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.beneficiaryid }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Office Email:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.offemail }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Date of Joining:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.doj| date: 'yyyy-MM-dd'}}
+              </div>
+              </div> 
+              </div>
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 second6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Job Since:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.jobsince }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Emp Type:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.emptype }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Pif Associate:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.pifassociate }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Status:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <div *ngIf="employee?.status==0">Active</div>
+                    <div *ngIf="employee?.status==1">Inactive</div>
+              </div>
+              </div>
+              </div>
+              </div>
+            </div>
+      </mat-tab>
+      <!-- office details end -->
+      <!-- salaray details start -->
+      <mat-tab label="Salary Details">
+          <div class="container pt-3">  
+        <div class="row">
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 first6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Gross Salary:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.grosssalary }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Salary Creator:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.salcreatorname }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Salary Approval:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.salapprovalname     }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Pay Type:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.paytype }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Bank Name:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.bankname }}
+              </div>
+              </div> 
+              </div>
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 second6">
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Branch:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.branch }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Account No:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.accno }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>NEFT Code:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.neftcode }}
+              </div>
+              </div>
+              <div class="row form-group">
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <label><b>Branch Address:</b></label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              {{ employee?.branchadd }}
+              </div>
+              </div>
+              </div>
+              </div>  
+            </div>
+      </mat-tab>
+      <mat-tab label="Employee Program Details">
+          <div class="table-responsive">
+              <table class="table">
+              <thead>
+              <tr class="warning">
+              <td><b> Sr NO.</b></td>
+              <td>
+              <b> Finacial Year</b>
+              </td>
+              <td>
+              <b>Program</b>
+              </td>
+              <td>
+              <b>Department</b>
+              </td>
+              <td>
+              <b>Designation</b>
+              </td>
+              
+              <td>
+              <b>Reports To</b>
+              </td>
+              
+              </tr>
+              </thead>
+              <tbody>
+              <tr #myVar *ngFor="let EmployeeProgram of EmployeeProgram let i = index;" >
+              <td>{{i+1}}</td>
+              <td>
+              {{EmployeeProgram.finyear}}
+              </td>
+              <td>
+              {{EmployeeProgram.pgname}}
+              </td>
+              <td>
+              {{EmployeeProgram.depname}}
+              </td>
+              <td>
+              {{EmployeeProgram.desname}}
+              </td>
+              <td>
+              {{EmployeeProgram.reporttoname}}
+              </td>
+              
+              </tr>
+              </tbody>
+              </table>
+              </div>
+      </mat-tab>
+  
+      <mat-tab label="Employee Qualification Details">
+          <div class="table-responsive">
+              <table class="table">
+              <thead>
+              <tr class="warning">
+                  <td><b> Sr NO.</b></td>
+              <td>
+              <b> Degree</b>
+              </td>
+              <td>
+              <b>University</b>
+              </td>
+              <td>
+              <b>Year</b>
+              </td>
+              <td>
+              <b>Classes</b>
+              </td>
+              
+              
+              </tr>
+              </thead>
+              <tbody>
+              <tr #myVar *ngFor="let EmployeeQualification of EmployeeQualification let i = index;" >
+              <td>{{i+1}}</td>
+              <td>
+              {{EmployeeQualification.degree }}
+              </td>
+              <td>
+              {{EmployeeQualification.university}}
+              </td>
+              <td>
+              {{EmployeeQualification.year}}
+              </td>
+              <td>
+              {{EmployeeQualification.classes}}
+              </td>
+              
+              
+              </tr>
+              </tbody>
+              </table>
+              </div>
+      </mat-tab>
+      <mat-tab label="Employee References Details">
+          <div class="table-responsive">
+              <table class="table">
+              <thead>
+              <tr class="warning">
+                  <td><b> Sr NO.</b></td>
+              <td>
+              <b>References</b>
+              </td>
+              <td>
+              <b>Designation</b>
+              </td>
+              <td>
+              <b>Contact</b>
+              </td>
+              
+              </tr>
+              </thead>
+              <tbody>
+              <tr #myVar *ngFor="let EmployeeReference of EmployeeReference let i = index;" >
+              <td>{{i+1}}</td>
+              <td>
+              {{EmployeeReference.refname}}
+              </td>
+              <td>
+              {{EmployeeReference.designation}}
+              </td>
+              <td>
+              {{EmployeeReference.contactno}}
+              </td>
+              
+              
+              </tr>
+              </tbody>
+              </table>
+              </div>
+      </mat-tab>
+      <mat-tab label="Employee Document">
+           <div class="table-responsive">
+      <table class="table">
+      <thead>
+      <tr class="warning">
+          <td><b> Sr NO.</b></td>
+      <td>
+      <b>Financial year</b>
+      </td>
+      <td>
+      <b>Appointment Letter</b>
+      </td>
+      <td>
+      <b>JD</b>
+      </td>
+      <td>
+          <b>ICC policy</b>
+          </td>
+          <td>
+              <b>Salary Slip</b>
+              </td>
+              <td>
+                  <b>Self Declaration Form</b>
+                  </td>
+                  <td>
+                      <b>Child policy	</b>
+                      </td>
+      </tr>
+      </thead>
+      <tbody>
+              <tr  #myVar *ngFor="let Empdocument of Empdocument  let i = index; " >
+                
+                  <td>{{i+1}}</td>
+                  
+                  <td>
+                    
+                     {{Empdocument.financialyear}}   
+                  </td>
+                  <td >
+                      <div *ngIf="Empdocument?.al==0"> <input type="checkbox" checked></div>
+                      <div *ngIf="Empdocument?.al==1"> <input type="checkbox"   >
+                    </div>
+                    <!-- {{Empdocument.al}}   -->
+                  </td>
+                  <td>
+                      <div *ngIf="Empdocument?.jd==0"> <input type="checkbox"  checked></div>
+                      <div *ngIf="Empdocument?.jd==1"> <input type="checkbox"  >
+                    </div>
+                      <!-- {{Empdocument.jd}}   -->
+                    </td>
+                    <td>
+                        <div *ngIf="Empdocument?.icc==0"> <input type="checkbox"  checked></div>
+                        <div *ngIf="Empdocument?.icc==1"> <input type="checkbox"  >
+                      </div>
+                        <!-- {{Empdocument.icc}}   -->
+                      </td>
+                      <td>
+                          <div *ngIf="Empdocument?.ss==0"> <input type="checkbox"  checked></div>
+                          <div *ngIf="Empdocument?.ss==1"> <input type="checkbox"  >
+                        </div>
+                          <!-- {{Empdocument.ss}}   -->
+                        </td>
+                        <td>
+                            <div *ngIf="Empdocument?.sd==0"> <input type="checkbox"  checked></div>
+                            <div *ngIf="Empdocument?.sd==1"> <input type="checkbox"   >
+                          </div>
+                            <!-- {{Empdocument.sd}}   -->
+                          </td>
+                          <td>
+                              <div *ngIf="Empdocument?.cp==0">
+                                <input type="checkbox"  checked>
+                              </div>
+                              <div *ngIf="Empdocument?.cp==1">
+                                  <input type="checkbox" ></div>
+                            </td>
+                          
+                  
+           
+              </tr>
+            </tbody>
+      </table>
+      </div>
+      </mat-tab>
+    </mat-tab-group>
